@@ -1,0 +1,10 @@
+#!/bin/bash
+
+displaybuildfiles=none                # display build files (none|diff|full)
+sudoloop=false                        # prevent sudo timeout
+
+#editor="${EDITOR:-vi}"                # build files editor
+#fallback=true                         # pacman fallback to the AUR
+#silent=false                          # silence output
+#sortby=popularity                     # sort method (name|votes|popularity)
+#sortorder=descending                  # sort order (ascending|descending)

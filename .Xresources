@@ -1,0 +1,113 @@
+!!=============================================================================
+!! RXVT-unicode setting
+!!=============================================================================
+
+
+urxvt.depth:                32
+
+urxvt.internalBorder:       9
+urxvt.blurRadius:           25
+urxvt.scrollBar:            true
+urxvt.scrollBar_right:      true
+urxvt.scrollBar_floating:   false
+urxvt.scrollstyle:          plain
+urxvt.saveLines:            10000
+urxvt.preeditType:          Root
+urxvt.jumpScroll:           false
+URxvt.altSendsEscape:       true
+
+xterm.metaSendsEscape:      true
+
+!Set TERM
+urxvt.termName:             xterm-256color
+
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.autohint:               false
+Xft.hinting:                true
+Xft.hintstyle:              hintfull
+urxvt*font:                 xft:Cousine:size=11
+urxvt*imFont:               xft:Cousine:size=11
+urxvt*boldFont:             xft:Cousine:bold:size=11
+urxvt*italicFont:           xft:Cousine:italic:size=11
+urxvt*boldItalicFont:       xft:Cousine:bold:italic:size=10
+urxvt*scaleHeight:          1.01
+!urxvt*letterSpace:          -5
+
+! clickable Url and copy paste keys
+
+urxvt.iso14755:             false
+urxvt.iso14755_52:          false
+urxvt.perl-ext-common:      default,clipboard,vtwheel
+urxvt.keysym.Shift-Control-C:   perl:clipboard:copy
+urxvt.keysym.Shift-Control-V:   perl:clipboard:paste
+urxvt.url-launcher:         /usr/bin/google-chrome-stable
+urxvt.matcher.button:       1
+
+
+Xft.lcdfilter:              lcddefault
+
+
+urxvt*dynamicColors:        on
+urxvt*highlightSelection:   true
+urxvt*colorMode:            on
+
+
+!urxvt*borderColor:         #373b41
+
+! special
+*.foreground:   #eceff1
+*.background:   #002b36
+*.cursorColor:  #eceff1
+urxvt.background:   [80]#002b36
+
+! black
+*.color0:       #263238
+*.color8:       #37474f
+
+! red
+*.color1:       #ff9800
+*.color9:       #ffa74d
+
+! green
+*.color2:       #8bc34a
+*.color10:      #9ccc65
+
+! yellow
+*.color3:       #ffc107
+*.color11:      #ffa000
+
+! blue
+*.color4:       #03a9f4
+*.color12:      #81d4fa
+
+! magenta
+*.color5:       #e91e63
+*.color13:      #A56ECC
+
+! cyan
+*.color6:       #009688
+*.color14:      #26a69a
+
+! white
+*.color7:       #cfd8dc
+*.color15:      #eceff1
+
+
+!-----------------------------
+! Rofi config
+
+rofi.fg:            #D3DAE3
+rofi.bg:            #383C4A
+rofi.hlbg:          #5294E2
+rofi.bc:            #383C4A
+rofi.opacity:       80
+rofi.padding:       8
+rofi.lines:         14
+rofi.width:         40
+rofi.font:          Noto Sans 14
+rofi.line-margin:   3
+rofi.sep:           |
+rofi.prompt:        >
+

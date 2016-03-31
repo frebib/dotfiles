@@ -1,0 +1,93 @@
+# Common Aliases
+#alias "-"="cd -"
+#alias "~"="cd ~"
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+
+alias ..la="cd ..;la"
+alias ..ll="cd..;ll"
+alias ..l="..ll"
+
+alias l=ll
+alias ll="ls -lFh"
+alias la="ls -lAFh"
+alias count="la | wc -l"
+
+alias md="mkdir -p"
+mcd(){
+    mkdir $1 && cd $1
+}
+
+alias svi=sudoedit
+
+# Git Aliases
+alias g=git
+alias gcl="git clone --recursive"
+alias gco="git checkout"
+alias ga="git add"
+alias gaa="ga -A"
+alias gc="git commit"
+alias gcm="gc -m"
+alias gcam="gc -a"
+alias gst="git status"
+
+alias gm="git merge"
+alias gma="git merge --abort"
+alias grb="git rebase"
+alias grba="grb --abort"
+alias grbc="grb --continue"
+
+alias gf="git fetch"
+alias gp="git push"
+alias gpf="gp --force"
+alias gl="git pull --rebase"
+alias gd="git diff"
+alias glg="git log --stat --color"
+alias glog="git log --oneline --decorate --color --graph"
+
+alias gclean="git clean"
+alias gbr="git branch"
+alias gr="git remote"
+alias gra="gr add"
+alias grr="gr rm"
+alias grao="gra origin"
+alias grro="grr origin"
+
+alias gsta='git stash'
+alias gstd='gsta drop'
+alias gstl='gsta list'
+alias gstp='gsta pop'
+alias gstv="gsta show -p stash@{0}"
+
+
+# General Aliases
+alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
+alias vimrc="$EDITOR ~/.vimrc"
+alias zshrc="$EDITOR ~/.zshrc ; source ~/.zshrc"
+alias yaourtrc="$EDITOR ~/.yaourtrc"
+alias xinitrc="$EDITOR ~/.xinitrc"
+alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
+alias sshc="$EDITOR ~/.ssh/config"
+alias dotfiles="cd $DOTFILES"
+alias i3c="$EDITOR ~/.config/i3/config ; i3-msg restart"
+alias i3bc="$EDITOR ~/.config/i3blocks/config ; i3-msg restart"
+alias sf=screenfetch
+
+alias startcsecvm="VBoxManage startvm 'Intro to Computer Security' --type headless"
+alias stopcsecvm="VBoxManage controlvm 'Intro to Computer Security' poweroff"
+
+alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
+alias downloads="~/Downloads"
+alias dl="downloads"
+alias doc="~/Documents"
+alias desktop="cd ~/Desktop"
+alias uni="~/university"
+alias drive="~/drive"
+alias lol="fortune | cowsay -f sodomized | lolcat -p 1"
+
+alias gsvn="git svn"
+alias gsync="git pull -q ; sl ; sp ; git push"
+alias sp="git stash -q ; gsvn dcommit ; git stash pop"
+alias sl="git stash -q ; gsvn rebase ; git stash pop"

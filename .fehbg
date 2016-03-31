@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-xinerama --bg-fill '/home/frebib/Pictures/Wallpapers/lakeside-sunrisejpg' 
