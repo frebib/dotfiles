@@ -1,0 +1,93 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=~/.config/i3blocks/blocks/$BLOCK_NAME
+markup=none
+
+#full_text=
+align=center
+color=#FFFFFF
+separator=false
+separator_block_width=10
+
+[window title]
+command=xtitle -s #| sed 's/^$/ /g'"
+color=#A6D1FA
+align=center
+min_width=700
+interval=persist
+
+[separator]
+
+# Command gets the text. This
+# needs to do command on click
+#[playpause]
+#label=$
+#command=mpc toggle
+#interval=once
+
+[volume]
+instance=Master
+interval=10
+signal=10
+
+[separator]
+
+[iface]
+label=
+#instance=wlan0
+#color=#00FF00
+interval=30
+
+[separator]
+
+[cpu_usage]
+label=
+interval=5
+
+[separator]
+
+[memory]
+label=
+interval=30
+
+[separator]
+
+[temperature]
+label=
+interval=5
+
+[separator]
+
+#[battery]
+#label=
+#interval=5
+
+#[separator]
+
+[clock]
+interval=5
+
