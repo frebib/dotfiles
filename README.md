@@ -6,11 +6,14 @@ To quickly get started, clone this repo and run the setup scripts.
     git clone https://github.com/frebib/dotfiles.git ~/.config/dotfiles
     cd ~/.config/dotfiles
 
+You can put the `dotfiles` directory anywhere, just be sure to update the `$DOTFILES` envvar in `.profile`
+
 To install all of my packages & programs, run the setup script:
 
     scripts/setup.sh
 
 To link all the configuration files, run the init-dotfiles script:
+
 **Be warned that this will destroy your current configs without warning**
 
     scripts/init-dotfiles.sh
