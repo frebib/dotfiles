@@ -16,7 +16,4 @@ xbindkeys &
 
 xrandr --dpi 96
 
-pulseaudio &
-dropbox &
-
 exec i3

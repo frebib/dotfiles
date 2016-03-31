@@ -146,9 +146,14 @@ exec_always --no-startup-id ~/.config/i3/disable-standby-fs.py
 exec xautolock -time 10 -locker /usr/bin/lock.sh
 bindsym $mod+c exec --no-startup-id google-chrome-stable
 
-exec dex -a
-exec redshift
-exec compton -b --config ~/.config/compton.conf
+exec --no-startup-id pulseaudio
+exec --no-startup-id dropbox
+exec --no-startup-id insync start
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id redshift
+exec --no-startup-id compton -b --config ~/.config/compton.conf
+exec --no-startup-id google-chrome-stable --no-startup-window
 
 exec i3-msg 'workspace 2; exec i3-sensible-terminal'
-exec --no-startup-id i3-msg 'workspace 3; exec google-chrome-stable'
+exec i3-msg 'workspace 3; exec sleep 2 && google-chrome-stable'
