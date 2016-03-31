@@ -1,6 +1,4 @@
 # Common Aliases
-#alias "-"="cd -"
-#alias "~"="cd ~"
 alias ...=../..
 alias ....=../../..
 alias .....=../../../..
@@ -19,8 +17,27 @@ alias md="mkdir -p"
 mcd(){
     mkdir $1 && cd $1
 }
+alias grep='grep --color'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g L="| less"
+alias -g NE="2> /dev/null"
 
 alias svi=sudoedit
+
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+
+
+# File default aliases
+alias -s pdf=evince
+alias -s zip="unzip -l"
+alias -s rar="unrar l"
+alias -s tar="tar tf"
+alias -s tar.gz="echo "
+
 
 # Git Aliases
 alias g=git
@@ -79,10 +96,10 @@ alias startcsecvm="VBoxManage startvm 'Intro to Computer Security' --type headle
 alias stopcsecvm="VBoxManage controlvm 'Intro to Computer Security' poweroff"
 
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
-alias downloads="~/Downloads"
+alias downloads="~/downloads"
 alias dl="downloads"
-alias doc="~/Documents"
-alias desktop="cd ~/Desktop"
+alias doc="~/documents"
+alias desktop="cd ~/desktop"
 alias uni="~/university"
 alias drive="~/drive"
 alias lol="fortune | cowsay -f sodomized | lolcat -p 1"

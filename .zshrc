@@ -42,7 +42,7 @@ zstyle :compinstall filename '/home/frebib/.zshrc'
 
 autoload -U compinit ; compinit
 
-plugins=(command-not-found common-aliases cp history-substring-search sudo zsh-autosuggestions zsh-completions)
+plugins=(command-not-found history-substring-search sudo zsh-autosuggestions zsh-completions)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
