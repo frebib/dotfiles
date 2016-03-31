@@ -14,7 +14,7 @@ setopt appendhistory autocd extendedglob
 
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
-bindkey -v
+bindkey -e
 bindkey "\e$terminfo[kcub1]" backward-word
 bindkey "\e$terminfo[kcuf1]" forward-word
 bindkey "^[[7~" beginning-of-line
