@@ -78,4 +78,4 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[assign]='none'
 ZSH_HIGHLIGHT_STYLES[redirection]='none'
 
-source ~/.config/dotfiles/aliases
+source $DOTFILES/aliases
