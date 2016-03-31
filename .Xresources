@@ -32,8 +32,6 @@ urxvt*imFont:               xft:Source Code Pro:size=11
 urxvt*boldFont:             xft:Source Code Pro:bold:size=11
 urxvt*italicFont:           xft:Source Code Pro:italic:size=11
 urxvt*boldItalicFont:       xft:Source Code Pro:bold:italic:size=10
-urxvt*scaleHeight:          1.01
-!urxvt*letterSpace:          -5
 
 ! clickable Url and copy paste keys
 
