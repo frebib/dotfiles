@@ -4,7 +4,7 @@ set -e
 cd $HOME
 echo cd `pwd`
 
-files=`ls -A $DOTFILES | awk '/^\..*/ && !/\.config$/ && !/\.git$/'`
+files=`ls -A $DOTFILES | awk '/^\..*/ && !/\.config$/ && !/\.git$/ && !/\.gitignore$/'`
 homepath=`echo $DOTFILES | sed "s|$HOME/||g"`
 conffiles=`ls -A "$DOTFILES/.config"`
 confpath=`echo $homepath | sed "s|.config/||g"`
