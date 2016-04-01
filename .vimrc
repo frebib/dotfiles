@@ -33,6 +33,11 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 
+com W w
+com Q q
+com Wq wq
+com WQ wq
+
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
