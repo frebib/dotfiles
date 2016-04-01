@@ -21,6 +21,11 @@ for file in $conffiles; do
     ln -sfv $confpath/.config/$file .
 done
 
+cd $HOME
+mkdir -p .local/share/ && cd .local/share
+echo cd `pwd`
+ln -sfv $DOTFILES/fonts .
+
 sudo -s << EOF
 cd ~
 echo -n "cd "

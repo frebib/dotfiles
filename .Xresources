@@ -27,11 +27,11 @@ Xft.rgba:                   rgb
 Xft.autohint:               false
 Xft.hinting:                true
 Xft.hintstyle:              hintfull
-urxvt*font:                 xft:Source Code Pro for Powerline:style=Regular:size=10,xft:FontAwesome:size=10
-urxvt*imFont:               xft:Source Code Pro for Powerline:style=Regular:size=10,xft:FontAwesome:size=10
-urxvt*boldFont:             xft:Source Code Pro for Powerline:style=Bold:size=10,xft:FontAwesome:size=10
-urxvt*italicFont:           xft:Source Code Pro for Powerline:style=Italic:size=10,xft:FontAwesome:size=10
-urxvt*boldItalicFont:       xft:Source Code Pro for Powerline:style=Bold,Italic:size=10,xft:FontAwesome:size=10
+urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=10.6
+urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=10.6
+urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=10.6
+urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=10.6
+urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=10.6
 
 
 ! clickable Url and copy paste keys
