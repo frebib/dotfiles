@@ -23,6 +23,7 @@ gdmap
 gimp
 gitg
 gksu
+gnome-font-viewer
 google-chrome
 gtk-theme-arc-solid
 gvim
@@ -54,8 +55,8 @@ oh-my-zsh-git
 openssh
 pacaur
 pavucontrol
-powerline
 powertop
+powerline-fonts-git
 pulseaudio
 pulseaudio-alsa
 qt5-qtstyleplugins
@@ -70,9 +71,7 @@ steam
 sysstat
 teamspeak3
 teamspeak3-soundpack-portal
-terminus-font
 tree
-ttf-chromeos-fonts
 ttf-font-awesome
 unzip
 urxvt-perls

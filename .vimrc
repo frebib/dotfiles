@@ -1,6 +1,17 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+syntax enable
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set number
+set autoindent
+set laststatus=2
+set mouse=a
+set encoding=utf-8
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,15 +23,9 @@ Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 
-syntax enable
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set number
-set autoindent
-set laststatus=2
-set mouse=a
+" Vim-Airline config
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
 
 " Interface with system clipboard
 noremap <Leader>y "*y

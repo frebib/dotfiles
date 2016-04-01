@@ -5,7 +5,7 @@
 
 urxvt.depth:                32
 
-urxvt.internalBorder:       9
+urxvt.internalBorder:       4
 urxvt.blurRadius:           25
 urxvt.scrollBar:            true
 urxvt.scrollBar_right:      true
@@ -27,11 +27,12 @@ Xft.rgba:                   rgb
 Xft.autohint:               false
 Xft.hinting:                true
 Xft.hintstyle:              hintfull
-urxvt*font:                 xft:Source Code Pro:size=11
-urxvt*imFont:               xft:Source Code Pro:size=11
-urxvt*boldFont:             xft:Source Code Pro:bold:size=11
-urxvt*italicFont:           xft:Source Code Pro:italic:size=11
-urxvt*boldItalicFont:       xft:Source Code Pro:bold:italic:size=10
+urxvt*font:                 xft:Source Code Pro for Powerline:style=Regular:size=10,xft:FontAwesome:size=10
+urxvt*imFont:               xft:Source Code Pro for Powerline:style=Regular:size=10,xft:FontAwesome:size=10
+urxvt*boldFont:             xft:Source Code Pro for Powerline:style=Bold:size=10,xft:FontAwesome:size=10
+urxvt*italicFont:           xft:Source Code Pro for Powerline:style=Italic:size=10,xft:FontAwesome:size=10
+urxvt*boldItalicFont:       xft:Source Code Pro for Powerline:style=Bold,Italic:size=10,xft:FontAwesome:size=10
+
 
 ! clickable Url and copy paste keys
 
@@ -59,6 +60,7 @@ urxvt*colorMode:            on
 *.background:   #002b36
 *.cursorColor:  #eceff1
 urxvt.background:   [80]#002b36
+urxvt.scrollColor:  #767B87
 
 ! black
 *.color0:       #263238

@@ -1,4 +1,4 @@
-export LC_ALL="C"
+export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 export LC_NUMERIC=en_GB
 
