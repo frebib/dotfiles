@@ -56,11 +56,12 @@ urxvt*colorMode:            on
 !urxvt*borderColor:         #373b41
 
 ! special
-*.foreground:   #eceff1
-*.background:   #002b36
-*.cursorColor:  #eceff1
-urxvt.background:   [80]#002b36
-urxvt.scrollColor:  #767B87
+*.foreground:               #ECEFF1
+*.background:               #002B36
+*.cursorColor:              #ECEFF1
+*.highlightColor:           #5294E2
+urxvt.background:           [80]#002B36
+urxvt.scrollColor:          #767B87
 
 ! black
 *.color0:       #263238
