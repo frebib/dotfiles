@@ -49,7 +49,8 @@ Xft.lcdfilter:              lcddefault
 ! special
 *.foreground:               #ECEFF1
 *.background:               #002B36
-*.cursorColor:              #ECEFF1
+!*.cursorColor:              #ECEFF1
+*.cursorColor:              #5294E2
 *.highlightColor:           #5294E2
 urxvt.background:           [80]#002B36
 urxvt.scrollColor:          #767B87
