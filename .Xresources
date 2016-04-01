@@ -14,7 +14,7 @@ urxvt.scrollstyle:          plain
 urxvt.saveLines:            10000
 urxvt.preeditType:          Root
 urxvt.jumpScroll:           false
-URxvt.altSendsEscape:       true
+urxvt.altSendsEscape:       true
 
 xterm.metaSendsEscape:      true
 
