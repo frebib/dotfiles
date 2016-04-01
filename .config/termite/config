@@ -1,0 +1,37 @@
+[options]
+font = SauceCodePro 10.5
+cursor_blink = off
+size_hints = true
+
+[colors]
+cursor     = #5294E2
+foreground = #ECEFF1
+background = rgba(20, 60, 69, 1)
+highlight  = #5294E2
+
+# black
+color0  =     #263238
+color8  =     #37474f
+# red
+color1  =     #ff9800
+color9  =     #ffa74d
+# green
+color2  =     #8bc34a
+color10 =     #9ccc65
+# yellow
+color3  =     #ffc107
+color11 =     #ffa000
+# blue
+color4  =     #03a9f4
+color12 =     #81d4fa
+# magenta
+color5  =     #e91e63
+color13 =     #A56ECC
+# cyan
+color6  =     #009688
+color14 =     #26a69a
+# white
+color7  =     #cfd8dc
+color15 =     #eceff1
+
+# vim: ft=dosini cms=#%s

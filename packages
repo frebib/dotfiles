@@ -62,7 +62,6 @@ pulseaudio-alsa
 qt5-qtstyleplugins
 redshift
 rofi
-rxvt-unicode-patched
 rsync
 screenfetch
 scrot
@@ -71,12 +70,10 @@ steam
 sysstat
 teamspeak3
 teamspeak3-soundpack-portal
+termite
 tree
 ttf-font-awesome
 unzip
-urxvt-font-size-git
-urxvt-perls
-urxvt-vtwheel
 wget
 xbindkeys
 xclip
