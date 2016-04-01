@@ -64,6 +64,12 @@ interval=30
 
 [separator]
 
+[updates]
+label=
+interval=600
+
+[separator]
+
 [cpu_usage]
 label=
 interval=5

@@ -1,0 +1,13 @@
+#!/bin/python2
+
+import commands
+import os
+
+button = os.environ.get('BLOCK_BUTTON')
+if button == '1':
+  os.system("i3-sensible-terminal -e 'pacaur -Syu'")
+
+updates = commands.getstatusoutput("/usr/bin/checkupdates | wc -l")[1]
+if updates and updates != '0':
+  print updates
+  print updates
