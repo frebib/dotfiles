@@ -44,16 +44,7 @@ urxvt.keysym.Shift-Control-V:   perl:clipboard:paste
 urxvt.url-launcher:         /usr/bin/google-chrome-stable
 urxvt.matcher.button:       1
 
-
 Xft.lcdfilter:              lcddefault
-
-
-urxvt*dynamicColors:        on
-urxvt*highlightSelection:   true
-urxvt*colorMode:            on
-
-
-!urxvt*borderColor:         #373b41
 
 ! special
 *.foreground:               #ECEFF1
@@ -62,6 +53,9 @@ urxvt*colorMode:            on
 *.highlightColor:           #5294E2
 urxvt.background:           [80]#002B36
 urxvt.scrollColor:          #767B87
+urxvt*dynamicColors:        on
+urxvt*highlightSelection:   true
+urxvt*colorMode:            on
 
 ! black
 *.color0:       #263238
