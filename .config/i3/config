@@ -83,10 +83,10 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.focused          $bg-color           $bg-color          $text-color          $bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 
 bar {
     status_command i3blocks -c ~/.config/i3blocks/config
@@ -111,7 +111,7 @@ bar {
 }
 
 # remove window border, add spacing
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 6
 gaps inner 10
 gaps outer 2
 #smart_gaps on
