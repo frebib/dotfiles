@@ -38,11 +38,16 @@ urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=10.6
 
 urxvt.iso14755:             false
 urxvt.iso14755_52:          false
-urxvt.perl-ext-common:      default,clipboard,vtwheel
+urxvt.perl-ext-common:      default,clipboard,vtwheel,font-size
 urxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 urxvt.keysym.Shift-Control-V:   perl:clipboard:paste
 urxvt.url-launcher:         /usr/bin/google-chrome-stable
 urxvt.matcher.button:       1
+
+urxvt.keysym.C-Up:     font-size:increase
+urxvt.keysym.C-Down:   font-size:decrease
+urxvt.keysym.C-S-Up:   font-size:incglobal
+urxvt.keysym.C-S-Down: font-size:decglobal
 
 Xft.lcdfilter:              lcddefault
 
