@@ -11,6 +11,7 @@ set autoindent
 set laststatus=2
 set mouse=a
 set encoding=utf-8
+set background=dark
 set guifont=Sauce\ Code\ Pro\ 10.6
 
 " set the runtime path to include Vundle and initialize
@@ -28,6 +29,7 @@ call vundle#end()
 " Vim-Airline config
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
 
 " Interface with system clipboard
 noremap <Leader>y "*y
