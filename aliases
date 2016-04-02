@@ -99,6 +99,7 @@ alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR ~/.config/i3/config ; i3-msg restart"
 alias i3bc="$EDITOR ~/.config/i3blocks/config ; i3-msg restart"
 alias sf=screenfetch
+alias nf=neofetch
 
 alias startcsecvm="VBoxManage startvm 'Intro to Computer Security' --type headless"
 alias stopcsecvm="VBoxManage controlvm 'Intro to Computer Security' poweroff"
