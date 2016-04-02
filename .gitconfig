@@ -1,5 +1,17 @@
-[push]
-	default = simple
 [user]
 	name = Joseph Groocock
 	email = frebib@gmail.com
+	signingkey = CFBB6A86
+
+[color]
+	ui = auto
+
+[rebase]
+    autoStash = true
+
+[push]
+	default = upstream
+
+[advice]
+	statusHints = false
+	pushUpdateRejected = false
