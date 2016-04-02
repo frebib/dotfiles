@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+source ../.profile
+
 cd $HOME
 echo cd `pwd`
 
