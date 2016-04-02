@@ -24,6 +24,7 @@ alias -g T='| tail'
 alias -g G='| grep'
 alias -g L="| less"
 alias -g C="| wc -l"
+alias -g S="| sort"
 alias -g count="| wc -l"
 alias -g NE="2> /dev/null"
 
