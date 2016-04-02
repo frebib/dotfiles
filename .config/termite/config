@@ -1,5 +1,6 @@
 [options]
 font = SauceCodePro 10.5
+scrollback_lines = 100000
 cursor_blink = off
 size_hints = true
 
