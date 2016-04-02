@@ -8,7 +8,6 @@ btrfs-progs
 clang
 cmake
 compton
-cower
 cowsay
 dosfstools
 dropbox
@@ -16,7 +15,6 @@ dunst
 efibootmgr
 eog
 evince
-expac
 feh
 firefox
 gdmap
@@ -53,7 +51,6 @@ ntfs-3g
 nvidia
 oh-my-zsh-git
 openssh
-pacaur
 pavucontrol
 powertop
 powerline-fonts-git
@@ -84,5 +81,6 @@ xorg-xev
 xorg-xinit
 xorg-xrdb
 xtitle
+yaourt
 zsh
 zsh-syntax-highlighting

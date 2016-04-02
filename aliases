@@ -35,7 +35,7 @@ alias cp="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
 # System aliases
 alias s=systemd
-alias p=pacaur
+alias y=yaourt
 alias ps='ps aux'
 
 # File default aliases
