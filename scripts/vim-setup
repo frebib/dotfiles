@@ -1,0 +1,15 @@
+YCM=~/.vim/bundle/YouCompleteMe
+
+#######################
+## Initialise Vundle ##
+#######################
+mkdir -p ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+
+#########################
+## Setup YouCompleteMe ##
+#########################
+cd "$YCM"
+./install.py --clang-completer --omnisharp-completer --tern-completer # requires cmake, mono and nodejs, npm
