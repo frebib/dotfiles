@@ -78,9 +78,10 @@ interval=5
 
 [separator]
 
-#[battery]
-#label=
-#interval=5
+[battery]
+interval=5
+
+[separator]
 
 [keyboard]
 label=
