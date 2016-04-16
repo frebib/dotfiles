@@ -152,6 +152,7 @@ exec --no-startup-id insync start
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id redshift
+exec --no-startup-id xbindkeys
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id google-chrome-stable --no-startup-window
 
