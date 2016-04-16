@@ -1,3 +1,5 @@
-VteTerminal {
+VteTerminal,
+TerminalScreen,
+vte-terminal {
     padding: 4px;
 }
