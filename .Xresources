@@ -18,17 +18,17 @@ xterm.metaSendsEscape:      true
 !Set TERM
 urxvt.termName:             xterm-256color
 
-Xft.dpi:                    96
+Xft.dpi:                    128
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.autohint:               false
 Xft.hinting:                true
 Xft.hintstyle:              hintfull
-urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=9
-urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=9
-urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=9
-urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=9
-urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=9
+urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=10.5
+urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=10.5
+urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=10.5
+urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=10.5
+urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=10.5
 
 
 ! clickable Url and copy paste keys
@@ -104,10 +104,10 @@ rofi.color-normal:  #00383C4A,  #D3DAE3,  #00383C4A,  #5294E2,  #ECEFF1
 rofi.bc:            #CC383C4A
 rofi.bw:            5
 rofi.padding:       8
-rofi.lines:         12
+rofi.lines:         14
 rofi.width:         40
-rofi.font:          Noto Sans 14
-rofi.line-margin:   6
+rofi.font:          Noto Sans 18
+rofi.line-margin:   4
 rofi.sep:           |
 rofi.prompt:        >
 rofi.ssh-command:   {terminal} -e "{ssh-client} {host}"

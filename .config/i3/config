@@ -44,22 +44,6 @@ bindsym $mod+e sticky toggle
 bindsym $mod+a focus parent
 bindsym $mod+o focus child
 
-#  Screen configs  #
-set    $bl  "DP-5"
-set    $tl  "DP-1"
-set    $br  "HDMI-0"
-set    $tr  "DP-3"
-
-# Workspace -> Screen
-workspace 1 output $bl
-workspace 2 output $br
-workspace 3 output $tl
-workspace 4 output $tr
-workspace 5 output $bl
-workspace 6 output $br
-workspace 7 output $tl
-workspace 8 output $tr
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -112,13 +96,11 @@ bar {
     workspace_buttons yes
     strip_workspace_numbers yes
     tray_output primary
-    tray_padding 4
-    height 24
+    tray_padding 2
+    height 28
 
-    output $bl
-    output $br
     output primary
-    position bottom
+    position top
 
     colors {
         separator #757575
@@ -143,8 +125,8 @@ for_window [title="^rofi$"] floating enable
 new_window pixel 5
 new_float none
 
-gaps inner 7
-gaps outer 2
+gaps inner 11
+gaps outer 1
 #smart_gaps on
 
 focus_follows_mouse yes
