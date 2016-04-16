@@ -27,6 +27,8 @@ alias -g C="| wc -l"
 alias -g S="| sort"
 alias -g count="| wc -l"
 alias -g NE="2> /dev/null"
+alias -g NUL="&> /dev/null"
+alias -g BG="&;disown"
 
 alias svi=sudoedit
 
@@ -44,7 +46,8 @@ alias -s pdf=evince
 alias -s zip="unzip -l"
 alias -s rar="unrar l"
 alias -s tar="tar tf"
-alias -s tar.gz="echo "
+alias -s tar.gz=echo
+alias -s jar="java -jar"
 
 
 # Git Aliases
@@ -69,6 +72,7 @@ alias gp="git push"
 alias gpf="gp --force"
 alias gl="git pull --rebase"
 alias gd="git diff"
+alias gds="git diff --staged"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 
