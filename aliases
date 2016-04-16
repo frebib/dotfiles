@@ -32,7 +32,7 @@ alias svi=sudoedit
 
 alias rm='rm -i'
 alias mv='mv -i'
-alias cp="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+alias cp='cp -i'
 
 # System aliases
 alias s=systemd
