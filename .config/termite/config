@@ -7,7 +7,7 @@ size_hints = true
 [colors]
 cursor     = #5294E2
 foreground = #ECEFF1
-background = rgba(20, 60, 69, 1)
+background = rgba(20, 60, 69, 0.96)
 highlight  = #5294E2
 
 # black
