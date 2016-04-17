@@ -92,7 +92,11 @@ interval=5
 #label=
 #interval=5
 
-#[separator]
+[keyboard]
+label=
+interval=30
+
+[separator]
 
 [clock]
 interval=5

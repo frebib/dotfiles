@@ -1,0 +1,4 @@
+#!/bin/sh
+
+variant=$(setxkbmap -query | grep 'variant:' | awk '{print $2}')
+[ "$variant" == "dvorak" ] && setxkbmap gb || setxkbmap gb dvorak
