@@ -19,9 +19,9 @@
 
 # Use the provided interface, otherwise the device used for the default route.
 if [[ -n $BLOCK_INSTANCE ]]; then
-  IF=$BLOCK_INSTANCE
+    IF=$BLOCK_INSTANCE
 else
-  IF=$(ip route | awk '/^default/ { print $5 ; exit }')
+    IF=$(ip route | awk '/^default/ { print $5 ; exit }')
 fi
 
 #------------------------------------------------------------------------
@@ -33,30 +33,24 @@ fi
 #------------------------------------------------------------------------
 
 if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
-  echo down # full text
-  echo down # short text
-  echo \#FF0000 # color
-  exit
+    echo down # full text
+    echo down # short text
+    echo \#FF0000 # color
+    exit
 fi
 
 case $1 in
-  -4)
-    AF=inet ;;
-  -6)
-    AF=inet6 ;;
-  *)
-    AF=inet6? ;;
+    -4) AF=inet ;;
+    -6) AF=inet6 ;;
+    *) AF=inet6? ;;
 esac
 
 # if no interface is found, use the first device with a global scope
 LOCIP=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$1 and exit")
-EXTIP=$(curl -s http://whatismijnip.nl |cut -d " " -f 5)
 
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
-  1) echo "$EXTIP";;
-#  2) echo -n "$LOCIP" | xclip -q -se c ;;
-#  3) echo -n "$EXTIP" | xclip -q -se c ;;
-  *) echo "$LOCIP";;
+    1) echo $(curl -s http://whatismijnip.nl | cut -d " " -f 5);;
+    *) echo "$LOCIP";;
 esac
