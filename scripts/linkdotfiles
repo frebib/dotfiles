@@ -34,6 +34,10 @@ cd ~
 echo -n "cd "
 pwd
 
+ln -sfv $DOTFILES .config/
+ln -sfv $userhome/.zshrc .
+ln -sfv $userhome/.profile .
+ln -sfv $userhome/.zprofile .
 ln -sfv $userhome/.vimrc .
 ln -sfv $userhome/.vim/ .
 ln -sfv $userhome/.gtkrc-2.0 .
