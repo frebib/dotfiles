@@ -4,6 +4,7 @@ export LC_NUMERIC=en_GB
 
 export DOTFILES=~/.config/dotfiles
 export PATH="${PATH}:$DOTFILES/scripts"
+export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 export EDITOR="vim"
 export VISUAL="vim"
