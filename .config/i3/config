@@ -110,8 +110,9 @@ bar {
     }
 }
 
-# remove window border, add spacing
-for_window [class="^.*"] border pixel 6
+new_window pixel 6
+new_float none
+
 gaps inner 10
 gaps outer 2
 #smart_gaps on
