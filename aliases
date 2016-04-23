@@ -28,8 +28,13 @@ alias -g count="| wc -l"
 alias -g NE="2> /dev/null"
 alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
+alias -g COL="| column -t"
 
 alias svi=sudoedit
+# This will enable us to use aliases in sudo.
+# (If alias finishes with a space or tab, the shell will check if the next command is also aliased.)
+# Source: https://github.com/mayah/home/blob/master/.zsh/zshrc.d/alias.zsh
+alias sudo='sudo '
 
 alias rm='rm -i'
 alias mv='mv -i'
@@ -47,6 +52,7 @@ alias -s rar="unrar l"
 alias -s tar="tar tf"
 alias -s tar.gz=echo
 alias -s jar="java -jar"
+alias -s git="git clone"
 
 
 # Git Aliases
