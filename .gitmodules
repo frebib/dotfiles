@@ -1,0 +1,3 @@
+[submodule "surface3-scripts"]
+	path = surface3-scripts
+	url = https://github.com/AykoPoel/surface3-scripts
