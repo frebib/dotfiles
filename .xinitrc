@@ -13,7 +13,7 @@ if [ -d "$xinitdir" ]; then
     done
 fi
 
-./.profile
-./.xsession
+~/.profile
+~/.xsession
 
 exec i3
