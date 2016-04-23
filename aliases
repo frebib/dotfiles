@@ -12,7 +12,6 @@ alias l=ll
 alias ll="ls -lFh"
 alias la="ls -lAFh"
 alias al=la # No, I don't need the Mono Assembly Linker
-alias count="la | wc -l"
 
 alias md="mkdir -p"
 mcd(){
