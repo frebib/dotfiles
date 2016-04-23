@@ -124,7 +124,6 @@ alias doc="~/documents"
 alias desktop="cd ~/desktop"
 alias uni="~/university"
 alias drive="~/drive"
-alias lol="fortune | cowsay -f sodomized | lolcat -p 1"
 
 alias gsvn="git svn"
 alias gsync="git pull -q ; sl ; sp ; git push"

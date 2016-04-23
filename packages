@@ -12,7 +12,6 @@ clang
 clion
 cmake
 compton
-cowsay
 cups
 deluge
 dos2unix
@@ -54,7 +53,6 @@ keepass
 lightdm-webkit2-greeter
 lightdm-webkit-theme-google-git
 lm_sensors
-lolcat
 lxappearance
 metasploit
 minecraft
