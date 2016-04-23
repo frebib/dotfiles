@@ -1,8 +1,8 @@
 # Common Aliases
-alias ...=../..
-alias ....=../../..
-alias .....=../../../..
-alias ......=../../../../..
+alias -g ...=../..
+alias -g ....=../../..
+alias -g .....=../../../..
+alias -g ......=../../../../..
 
 alias ..la="cd ..;la"
 alias ..ll="cd..;ll"
