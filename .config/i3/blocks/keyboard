@@ -1,6 +1,7 @@
 #!/bin/sh
 
 [[ $BLOCK_BUTTON -eq 1 ]] && `$DOTFILES/scripts/togglekeyboard`
+[[ $BLOCK_BUTTON -eq 3 ]] && onboard &
 
 layout=$(setxkbmap -query | grep 'layout:' | awk '{print $2}')
 variant=$(setxkbmap -query | grep 'variant:' | awk '{print $2}')
