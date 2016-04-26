@@ -99,9 +99,8 @@ urxvt*colorMode:            on
 !-----------------------------
 ! Rofi config
 
-rofi.fg:            #D3DAE3
-rofi.bg:            #383C4A
-rofi.hlbg:          #5294E2
+rofi.color-window:  #383C4A,    #383C4A
+rofi.color-normal:  #383C4A,    #D3DAE3,    #383C4A,    #5294E2,    #F3F4F5
 rofi.bc:            #383C4A
 rofi.opacity:       80
 rofi.padding:       8
