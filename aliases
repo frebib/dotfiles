@@ -29,16 +29,23 @@ alias -g NE="2> /dev/null"
 alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
 alias -g COL="| column -t"
+calc() {
+    echo "$@" | bc -l
+}
 
 alias svi=sudoedit
 # This will enable us to use aliases in sudo.
 # (If alias finishes with a space or tab, the shell will check if the next command is also aliased.)
 # Source: https://github.com/mayah/home/blob/master/.zsh/zshrc.d/alias.zsh
 alias sudo='sudo '
+alias open=xdg-open
 
+# Command rewrites
+alias ls='ls --color=auto'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+alias tree='tree -C'
 
 # System aliases
 alias s=systemctl
