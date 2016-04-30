@@ -1,11 +1,9 @@
 alsa-utils
 apache-ant
 arandr
-arch-install-scripts
 asciiquarium
 bc
 blueman
-bluez
 bluez-utils
 breeze-obsidian-cursor-theme
 btrfs-progs
@@ -42,7 +40,7 @@ gvim
 htop
 i3blocks
 i3-gaps-next-git
-i3lock-git
+i3lock
 imagemagick
 imgur-screenshot-git
 insync
@@ -54,11 +52,9 @@ java-openjfx-src
 jdk8-openjdk
 jre8-openjdk
 keepass
-libreoffice-fresh
 linux-headers
 lm_sensors
 lxappearance
-metasploit
 minecraft
 mono
 mtools
@@ -84,13 +80,11 @@ pulseaudio-equalizer
 redshift
 rofi
 rsync
-sbt
 screenfetch
 scrot
 skype
 slack-desktop
 smartmontools
-smbclient
 speedtest-cli
 sqlmap-git
 sshfs
@@ -118,7 +112,6 @@ vte3-ng
 wget
 whois
 wine
-wireshark-gtk
 xbindkeys
 xclip
 xdg-user-dirs
@@ -127,6 +120,7 @@ xorg-server
 xorg-xev
 xorg-xinit
 xorg-xrdb
+xournal-git
 xtitle
 yaourt
 zsh
