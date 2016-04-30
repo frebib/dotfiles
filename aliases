@@ -41,7 +41,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 # System aliases
-alias s=systemd
+alias s=systemctl
 alias y=yaourt
 alias ps='ps aux'
 
