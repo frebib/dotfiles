@@ -124,8 +124,3 @@ alias doc="~/documents"
 alias desktop="cd ~/desktop"
 alias uni="~/university"
 alias drive="~/drive"
-
-alias gsvn="git svn"
-alias gsync="git pull -q ; sl ; sp ; git push"
-alias sp="git stash -q ; gsvn dcommit ; git stash pop"
-alias sl="git stash -q ; gsvn rebase ; git stash pop"
