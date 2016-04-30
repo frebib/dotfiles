@@ -142,8 +142,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 
 # app launch shortcuts
-exec_alawys --no-startup-id ~/.fehbg
-exec_always --no-startup-id ~/.config/i3/disable-standby-fs.py
+exec --no-startup-id ~/.fehbg
+exec --no-startup-id ~/.config/i3/disable-standby-fs.py
 exec xautolock -time 10 -locker /usr/bin/lock.sh
 bindsym $mod+c exec --no-startup-id google-chrome-stable
 
