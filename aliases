@@ -45,6 +45,7 @@ alias ls='ls --color=auto'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+alias less='less -R'
 alias tree='tree -C'
 
 # System aliases
