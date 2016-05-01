@@ -1,21 +1,23 @@
-if [[ $EUID -eq 0 ]]; then
-    echo "You cannot run makepkg as root."
-    echo "Please run this script again as a non-elevated user"
-    exit 1
-fi
+#if [[ $EUID -eq 0 ]]; then
+#    echo "You cannot run makepkg as root."
+#    echo "Please run this script again as a non-elevated user"
+#    exit 1
+#fi
 
-# Install git dependency
-sudo pacman -S --asdeps git
+# Install git, yajl dependencies
+sudo pacman -S --asdeps yajl git
 
 cd /tmp
 git clone https://aur.archlinux.org/package-query.git
 cd package-query
-makepkg -sri
+sudo -u nobody makepkg -sr
+sudo pacman -U `ls | grep package-query.*\.tar\.xz'
 
 cd ..
 git clone https://aur.archlinux.org/yaourt.git
 cd yaourt
-makepkg -sri
+sudo -u nobody makepkg -sr
+sudo pacman -U `ls | grep yaourt.*\.tar\.xz'
 
 cd ..
 rm -rf package-query yaourt
