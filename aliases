@@ -55,7 +55,10 @@ alias y=yaourt
 alias ps='ps aux'
 
 # File default aliases
-alias -s pdf=evince
+pdf() {
+    evince $@ NE BG
+}
+alias -s pdf=pdf
 alias -s zip="unzip -l"
 alias -s rar="unrar l"
 alias -s tar="tar tf"
