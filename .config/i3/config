@@ -123,6 +123,7 @@ focus_follows_mouse yes
 # keybindings
 bindsym $mod+Shift+j reload
 bindsym $mod+Shift+p restart
+bindsym $mod+c       exec google-chrome-stable
 bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\""
 bindsym Mod1+Tab     exec ~/.config/i3/alt-tab.sh
 bindsym $mod+Return  exec i3-sensible-terminal
@@ -146,7 +147,6 @@ bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
 exec xautolock -time 10 -locker /usr/bin/lock.sh
-bindsym $mod+c exec --no-startup-id google-chrome-stable
 
 exec --no-startup-id pulseaudio
 exec --no-startup-id dropbox
