@@ -159,3 +159,5 @@ exec --no-startup-id google-chrome-stable --no-startup-window
 
 exec i3-msg 'workspace 2; exec i3-sensible-terminal'
 exec i3-msg 'workspace 3; exec sleep 2 && google-chrome-stable'
+
+# vim:ft=i3
