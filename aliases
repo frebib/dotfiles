@@ -42,7 +42,7 @@ alias sudo='sudo '
 alias open=xdg-open
 
 # Command rewrites
-alias ls='ls --color=auto'
+alias ls='ls --color=always'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
