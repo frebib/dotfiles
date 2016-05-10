@@ -44,22 +44,12 @@ bindsym $mod+e sticky toggle
 bindsym $mod+a focus parent
 bindsym $mod+o focus child
 
-#  Screen configs  #
-set    $tl  "DP-0.2.1"
-set    $tr  "DP-0.2.2.1"
-set    $bl  "DP-0.1"
-set    $br  "DP-0.2.2.2.1"
-#set    $br  "DVI-D-0"
+set $surf eDP1
+set $hdmi HDMI1
 
 # Workspace -> Screen
-workspace 1 output $bl
-workspace 2 output $br
-workspace 3 output $tl
-workspace 4 output $tr
-workspace 5 output $bl
-workspace 6 output $br
-workspace 7 output $tl
-workspace 8 output $tr
+workspace 1 output $surf
+workspace 2 output $hdmi
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -112,12 +102,10 @@ bar {
 
     workspace_buttons yes
     strip_workspace_numbers yes
-    tray_output primary
+    tray_output $surf
     tray_padding 4
-    height 24
-
-    #output $br
     position top
+    height 20
 
     colors {
         separator #757575
