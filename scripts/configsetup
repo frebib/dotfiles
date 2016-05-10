@@ -1,6 +1,9 @@
 ./install-pacaur.sh
 
 pacaur -S ../packages
+xdg-user-dirs-update
+
+curl https://d13yacurqjgara.cloudfront.net/users/13449/screenshots/1816328/attachments/332811/Lakeside_Sunrise_3840x2160.jpg > ~/pictures/lakesidesunrise.jpg
 
 sudo ln -s /usr/bin/vim /usr/bin/vi
 

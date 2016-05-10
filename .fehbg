@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-xinerama --bg-fill '/home/frebib/Pictures/Wallpapers/lakeside-sunrisejpg' 
+feh --no-xinerama --bg-fill '/home/frebib/pictures/lakesidesunrise.jpg' 
