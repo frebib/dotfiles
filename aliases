@@ -30,6 +30,7 @@ alias -g NE="2> /dev/null"
 alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
 alias -g COL="| column -t"
+alias -g clip="| xclip -i -selection primary -f | xclip -i -selection clipboard"
 calc() {
     echo "$@" | bc -l
 }
