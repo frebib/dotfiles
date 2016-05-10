@@ -28,7 +28,7 @@ cd $HOME
 mkdir -p .local/share/ && cd .local/share
 echo cd `pwd`
 ln -sfv $DOTFILES/fonts .
-ln -sfv $DOTFILES/surface3-scripts .
+ln -sfv $DOTFILES/surfacetools .
 
 sudo -s << EOF
 cd ~
