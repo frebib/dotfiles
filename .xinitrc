@@ -1,5 +1,6 @@
 #!/bin/sh
 
+source ~/.profile
 xrdb -merge ~/.Xresources
 
 # Run all system xinitrc shell scripts
