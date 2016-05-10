@@ -1,5 +1,5 @@
 [global]
-    font = Noto Sans 10
+    font = Noto Sans 13
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -66,7 +66,7 @@
     # screen width minus the width defined in within the geometry option.
 
     # 53 = 30 + 23 (bar-height)
-    geometry = "300x5-30+52"
+    geometry = "350x6-30+56"
     
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -149,7 +149,7 @@
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
-    frame_width = 3
+    frame_width = 4
     frame_color = "#404552"
 
 [shortcuts]
