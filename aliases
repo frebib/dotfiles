@@ -113,6 +113,7 @@ alias gstv="gsta show -p stash@{0}"
 
 
 # General Aliases
+alias ssha='eval `ssh-agent` ; ssh-add'
 alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
 alias vimrc="$EDITOR ~/.vimrc"
 alias zshrc="$EDITOR ~/.zshrc ; source ~/.zshrc"
