@@ -5,7 +5,7 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:Noto Sans 10.4
+font pango:Noto Sans 10
 
 # kill focused window
 bindsym $mod+apostrophe kill
@@ -95,7 +95,7 @@ bar {
     strip_workspace_numbers yes
     tray_output primary
     tray_padding 2
-    height 23
+    height 22
 
     output $centre
     position top

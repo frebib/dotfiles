@@ -1,5 +1,5 @@
 [global]
-    font = Noto Sans 11
+    font = Noto Sans 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -66,7 +66,7 @@
     # screen width minus the width defined in within the geometry option.
 
     # 53 = 30 + 23 (bar-height)
-    geometry = "300x5-30+53"
+    geometry = "300x5-30+52"
     
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
