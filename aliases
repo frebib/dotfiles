@@ -128,9 +128,6 @@ alias i3bc="$EDITOR ~/.config/i3/blocks/config ; i3-msg restart"
 alias sf=screenfetch
 alias nf=neofetch
 
-alias startcsecvm="VBoxManage startvm 'Intro to Computer Security' --type headless"
-alias stopcsecvm="VBoxManage controlvm 'Intro to Computer Security' poweroff"
-
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
 alias -g downloads="~/downloads"
 alias -g dl="downloads"
