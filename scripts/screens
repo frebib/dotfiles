@@ -1,0 +1,4 @@
+#!/bin/sh
+
+`dirname ${BASH_SOURCE[0]}`/4screens
+~/.fehbg
