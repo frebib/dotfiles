@@ -77,7 +77,7 @@ alias ga="git add"
 alias gaa="ga -A"
 alias gc="git commit"
 alias gcm="gc -m"
-alias gcam="gcm -a"
+alias gcam="gc -a -m "
 alias gst="git status"
 
 alias gm="git merge"
