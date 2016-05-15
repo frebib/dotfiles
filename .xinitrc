@@ -14,5 +14,6 @@ fi
 source ~/.profile
 source ~/.xsession
 xrdb -merge ~/.Xresources
+~/.local/share/surfacetools/rotationd --once
 
 exec i3

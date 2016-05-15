@@ -3,7 +3,7 @@ These are the configs I use on my Arch Linux installation at home. They can be u
 ## Usage
 To quickly get started, clone this repo and run the setup scripts.
 
-    git clone https://github.com/frebib/dotfiles.git ~/.config/dotfiles
+    git clone https://github.com/frebib/dotfiles.git ~/.config/dotfiles --recursive
     cd ~/.config/dotfiles
 
 You can put the `dotfiles` directory anywhere, just be sure to update the `$DOTFILES` envvar in `.profile`
