@@ -79,14 +79,20 @@ interval=10
 
 [separator]
 
-[battery]
-interval=5
+[rotation]
+interval=once
 
 [separator]
 
 [keyboard]
 label=
 interval=30
+
+[separator]
+
+[battery]
+interval=30
+signal=11
 
 [separator]
 

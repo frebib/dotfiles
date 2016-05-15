@@ -1,0 +1,20 @@
+#!/bin/sh
+
+lock="/tmp/rotlock"
+
+[[ -e $lock ]] || echo "unlocked" > "$lock"
+
+status=$(<$lock)
+
+if [ $BLOCK_BUTTON -gt 0 ]; then
+    case $status in
+        "unlocked") status="locked" ;;
+        "locked") status="unlocked";;
+    esac
+    echo $status > "$lock"
+fi
+
+case $status in
+    "locked") echo "";;
+    "unlocked") echo "";;
+esac
