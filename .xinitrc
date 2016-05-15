@@ -15,4 +15,6 @@ if [ -d "$xinitdir" ]; then
     done
 fi
 
+~/.local/share/surfacetools/rotationd --once
+
 exec i3

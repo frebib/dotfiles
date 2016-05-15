@@ -1,0 +1,3 @@
+[submodule "surface-scripts"]
+	path = surface-scripts
+	url = https://github.com/frebib/surface-scripts.git
