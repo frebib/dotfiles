@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ./install-pacaur.sh
 
 pacaur -S ../packages
