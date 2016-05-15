@@ -63,7 +63,7 @@ signal=5
 
 [cpu_usage]
 label=
-interval=2
+interval=5
 
 [separator]
 
@@ -75,7 +75,7 @@ interval=10
 
 [temperature]
 label=
-interval=5
+interval=10
 
 [separator]
 
@@ -91,5 +91,5 @@ interval=30
 [separator]
 
 [clock]
-interval=5
-min_width=" 00:00"
+interval=10
+min_width="  00:00"
