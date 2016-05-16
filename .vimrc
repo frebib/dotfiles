@@ -12,7 +12,10 @@ set laststatus=2
 set mouse=a
 set encoding=utf-8
 set background=dark
-set guifont=Sauce\ Code\ Pro\ 10.6
+
+" GVim settings
+set guifont=Sauce\ Code\ Pro\ 10.5
+set guioptions=
 
 " Change to dvorak-mapped keys
 let g:use_dvorak = 1
