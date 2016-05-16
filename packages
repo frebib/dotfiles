@@ -52,6 +52,7 @@ java-openjfx-src
 jdk8-openjdk
 jre8-openjdk
 keepass
+libtinfo-5
 linux-headers
 lm_sensors
 lxappearance

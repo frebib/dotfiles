@@ -12,4 +12,4 @@ vim +PluginInstall +qall
 ## Setup YouCompleteMe ##
 #########################
 cd "$YCM"
-./install.py --clang-completer --omnisharp-completer --tern-completer # requires cmake, mono and nodejs, npm
+./install.py --clang-completer
