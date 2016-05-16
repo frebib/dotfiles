@@ -129,11 +129,16 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 
+" Search options
+set hlsearch
+set ignorecase
+set smartcase
+
+" Save aliases.
 noremap <Leader>q :wq<CR>
 com W w
 com Q q
 com Wq wq
 com WQ wq
-
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
