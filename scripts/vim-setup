@@ -1,5 +1,7 @@
 YCM=~/.vim/bundle/YouCompleteMe
 
+sudo pacman -S python --needed --noconfirm
+
 #######################
 ## Initialise Vundle ##
 #######################
