@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+if [ $# -eq 0 ]; then
+    echo "Gives a diff of package lists and currently installed packages"
+    echo "Usage: $(basename ${BASH_SOURCE[0]}) list1 [list2] [list3]"
+    exit 1
+fi
+
+dir=$(dirname ${BASH_SOURCE[0]})
+
+diff <(cat $@ | sort | uniq -u) <($dir/listpackages)
