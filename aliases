@@ -52,7 +52,7 @@ alias tree='tree -C'
 
 # System aliases
 alias s=systemctl
-alias y=yaourt
+alias p=pacaur
 alias ps='ps aux'
 
 # File default aliases
@@ -117,7 +117,6 @@ alias ssha='eval `ssh-agent` ; ssh-add'
 alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
 alias vimrc="$EDITOR ~/.vimrc"
 alias zshrc="$EDITOR ~/.zshrc ; source ~/.zshrc"
-alias yaourtrc="$EDITOR ~/.yaourtrc"
 alias xinitrc="$EDITOR ~/.xinitrc"
 alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
 alias xsession="$EDITOR ~/.xsession"

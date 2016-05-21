@@ -16,6 +16,7 @@ compton
 cups
 deluge
 dos2unix
+cower
 dosfstools
 dropbox
 dunst
@@ -23,6 +24,7 @@ efibootmgr
 eog
 evince
 exfat-utils
+expac
 feh
 firefox
 gdmap
@@ -73,6 +75,7 @@ nvidia
 oh-my-zsh-git
 openssh
 p7zip
+pacaur
 pavucontrol
 pkgfile
 powertop
@@ -125,6 +128,5 @@ xorg-xinit
 xorg-xrdb
 xournal-git
 xtitle
-yaourt
 zsh
 zsh-syntax-highlighting
