@@ -13,3 +13,5 @@ export TERMINAL="termite"
 export BROWSER="google-chrome-stable"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_STYLE_OVERRIDE=GTK+
+
+eval `ssh-agent` && ssh-add
