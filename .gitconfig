@@ -1,5 +1,5 @@
 [user]
-	name = Joseph Groocock
+	name = Joe Groocock
 	email = frebib@gmail.com
 	signingkey = CFBB6A86
 
@@ -15,3 +15,5 @@
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
+[pull]
+	rebase = true
