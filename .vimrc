@@ -34,6 +34,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'PotatoesMaster/i3-vim-syntax'
+Plugin 'solarnz/thrift.vim'
 
 call vundle#end()
 
