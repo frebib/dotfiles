@@ -14,7 +14,7 @@ export BROWSER="google-chrome-stable"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_STYLE_OVERRIDE=GTK+
 
-if [ -z $SSH_AGENT_PID ]; then
+if [ -z $SSH_AUTH_SOCK ]; then
     eval `ssh-agent`
     ssh-add
 fi
