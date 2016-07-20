@@ -126,6 +126,9 @@ alias drun='docker run -ti'
 alias dkl='docker kill'
 alias drm-stopped='docker rm -v $(docker ps -a -q -f status=exited)'
 alias drmi-untag='docker rmi $(docker images -f "dangling=true" -q)'
+dsh() {
+    docker exec -ti $1 /bin/sh
+}
 
 alias dm='docker-machine'
 dm-con() {
