@@ -1,6 +1,7 @@
 #!/bin/sh
 
 source ~/.profile
+source ~/.xsession
 xrdb -merge ~/.Xresources
 
 # Run all system xinitrc shell scripts
@@ -13,8 +14,5 @@ if [ -d "$xinitdir" ]; then
         fi
     done
 fi
-
-~/.profile
-~/.xsession
 
 exec i3
