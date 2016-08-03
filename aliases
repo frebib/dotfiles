@@ -148,6 +148,9 @@ alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR ~/.config/i3/config ; i3-msg restart"
 alias i3bc="$EDITOR ~/.config/i3/blocks/config ; i3-msg restart"
+i3b() {
+    $EDITOR ~/.config/i3/blocks/$@
+}
 alias sf=screenfetch
 alias nf=neofetch
 
