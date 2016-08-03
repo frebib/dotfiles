@@ -168,6 +168,7 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
 exec xautolock -time 5 -locker ~/.config/i3/lock.sh
 
+# startup programs
 exec --no-startup-id pulseaudio
 exec --no-startup-id dropbox
 exec --no-startup-id insync start
