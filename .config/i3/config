@@ -11,11 +11,17 @@ font pango:Noto Sans 10
 bindsym $mod+apostrophe kill
 bindsym Mod1+F4 kill
 
+# change window focus
+bindsym $mod+Left  focus left
+bindsym $mod+Right focus right
+bindsym $mod+Up    focus up
+bindsym $mod+Down  focus down
+
 # move focused window
-bindsym $mod+Left move left
-bindsym $mod+Down move down
-bindsym $mod+Up move up
-bindsym $mod+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -31,6 +37,7 @@ bindsym $mod+period layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+u floating toggle
+bindsym $mod+w sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -59,6 +66,12 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# move workspaces across screens
+bindsym $mod+Mod1+Left  move workspace to output left
+bindsym $mod+Mod1+Right move workspace to output right
+bindsym $mod+Mod1+Up    move workspace to output up
+bindsym $mod+Mod1+Down  move workspace to output down
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
