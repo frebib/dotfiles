@@ -110,6 +110,12 @@ bar {
     }
 }
 
+# Window rules
+for_window [title="Volume Control"] floating enable
+for_window [window_role="floating-term"] floating enable
+for_window [window_role="i3blocks-update-term"] floating enable
+for_window [window_role="i3blocks-clock-term"] floating enable
+
 new_window pixel 6
 new_float none
 
@@ -124,9 +130,10 @@ focus_follows_mouse yes
 bindsym $mod+Shift+j reload
 bindsym $mod+Shift+p restart
 bindsym $mod+c       exec google-chrome-stable
-bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\""
+bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
 bindsym Mod1+Tab     exec ~/.config/i3/alt-tab.sh
 bindsym $mod+Return  exec i3-sensible-terminal
+bindsym $mod+Ctrl+Return  exec i3-sensible-terminal -r floating-term  --geometry 96x30
 bindsym $mod+l       exec ~/.config/i3/lock.sh
 bindsym $mod+space   exec rofi -show run -fg "#D3DAE3" -bg "#383C4A" -hlbg "#5294E2"
 bindsym --release Print        exec imgur-screenshot -s

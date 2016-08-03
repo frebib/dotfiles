@@ -1,5 +1,5 @@
 case $BLOCK_BUTTON in
     1) printf " "$(date '+%d/%m/%y') ; exit ;;
-    2|3) i3-sensible-terminal -e "$SHELL -c 'cal -y $(date +'%Y')';$SHELL" &;;
+    2|3) i3-sensible-terminal -r i3blocks-clock-term --geometry 68x35 -e "$SHELL -c \"cal -y $(date +'%Y');$SHELL\"" &>/dev/null & ;;
     *) printf " "$(date '+%H:%M')
 esac
