@@ -137,11 +137,10 @@ dsh() {
         usercmd=""
     else
         host=`echo $1 | cut -d'@' -f2 -s`
-        usercmd="--user=$user"
+        usercmd="--user=$user "
     fi
 
-    echo "docker exec -ti $usercmd $host /bin/sh"
-    docker exec -ti "$usercmd" "$host" /bin/sh
+    eval "docker exec -ti $usercmd$host /bin/sh"
 }
 
 alias dm='docker-machine'
