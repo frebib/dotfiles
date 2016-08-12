@@ -125,10 +125,23 @@ alias dbl='docker build'
 alias dbl.='docker build .'
 alias drun='docker run -ti'
 alias dkl='docker kill'
+dklrm() { docker kill $1 ; docker rm $1 }
+alias dst='docker stop'
+alias dlg='docker logs -f'
 alias drm-stopped='docker rm -v $(docker ps -a -q -f status=exited)'
 alias drmi-untag='docker rmi $(docker images -f "dangling=true" -q)'
 dsh() {
-    docker exec -ti $1 /bin/sh
+    user=`echo $1 | cut -d'@' -f1 -s`
+    if [[ -z "$user" ]]; then
+        host="$1"
+        usercmd=""
+    else
+        host=`echo $1 | cut -d'@' -f2 -s`
+        usercmd="--user=$user"
+    fi
+
+    echo "docker exec -ti $usercmd $host /bin/sh"
+    docker exec -ti "$usercmd" "$host" /bin/sh
 }
 
 alias dm='docker-machine'
