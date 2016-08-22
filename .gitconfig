@@ -7,7 +7,7 @@
 	ui = auto
 
 [rebase]
-    autoStash = true
+	autoStash = true
 
 [push]
 	default = upstream
