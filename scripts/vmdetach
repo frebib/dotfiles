@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for dev in "$@"; do
+    sudo virsh detach-device Windows-10 /var/lib/libvirt/configs/hostdev-$dev.xml
+done
