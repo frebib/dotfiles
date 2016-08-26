@@ -44,16 +44,20 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 #  Screen configs  #
-set    $left   "DP-1.1"
-set    $centre "DP-1.2.1"
-set    $right  "DP-1.2.2"
-set    $top    "HDMI-0"
+set    $tl  "DP-1.2.1"
+set    $tr  "DP-1.2.2.1"
+set    $bl  "DP-1.1"
+set    $br  "DP-1.2.2.2.1"
 
 # Workspace -> Screen
-workspace 1 output $left
-workspace 2 output $centre
-workspace 3 output $right
-workspace 4 output $top
+workspace 1 output $bl
+workspace 2 output $br
+workspace 3 output $tl
+workspace 4 output $tr
+workspace 5 output $bl
+workspace 6 output $br
+workspace 7 output $tl
+workspace 8 output $tr
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -110,7 +114,7 @@ bar {
     tray_padding 2
     height 22
 
-    output $centre
+    #output $br
     position top
 
     colors {
@@ -159,8 +163,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc pause
 bindsym XF86AudioStop  exec --no-startup-id mpc stop
 bindsym XF86AudioNext  exec --no-startup-id mpc next
 bindsym XF86AudioPrev  exec --no-startup-id mpc previous
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 
 # app launch shortcuts
