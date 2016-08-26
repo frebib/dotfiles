@@ -14,6 +14,10 @@ export BROWSER="google-chrome-stable"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_STYLE_OVERRIDE=GTK+
 
+# Merge system clipboards
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+
 if [ -z $SSH_AUTH_SOCK ]; then
     eval `ssh-agent`
     ssh-add
