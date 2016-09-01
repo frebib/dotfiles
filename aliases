@@ -91,9 +91,19 @@ alias grbc="grb --continue"
 alias gf="git fetch"
 alias gp="git push"
 alias gpf="gp --force"
+alias gpup="git push --set-upstream"
+alias gpupom="git push --set-upstream origin master"
 alias gl="git pull --rebase"
 alias glp="gl && gp"
-alias gd="git diff"
+gd() {
+    local commit=$1
+    if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
+        git diff $@
+        return
+    else
+        git diff "@~${commit:1}^!"
+    fi
+}
 alias gds="git diff --staged"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
