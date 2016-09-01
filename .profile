@@ -16,8 +16,10 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.su
 export QT_STYLE_OVERRIDE=GTK+
 
 # Merge system clipboards
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
+if which autocutsel &>/dev/null; then
+    autocutsel -fork &
+    autocutsel -selection PRIMARY -fork &
+fi
 
 if [ -z $SSH_AUTH_SOCK ]; then
     eval `ssh-agent`
