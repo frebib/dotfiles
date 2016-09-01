@@ -146,7 +146,7 @@ focus_follows_mouse yes
 # keybindings
 bindsym $mod+Shift+j reload
 bindsym $mod+Shift+p restart
-bindsym $mod+c       exec google-chrome-stable
+bindsym $mod+c       exec chromium
 bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
 bindsym Mod1+Tab     exec ~/.config/i3/alt-tab.sh
 bindsym $mod+Return  exec i3-sensible-terminal
@@ -181,9 +181,9 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id redshift
 exec --no-startup-id xbindkeys
 exec --no-startup-id compton -b --config ~/.config/compton.conf
-exec --no-startup-id google-chrome-stable --no-startup-window
+exec --no-startup-id chromium --no-startup-window
 
 exec i3-msg 'workspace 2; exec i3-sensible-terminal'
-exec i3-msg 'workspace 3; exec sleep 2 && google-chrome-stable'
+exec i3-msg 'workspace 3; exec sleep 2 && chromium'
 
 # vim:ft=i3

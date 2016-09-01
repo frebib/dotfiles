@@ -10,7 +10,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export PAGER="less -R"
 export TERMINAL="termite"
-export BROWSER="google-chrome-stable"
+export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_STYLE_OVERRIDE=GTK+
 
