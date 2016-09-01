@@ -128,6 +128,7 @@ alias dkl='docker kill'
 dklrm() { docker kill $1 ; docker rm $1 }
 alias dst='docker stop'
 alias dlg='docker logs -f'
+alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker rm -v $(docker ps -a -q -f status=exited)'
 alias drmi-untag='docker rmi $(docker images -f "dangling=true" -q)'
 dsh() {
@@ -147,6 +148,19 @@ alias dm='docker-machine'
 dm-con() {
     eval $(docker-machine env $1)
 }
+alias dmc=dm-con
+
+alias dc='docker-compose'
+
+# ZFS aliases
+alias zfs='sudo zfs'
+alias zpool='sudo zpool'
+alias z=zfs
+alias zp=zpool
+
+# Packer, Vagrant aliases
+alias pk=packer
+alias v=vagrant
 
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
