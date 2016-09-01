@@ -75,21 +75,17 @@ VOL=$(volume | format)
 
 ACTIVE=$(pacmd list-sinks | grep '* index' | awk -F": " '{print $2}')
 
-if pactl list short sinks | grep -q \^$ACTIVE".*Yeti"
-then
+if pactl list short sinks | grep -q \^$ACTIVE".*Yeti"; then
     printf ""
-elif [ "$VOL" -eq -1 ]
-then
+elif [ "$VOL" -eq -1 ]; then
     printf "X"
     exit 0
-elif [ "$VOL" -eq 0 ]
-then
+elif [ "$VOL" -eq 0 ]; then
     printf ""
-elif [ "$VOL" -gt 59 ]
-then
+elif [ "$VOL" -gt 59 ]; then
     printf ""
 else
     printf ""
 fi
 
-printf " "$VOL
+printf " $VOL"
