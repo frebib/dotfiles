@@ -7,7 +7,12 @@ ZSH=/usr/share/oh-my-zsh
 ZSH_THEME="fishy"
 DISABLE_AUTO_UPDATE="true"
 
-HISTFILE=~/.config/zsh-histfile
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+ZSH_CONFIG_DIR=$CONFIG_DIR/zsh
+ZSH_CACHE_DIR=$CONFIG_DIR/oh-my-zsh/cache
+mkdir -p $ZSH_CACHE_DIR $ZSH_CONFIG_DIR
+
+HISTFILE=$ZSH_CONFIG_DIR/histfile
 HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory autocd extendedglob
