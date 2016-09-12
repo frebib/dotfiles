@@ -149,6 +149,7 @@ bindsym $mod+Shift+j reload
 bindsym $mod+Shift+p restart
 bindsym $mod+c       exec chromium
 bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
+bindsym $mod+Ctrl+v  exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
 bindsym Mod1+Tab     exec ~/.config/i3/alt-tab.sh
 bindsym $mod+Return  exec i3-sensible-terminal
 bindsym $mod+Ctrl+Return  exec i3-sensible-terminal -r floating-term  --geometry 96x30
