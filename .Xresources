@@ -24,11 +24,11 @@ Xft.rgba:                   rgb
 Xft.autohint:               false
 Xft.hinting:                true
 Xft.hintstyle:              hintfull
-urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=10
-urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=10
-urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=10
-urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=10
-urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=10
+urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=9
+urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=9
+urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=9
+urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=9
+urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=9
 
 
 ! clickable Url and copy paste keys
