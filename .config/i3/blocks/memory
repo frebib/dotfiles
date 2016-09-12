@@ -16,6 +16,10 @@
 
 TYPE="${BLOCK_INSTANCE:-mem}"
 
+if [ $BLOCK_BUTTON -gt 0 ]; then
+    i3-sensible-terminal -r floating-term --geometry 100x54 -e 'top -d 0.1'
+fi
+
 awk -v type=$TYPE '
 BEGIN {
     swap_total=1
