@@ -45,10 +45,10 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 #  Screen configs  #
-set    $tl  "DP-1.2.1"
-set    $tr  "DP-1.2.2.1"
-set    $bl  "DP-1.1"
-set    $br  "DP-1.2.2.2.1"
+set    $tl  "DP-0.2.1"
+set    $tr  "DP-0.2.2.1"
+set    $bl  "DP-0.1"
+set    $br  "DVI-D-0"
 
 # Workspace -> Screen
 workspace 1 output $bl
