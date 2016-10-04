@@ -21,7 +21,9 @@ if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
     autocutsel -selection PRIMARY -fork &
 fi
 
+# Start an ssh-agent
 if [ -z $SSH_AUTH_SOCK ]; then
     eval `ssh-agent`
-    ssh-add
 fi
+# Always add SSH key to the running agent; local or remote
+ssh-add
