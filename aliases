@@ -56,6 +56,8 @@ alias dd='dd status=progress'
 alias s=systemctl
 alias p=pacaur
 alias ps='ps aux'
+kl() { kill -9 `pidof $1` }
+alias chx='chmod +x'
 
 # File default aliases
 pdf() {
