@@ -32,7 +32,7 @@ fi
 
 #------------------------------------------------------------------------
 
-if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
+if [[ -z $IF ]] || [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
     echo down # full text
     echo down # short text
     echo \#FF0000 # color
