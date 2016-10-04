@@ -1,5 +1,4 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 syntax enable
 set tabstop=4
@@ -38,6 +37,11 @@ Plugin 'solarnz/thrift.vim'
 Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+execute "set rtp+=" . g:opamshare . "/vim/syntax/ocp-indent.vim"
+let g:syntastic_ocaml_checkers = ['merlin']
 
 " YouCompleteMe python fix
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
