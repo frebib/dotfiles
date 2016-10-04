@@ -16,7 +16,7 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.su
 export QT_STYLE_OVERRIDE=GTK+
 
 # Merge system clipboards
-if which autocutsel &>/dev/null; then
+if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
     autocutsel -fork &
     autocutsel -selection PRIMARY -fork &
 fi
