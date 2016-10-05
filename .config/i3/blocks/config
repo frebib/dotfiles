@@ -58,9 +58,8 @@ signal=10
 
 [iface]
 label=
-#instance=wlan0
-#color=#00FF00
-interval=30
+interval=300
+signal=15
 
 [separator]
 
