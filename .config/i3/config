@@ -90,7 +90,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# exit i3 (logs you out of your X session)
+# opens logout/shutdown menu
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/i3/powermenu.sh
 
 set $bg-color            #2f343f
@@ -142,7 +142,6 @@ gaps inner 7
 gaps outer 2
 #smart_gaps on
 
-# Do not follow the mouse
 focus_follows_mouse yes
 
 # keybindings
