@@ -197,7 +197,6 @@ alias -g downloads="~/downloads"
 alias -g dl="downloads"
 alias -g doc="~/documents"
 alias -g desktop="cd ~/desktop"
-alias -g uni="~/university"
 alias -g drive="~/drive"
 
 # vim: ft=sh
