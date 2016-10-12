@@ -57,6 +57,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
 let mapleader="\<space>"
+" Unbind arrow keys
+for prefix in ['i', 'n', 'v']
+    for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+        exe prefix . "noremap " . key . " <Nop>"
+    endfor
+endfor
 
 " Dvorak Hackery
 " Source: https://github.com/sporkbox/vimrc/blob/master/vimrc
