@@ -2,8 +2,8 @@ set nocompatible              " be iMproved, required
 
 syntax enable
 set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=0
+set softtabstop=-1
 set expandtab
 set number
 set autoindent
@@ -11,6 +11,7 @@ set laststatus=2
 set mouse=a
 set encoding=utf-8
 set background=dark
+set directory=$HOME/.vim/swapfiles//
 
 " GVim settings
 set guifont=Sauce\ Code\ Pro\ 10.5

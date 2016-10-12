@@ -2,3 +2,4 @@ bookmarks
 
 *.log
 .xournal/recent-files
+.vim/bundle
