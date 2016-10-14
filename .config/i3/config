@@ -158,7 +158,7 @@ bindsym $mod+l       exec ~/.config/i3/lock.sh
 bindsym $mod+space   exec rofi -show run -fg "#D3DAE3" -bg "#383C4A" -hlbg "#5294E2"
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
-bindsym Mod1+Mod4+Space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
+bindsym $mod+Mod1+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
 
 # Media player controls
 bindsym XF86AudioPlay  exec --no-startup-id mpc toggle
