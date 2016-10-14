@@ -43,6 +43,7 @@ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "set rtp+=" . g:opamshare . "/vim/syntax/ocp-indent.vim"
 let g:syntastic_ocaml_checkers = ['merlin']
+let g:syntastic_ignore_files = ['\m\c.(mll|mly)$']
 set omnifunc=syntaxcomplete#Complete
 
 " YouCompleteMe python fix
