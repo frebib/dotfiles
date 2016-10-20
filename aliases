@@ -193,10 +193,5 @@ alias sf=screenfetch
 alias nf=neofetch
 
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
-alias -g downloads="~/downloads"
-alias -g dl="downloads"
-alias -g doc="~/documents"
-alias -g desktop="cd ~/desktop"
-alias -g drive="~/drive"
 
 # vim: ft=sh
