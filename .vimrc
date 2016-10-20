@@ -60,7 +60,7 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 
 let mapleader="\<space>"
 " Unbind arrow keys
-for prefix in ['i', 'n', 'v']
+for prefix in ['n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
         exe prefix . "noremap " . key . " <Nop>"
     endfor
