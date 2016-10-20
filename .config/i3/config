@@ -5,7 +5,7 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:Noto Sans 8.7
+font pango:Noto Sans 9
 
 # kill focused window
 bindsym $mod+apostrophe kill
