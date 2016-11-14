@@ -49,7 +49,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias less='less -R'
-alias tree='tree --dirsfirst -C'
+alias tree='tree --dirsfirst -C -F'
 alias dd='dd status=progress'
 
 # System aliases
