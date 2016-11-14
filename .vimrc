@@ -2,8 +2,8 @@ set nocompatible              " be iMproved, required
 
 syntax enable
 set tabstop=4
-set shiftwidth=0
-set softtabstop=-1
+set shiftwidth=0   " Use tabstop
+set softtabstop=-1 " Use tabstop
 set expandtab
 set number
 set autoindent
