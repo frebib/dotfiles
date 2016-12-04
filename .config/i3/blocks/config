@@ -77,6 +77,11 @@ interval=10
 label=
 interval=10
 
+[backlight]
+label=
+interval=30
+signal=12
+
 [separator]
 
 [rotation]
