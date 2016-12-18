@@ -146,17 +146,20 @@ alias dlg='docker logs -f'
 alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker rm -v $(docker ps -a -q -f status=exited)'
 alias drmi-untag='docker rmi $(docker images -f "dangling=true" -q)'
-dsh() {
-    user=`echo $1 | cut -d'@' -f1 -s`
-    if [[ -z "$user" ]]; then
-        host="$1"
-        usercmd=""
+alias dsh='_dsh exec'
+alias drsh='_dsh "run --rm"'
+_dsh() {
+    local dowhat="$1"
+    local user=`echo $2 | cut -d'@' -f1 -s`
+    local usercmd=""
+    if [ -z "$user" ]; then
+        host="$2"
     else
-        host=`echo $1 | cut -d'@' -f2 -s`
+        host=`echo $2 | cut -d'@' -f2 -s`
         usercmd="--user=$user "
     fi
 
-    eval "docker exec -ti $usercmd$host /bin/sh"
+    eval "docker $dowhat -ti $usercmd$host /bin/sh"
 }
 
 alias dm='docker-machine'
