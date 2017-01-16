@@ -56,6 +56,7 @@ alias dd='dd status=progress'
 alias s=systemctl
 alias p=pacaur
 alias ps='ps aux'
+alias catn='tail -n +1 -- *.txt'
 kl() { kill -9 `pidof $1` }
 alias chx='chmod +x'
 
@@ -197,6 +198,9 @@ i3b() {
 }
 alias sf=screenfetch
 alias nf=neofetch
+randstr() {
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $1 | head -n 1
+}
 
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
 
