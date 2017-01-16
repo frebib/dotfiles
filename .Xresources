@@ -96,15 +96,20 @@ urxvt*colorMode:            on
 !-----------------------------
 ! Rofi config
 
-rofi.color-window:  #383C4A,    #383C4A
-rofi.color-normal:  #383C4A,    #D3DAE3,    #383C4A,    #5294E2,    #F3F4F5
-rofi.bc:            #383C4A
-rofi.opacity:       80
+! State:            'bg',       'fg',     'bgalt'     'hlbg',   'hlfg'
+rofi.color-window:  #F2383C4A,  #2F343F
+rofi.color-normal:  #00383C4A,  #D3DAE3,  #00383C4A,  #5294E2,  #ECEFF1
+rofi.bc:            #CC383C4A
+rofi.bw:            5
 rofi.padding:       8
-rofi.lines:         14
+rofi.lines:         12
 rofi.width:         40
 rofi.font:          Noto Sans 14
-rofi.line-margin:   3
+rofi.line-margin:   6
 rofi.sep:           |
 rofi.prompt:        >
+rofi.ssh-command:   {terminal} -e "{ssh-client} {host}"
+rofi.separator-style: solid
 
+rofi.matching:      fuzzy
+rofi.tokenize:      true
