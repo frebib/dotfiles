@@ -1,0 +1,24 @@
+!----------------------
+! dunst selector config
+
+rofi.width:         300
+rofi.font:          Noto Sans bold 12
+rofi.bc:            #FFFFFF
+rofi.bw:            3
+rofi.eh:            1
+rofi.lines:         3
+rofi.line-margin:   3
+rofi.monitor:       0
+rofi.location:      0
+
+!                   backgnd  border
+rofi.color-window:  #002B36, #404552
+!                   backgnd  foregnd  bg-alt   hlbg     hlfg
+rofi.color-normal:  #002B36, #FFFFFF, #002B36, #404552, #FFFFFF
+
+rofi.no-custom:         true
+!rofi.hide-scrollbar:    true
+rofi.scroll-method:     1
+rofi.separator-style: none
+
+! vim: ft=xdefaults

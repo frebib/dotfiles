@@ -75,7 +75,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 10
+    # transparency = 10
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -138,12 +138,12 @@
     startup_notification = false
     
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -i -p '' -config ~/.config/dunst/dunst-xresources
     
     # Browser for opening urls in context menu.
     browser = /usr/bin/chromium
 
-    # Align icons left/right/off
+        # Align icons left/right/off
     icon_position = left
 
     # Paths to default icons.
@@ -161,10 +161,10 @@
     # Xev might be helpful to find names for keys.
     
     # Close notification.
-    close = mod4+escape
+    close = mod4+Escape
     
     # Close all notifications.
-    close_all = ctrl+mod4+esc
+    close_all = ctrl+mod4+Escape
     
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
