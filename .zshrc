@@ -1,11 +1,11 @@
 unsetopt MULTIBYTE
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh
+ZSH=$HOME/.local/share/oh-my-zsh
 
 # Set the theme
 ZSH_THEME="fishy"
-DISABLE_AUTO_UPDATE="true"
+#DISABLE_AUTO_UPDATE="true"
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZSH_CONFIG_DIR=$CONFIG_DIR/zsh
@@ -43,14 +43,13 @@ bindkey "^[^[[B" down-line-or-beginning-search # Down
 
 zstyle ':completion:*:sudo::' environ PATH="/sbin:/usr/sbin:$PATH" HOME="/root"
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle :compinstall filename '/home/frebib/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -U compinit ; compinit
 
 plugins=(command-not-found history-substring-search sudo zsh-autosuggestions zsh-completions)
 source $ZSH/oh-my-zsh.sh
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
