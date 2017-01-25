@@ -75,6 +75,7 @@ alias -s git="git clone"
 
 # Git Aliases
 alias g=git
+alias gignore='$EDITOR .gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
