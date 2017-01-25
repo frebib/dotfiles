@@ -33,14 +33,14 @@ color=#F3F4F5
 separator=false
 separator_block_width=10
 
-[window title]
-command=xtitle -s #| sed 's/^$/ /g'"
-color=#A6D1FA
-align=center
-min_width=700
-interval=persist
+#[window title]
+#command=xtitle -s #| sed 's/^$/ /g'"
+#color=#A6D1FA
+#align=center
+#min_width=700
+#interval=persist
 
-[separator]
+#[separator]
 
 # Command gets the text. This
 # needs to do command on click
