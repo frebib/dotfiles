@@ -31,7 +31,7 @@ markup=none
 align=center
 color=#F3F4F5
 separator=false
-separator_block_width=10
+separator_block_width=12
 
 #[window title]
 #command=xtitle -s #| sed 's/^$/ /g'"
@@ -39,15 +39,6 @@ separator_block_width=10
 #align=center
 #min_width=700
 #interval=persist
-
-#[separator]
-
-# Command gets the text. This
-# needs to do command on click
-#[playpause]
-#label=$
-#command=mpc toggle
-#interval=once
 
 [volume]
 instance=Master
@@ -71,13 +62,13 @@ interval=600
 
 [cpu_usage]
 label=
-interval=5
+interval=2
 
 [separator]
 
 [memory]
 label=
-interval=30
+interval=10
 
 [separator]
 

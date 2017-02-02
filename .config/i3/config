@@ -48,7 +48,8 @@ bindsym $mod+o focus child
 set    $tl  "DP-0.2.1"
 set    $tr  "DP-0.2.2.1"
 set    $bl  "DP-0.1"
-set    $br  "DVI-D-0"
+set    $br  "DP-0.2.2.2.1"
+#set    $br  "DVI-D-0"
 
 # Workspace -> Screen
 workspace 1 output $bl
@@ -112,8 +113,8 @@ bar {
     workspace_buttons yes
     strip_workspace_numbers yes
     tray_output primary
-    tray_padding 2
-    height 20
+    tray_padding 4
+    height 24
 
     #output $br
     position top
