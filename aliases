@@ -47,17 +47,20 @@ alias open=xdg-open
 alias ls='ls --color=always'
 alias rm='rm -i'
 alias mv='mv -i'
-alias cp='cp -i'
+alias cp='cp -ir'
+alias pacman='pacman --color=always'
+alias pacaur='pacaur --color=always'
 alias less='less -R'
 alias tree='tree --dirsfirst -C -F'
 alias dd='dd status=progress'
 
 # System aliases
 alias s=systemctl
+alias j=journalctl
 alias p=pacaur
 alias ps='ps aux'
-alias catn='tail -n +1 -- *.txt'
-kl() { kill -9 `pidof $1` }
+alias catn='tail -n +1 --'
+alias kl='killall -s 9'
 alias chx='chmod +x'
 
 # File default aliases
