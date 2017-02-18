@@ -45,3 +45,6 @@ fi
 if which gnome-keyring-daemon >/dev/null 2>&1; then
     export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
 fi
+
+# Always add SSH key to the running agent; local or remote
+#ssh-add
