@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Common Aliases
 alias -g ...=../..
 alias -g ....=../../..
