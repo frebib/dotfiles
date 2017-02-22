@@ -161,7 +161,8 @@ alias dsh='_dsh exec'
 alias drsh='_dsh "run --rm"'
 _dsh() {
     local dowhat="$1"
-    local user=`echo $2 | cut -d'@' -f1 -s`
+    local user=$(echo "$2" | cut -d'@' -f1 -s)
+    local prog="${@:3:$#}"
     local usercmd=""
     if [ -z "$user" ]; then
         host="$2"
@@ -170,7 +171,7 @@ _dsh() {
         usercmd="--user=$user "
     fi
 
-    eval "docker $dowhat -ti $usercmd$host /bin/sh"
+    eval "docker $dowhat -ti $usercmd$host $prog"
 }
 
 alias dm='docker-machine'
