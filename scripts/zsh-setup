@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+# Install pkgfile for command-not-found support
+sudo pacman -S pkgfile --no-confirm --needed
+sudo systemctl enable --now pkgfile-update.service
+pkgfile --update
+
 dest="$HOME/.local/share"
 mkdir -p "$dest"
 cd "$dest"
