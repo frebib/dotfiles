@@ -14,6 +14,7 @@ export TERMINAL="termite"
 export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_STYLE_OVERRIDE=GTK+
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Merge system clipboards
 if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
