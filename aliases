@@ -171,7 +171,7 @@ _dsh() {
         usercmd="--user=$user "
     fi
 
-    eval "docker $dowhat -ti $usercmd$host $prog"
+    eval "docker $dowhat -ti $usercmd$host ${prog:-"/bin/sh"}"
 }
 
 alias dm='docker-machine'
