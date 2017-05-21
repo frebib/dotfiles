@@ -111,5 +111,6 @@ rofi.prompt:        >
 rofi.ssh-command:   {terminal} -e "{ssh-client} {host}"
 rofi.separator-style: solid
 
-rofi.matching:      fuzzy
+rofi.matching:      glob
 rofi.tokenize:      true
+rofi.normal-window: true

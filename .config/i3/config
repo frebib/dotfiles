@@ -135,6 +135,7 @@ for_window [class="Blueman-manager"] floating enable
 for_window [window_role="floating-term"] floating enable
 for_window [window_role="i3blocks-update-term"] floating enable
 for_window [window_role="i3blocks-clock-term"] floating enable
+for_window [title="rofi"] floating enable
 
 new_window pixel 5
 new_float none
@@ -158,7 +159,7 @@ bindsym $mod+Shift+Return  exec i3-sensible-terminal -d "`xcwd`"
 bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term  --geometry 96x30 -d "`xcwd`"
 bindsym $mod+l       exec ~/.config/i3/lock.sh
 # -fg "#CCD3DAE3" -bg "#CC383C4A" -hlbg "#CC5294E2" 
-bindsym $mod+space   exec rofi -show run -sidebar-mode -terminal i3-sensible-terminal 
+bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
 bindsym $mod+Mod1+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
