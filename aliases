@@ -148,7 +148,7 @@ alias dbl='docker build --pull'
 alias dbl.='docker build --pull .'
 alias drun='docker run -ti'
 alias dkl='docker kill'
-dklrm() { docker kill $1 ; docker rm $1 }
+dklrm() { docker kill $@ ; docker rm $@ }
 alias dst='docker stop'
 alias drst='docker restart'
 alias dnet='docker network'
