@@ -15,7 +15,7 @@ mkdir -p $ZSH_CACHE_DIR $ZSH_CONFIG_DIR
 HISTFILE=$ZSH_CONFIG_DIR/histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt sharehistory histignoredups histignorespace histreduceblanks autocd autopushd extendedglob globcomplete alwaystoend dvorak
+setopt sharehistory histignoredups histignorespace histreduceblanks autocd autopushd extendedglob alwaystoend dvorak
 
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
