@@ -133,6 +133,7 @@ bar {
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [window_role="floating-term"] floating enable
+for_window [window_role="pop-up"] floating enable
 for_window [window_role="i3blocks-update-term"] floating enable
 for_window [window_role="i3blocks-clock-term"] floating enable
 for_window [title="rofi"] floating enable
