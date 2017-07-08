@@ -22,9 +22,9 @@ if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
     autocutsel -selection PRIMARY -fork &
 fi
 
-# Start an ssh-agent
-if [ -z $SSH_AUTH_SOCK ]; then
-    eval `ssh-agent`
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval $(dbus-launch --sh-syntax --exit-with-session)
+    dbus-update-activation-environment --systemd DISPLAY
+    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+    export SSH_AUTH_SOCK
 fi
-# Always add SSH key to the running agent; local or remote
-ssh-add
