@@ -57,7 +57,7 @@ alias tree='tree --dirsfirst -C -F'
 alias dd='dd status=progress'
 
 # System aliases
-alias s=systemctl
+alias s="sudo systemctl"
 alias j=journalctl
 alias p=pacaur
 alias ps='ps aux'
