@@ -1,13 +1,13 @@
 YCM=~/.vim/bundle/YouCompleteMe
 
-sudo pacman -S python cmake --needed --noconfirm
+sudo pacman -S python cmake clang --needed --noconfirm
 
 #######################
 ## Initialise Vundle ##
 #######################
 mkdir -p ~/.vim/{bundle,swapfiles}
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+vim +PluginUpdate +qall
 
 
 #########################
@@ -15,4 +15,4 @@ vim +PluginInstall +qall
 #########################
 cd "$YCM"
 git submodule update --init --recursive
-./install.py --clang-completer
+./install.py --system-libclang --clang-completer
