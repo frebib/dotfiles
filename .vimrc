@@ -8,10 +8,13 @@ set expandtab
 set number
 set autoindent
 set laststatus=2
-set mouse=a
+set mouse=nicr
 set encoding=utf-8
 set background=dark
 set directory=$HOME/.vim/swapfiles//
+
+"nnoremap <LeftMouse> <nop>
+"nnoremap <RightMouse> <nop>
 
 " GVim settings
 set guifont=Sauce\ Code\ Pro\ 10.5
