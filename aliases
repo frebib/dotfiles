@@ -157,9 +157,14 @@ alias dlg='docker logs -f'
 alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
-alias dsh='_dsh exec'
-alias drsh='_dsh "run --rm"'
+alias dsh='_CMD=dsh _dsh exec'
+alias drsh='_CMD=drsh _dsh "run --rm"'
 _dsh() {
+    if [ $# -lt 2 ]; then
+        echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
+        return 64
+    fi
+
     local dowhat="$1"
     local user=$(echo "$2" | cut -d'@' -f1 -s)
     local prog="${@:3:$#}"
@@ -171,7 +176,27 @@ _dsh() {
         usercmd="--user=$user "
     fi
 
-    eval "docker $dowhat -ti $usercmd$host ${prog:-"/bin/sh"}"
+    if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" ]; then
+        echo "No such container $host" >&2
+        return 5
+    fi
+
+    if [ -z "$prog" ]; then
+        set -o pipefail
+        for shell in bash sh; do
+            if shell_path="$(eval "docker $dowhat -ti $host which $shell" | sed 's|[\r\n]||g')"; then
+                prog="$shell_path"
+                break
+            fi
+        done
+        set +o pipefail
+        if [ -z "$prog" ]; then
+            echo "Warning: No shell found in path.. trying /bin/sh" >&2
+            prog=/bin/sh
+        fi
+    fi
+
+    eval "docker $dowhat -ti $usercmd$host $prog"
 }
 
 alias dm='docker-machine'
