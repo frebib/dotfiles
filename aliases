@@ -158,7 +158,7 @@ alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dsh='_CMD=dsh _dsh exec'
-alias drsh='_CMD=drsh _dsh "run --rm"'
+alias drsh='_CMD=drsh _dsh run --rm'
 _dsh() {
     if [ $# -lt 2 ]; then
         echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
@@ -166,13 +166,21 @@ _dsh() {
     fi
 
     local dowhat="$1"
-    local user=$(echo "$2" | cut -d'@' -f1 -s)
-    local prog="${@:3:$#}"
+    local docker_args=()
+    shift
+
+    while [ "${1:0:1}" = '-' ]; do
+        docker_args+=("$1")
+        shift
+    done
+
+    local user="$(echo "$1" | cut -d'@' -f1 -s)"
+    local prog="${@:2:$#}"
     local usercmd=""
     if [ -z "$user" ]; then
-        host="$2"
+        host="$1"
     else
-        host=`echo $2 | cut -d'@' -f2 -s`
+        host=`echo $1 | cut -d'@' -f2 -s`
         usercmd="--user=$user "
     fi
 
@@ -196,7 +204,7 @@ _dsh() {
         fi
     fi
 
-    eval "docker $dowhat -ti $usercmd$host $prog"
+    docker $dowhat ${docker_args[@]} -ti $usercmd $host $(xargs <<< $prog)
 }
 
 alias dm='docker-machine'
