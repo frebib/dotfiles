@@ -45,11 +45,10 @@ bindsym $mod+a focus parent
 bindsym $mod+o focus child
 
 #  Screen configs  #
-set    $tl  "DP-0.2.1"
-set    $tr  "DP-0.2.2.1"
-set    $bl  "DP-0.1"
-set    $br  "DP-0.2.2.2.1"
-#set    $br  "DVI-D-0"
+set    $bl  "DVI-D-0"
+set    $tl  "HDMI-0"
+set    $br  "DP-2.1"
+set    $tr  "DP-2.2.1"
 
 # Workspace -> Screen
 workspace 1 output $bl
@@ -116,8 +115,9 @@ bar {
     tray_padding 4
     height 24
 
-    #output $br
-    position top
+    output $bl
+    output $br
+    position bottom
 
     colors {
         separator #757575
