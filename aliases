@@ -189,7 +189,7 @@ _dsh() {
         usercmd="--user=$user "
     fi
 
-    if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" ]; then
+    if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" <&- ]; then
         echo "No such container $host" >&2
         return 5
     fi
@@ -197,7 +197,7 @@ _dsh() {
     if [ -z "$prog" ]; then
         set -o pipefail
         for shell in bash sh; do
-            if shell_path="$(eval "docker $dowhat -ti $host which $shell" | sed 's|[\r\n]||g')"; then
+            if shell_path="$(eval "docker $dowhat $rm $host which $shell" <&- | sed 's|[\r\n]||g')"; then
                 prog="$shell_path"
                 break
             fi
