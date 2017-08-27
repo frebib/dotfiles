@@ -159,7 +159,7 @@ alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
 alias dsh='_CMD=dsh _dsh exec'
-alias drsh='_CMD=drsh _dsh run --rm'
+alias drsh='_CMD=drsh _dsh run --rm --entrypoint='
 _dsh() {
     if [ $# -lt 2 ]; then
         echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
