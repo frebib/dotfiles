@@ -196,6 +196,10 @@ _dsh() {
 
     if [ -z "$prog" ]; then
         set -o pipefail
+        local rm=
+        if [ "$dowhat" = 'run' ]; then
+            rm='--rm --entrypoint='
+        fi
         for shell in bash sh; do
             if shell_path="$(eval "docker $dowhat $rm $host which $shell" <&- | sed 's|[\r\n]||g')"; then
                 prog="$shell_path"
