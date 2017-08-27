@@ -34,9 +34,7 @@ alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
 alias -g COL="| column -t"
 alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
-calc() {
-    echo "$@" | bc -l
-}
+calc() { bc -l <<< "$@"; }
 
 alias svi=sudoedit
 # This will enable us to use aliases in sudo.
