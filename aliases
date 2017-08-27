@@ -171,6 +171,10 @@ _dsh() {
     shift
 
     while [ "${1:0:1}" = '-' ]; do
+        if [ "${1:0:2}" != '--' ]; then
+            docker_args+=("$1")
+            shift
+        fi
         docker_args+=("$1")
         shift
     done
