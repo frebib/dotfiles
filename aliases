@@ -157,6 +157,7 @@ alias dlg='docker logs -f'
 alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
+alias dprune='docker system prune -f'
 alias dsh='_CMD=dsh _dsh exec'
 alias drsh='_CMD=drsh _dsh run --rm'
 _dsh() {
