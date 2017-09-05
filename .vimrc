@@ -5,6 +5,8 @@ set tabstop=4
 set shiftwidth=0   " Use tabstop
 set softtabstop=-1 " Use tabstop
 set expandtab
+set smarttab
+set smartindent
 set number
 set autoindent
 set laststatus=2
@@ -12,6 +14,19 @@ set mouse=nicr
 set encoding=utf-8
 set background=dark
 set directory=$HOME/.vim/swapfiles//
+
+set title
+set binary
+set clipboard=unnamed
+set wildmenu
+set report=0
+set lazyredraw
+set ttyfast
+set autoread
+set showmatch
+set scrolloff=6
+set autowriteall
+set nojoinspaces
 
 "nnoremap <LeftMouse> <nop>
 "nnoremap <RightMouse> <nop>
@@ -39,6 +54,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'solarnz/thrift.vim'
 Plugin 'lervag/vimtex'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 call vundle#end()
 
@@ -59,7 +75,13 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-auto-save
-let g:auto_save = 1  " enable AutoSave on Vim startup
+"let g:auto_save = 1  " enable AutoSave on Vim startup
+
+" vim-markdown plugin
+let vim_markdown_preview_toggle=0
+let vim_markdown_preview_browser='Chromium'
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_github=1
 
 let mapleader="\<space>"
 " Unbind arrow keys
