@@ -74,7 +74,7 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 
 " vim-auto-save
-"let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " vim-markdown plugin
 let vim_markdown_preview_toggle=0
