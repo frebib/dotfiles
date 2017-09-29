@@ -57,6 +57,7 @@ signal=15
 [updates]
 label=
 interval=600
+signal=5
 
 [separator]
 
