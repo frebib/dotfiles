@@ -16,7 +16,6 @@ set background=dark
 set directory=$HOME/.vim/swapfiles//
 
 set title
-set binary
 set clipboard=unnamed
 set wildmenu
 set report=0
