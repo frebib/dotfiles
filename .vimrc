@@ -67,9 +67,6 @@ call vundle#end()
 
 set omnifunc=syntaxcomplete#Complete
 
-" YouCompleteMe python fix
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
-
 " Vim-Airline config
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
