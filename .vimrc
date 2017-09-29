@@ -30,6 +30,11 @@ set nojoinspaces
 "nnoremap <LeftMouse> <nop>
 "nnoremap <RightMouse> <nop>
 
+" Search options
+set hlsearch
+set ignorecase
+set smartcase
+
 " GVim settings
 set guifont=Sauce\ Code\ Pro\ 10.5
 set guioptions=
@@ -167,11 +172,6 @@ noremap <Leader>y "*y
 noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
-
-" Search options
-set hlsearch
-set ignorecase
-set smartcase
 
 " Save aliases.
 noremap <Leader>q :wq<CR>
