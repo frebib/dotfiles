@@ -39,6 +39,9 @@ set smartcase
 set guifont=Sauce\ Code\ Pro\ 10.5
 set guioptions=
 
+nnoremap <LeftMouse> <nop>
+nnoremap <RightMouse> <nop>
+
 " Change to dvorak-mapped keys
 let g:use_dvorak = 1
 
