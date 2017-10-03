@@ -186,7 +186,7 @@ _dsh() {
         host="$1"
     else
         host=`echo $1 | cut -d'@' -f2 -s`
-        usercmd="--user=$user "
+        usercmd="--user=$user"
     fi
 
     if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" <&- ]; then
