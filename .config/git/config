@@ -4,11 +4,11 @@
 	signingkey = CFBB6A86
 
 [commit]
-    gpgsign = true
+	gpgsign = true
 [color]
 	ui = auto
 [alias]
-      verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
+	  verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
 [rebase]
 	autoStash = true
 [push]
