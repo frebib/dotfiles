@@ -5,7 +5,7 @@ export LC_NUMERIC=en_GB
 export CONFIG_DIR="$HOME/.config"
 export XDG_CONFIG_HOME="$CONFIG_DIR"
 export DOTFILES="$CONFIG_DIR/dotfiles"
-export PATH="${PATH}:$DOTFILES/scripts"
+export PATH="${PATH}:$DOTFILES/scripts:$HOME/.local/share/surface-scripts"
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 # Allow Vim to load from ~/.config/vim
