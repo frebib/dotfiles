@@ -55,6 +55,7 @@ alias tree='tree --dirsfirst -C -F'
 alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
+alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 
 # System aliases
 alias s="sudo systemctl"
