@@ -230,10 +230,6 @@ alias zpool='sudo zpool'
 alias z=zfs
 alias zp=zpool
 
-# Packer, Vagrant aliases
-alias pk=packer
-alias v=vagrant
-
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
 alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
