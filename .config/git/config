@@ -20,3 +20,10 @@
 	rebase = true
 [core]
 	autocrlf = input
+[sendemail]
+	from = Joe Groocock <frebib@gmail.com>
+	smtpserver = smtp.gmail.com
+	smtpuser = frebib@gmail.com
+	smtpencryption = tls
+	smtpserverport = 587
+	suppresscc = self
