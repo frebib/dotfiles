@@ -175,6 +175,7 @@ exec --no-startup-id xautolock -time 5 -locker ~/.config/i3/lock.sh -nocloseout 
 # startup programs
 exec --no-startup-id pulseaudio
 exec --no-startup-id nextcloud
+exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id redshift
 exec --no-startup-id xbindkeys
