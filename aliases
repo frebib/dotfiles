@@ -76,7 +76,7 @@ alias -s rar="unrar l"
 alias -s tar="tar tf"
 alias -s gz="tar tf"
 alias -s jar="java -jar"
-alias -s git="git clone"
+alias -s git="git clone --recursive"
 
 
 # Git Aliases
