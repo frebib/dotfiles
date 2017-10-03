@@ -182,8 +182,6 @@ exec --no-startup-id solaar
 exec --no-startup-id pullover
 exec --no-startup-id onboard
 exec --no-startup-id touchegg
-exec --no-startup-id ~/.local/share/surfacetools/autorotate/autorotate
-exec --no-startup-id ~/.local/share/surface-scripts/rotationd
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
 
