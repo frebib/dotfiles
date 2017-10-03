@@ -17,6 +17,12 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt sharehistory histignoredups histignorespace histreduceblanks autocd autopushd extendedglob alwaystoend dvorak
 
+# Only set tty if running interactively
+if tty -s; then
+    # Resolve at shell runtime
+    export GPG_TTY="$(tty)"
+fi
+
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 
 bindkey -e
