@@ -1,4 +1,5 @@
 bookmarks
+.config/secrets
 
 *.log
 .xournal/recent-files

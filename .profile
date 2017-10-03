@@ -15,6 +15,13 @@ export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_QPA_PLATFORMTHEME=gtk2
 
+# Source secret keys and values into environment
+if [ -f "$CONFIG_DIR/secrets" ]; then
+    set -o allexport
+    source $CONFIG_DIR/secrets
+    set +o allexport
+fi
+
 # Merge system clipboards
 if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
     autocutsel -fork &
