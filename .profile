@@ -23,7 +23,7 @@ if [ -f "$CONFIG_DIR/secrets" ]; then
 fi
 
 # Merge system clipboards
-if ! [ -z $DISPLAY ] && which autocutsel &>/dev/null; then
+if [ -n "$DISPLAY" ] && which autocutsel &>/dev/null; then
     autocutsel -fork &
     autocutsel -selection PRIMARY -fork &
 fi
