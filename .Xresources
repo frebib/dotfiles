@@ -18,17 +18,17 @@ xterm.metaSendsEscape:      true
 !Set TERM
 urxvt.termName:             xterm-256color
 
-Xft.dpi:                    128
+Xft.dpi:                    136
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.autohint:               false
 Xft.hinting:                true
 Xft.hintstyle:              hintfull
-urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=10.5
-urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=10.5
-urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=10.5
-urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=10.5
-urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=10.5
+urxvt*font:                 xft:Sauce Code Pro:style=Regular:size=9.8
+urxvt*imFont:               xft:Sauce Code Pro:style=Regular:size=9.8
+urxvt*boldFont:             xft:Sauce Code Pro:style=Bold:size=9.8
+urxvt*italicFont:           xft:Sauce Code Pro:style=Italic:size=9.8
+urxvt*boldItalicFont:       xft:Sauce Code Pro:style=Bold,Italic:size=9.8
 
 
 ! clickable Url and copy paste keys
