@@ -31,6 +31,5 @@ fi
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
     dbus-update-activation-environment --systemd DISPLAY
-    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
-    export SSH_AUTH_SOCK
 fi
+export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
