@@ -15,7 +15,8 @@ mkdir -p $ZSH_CACHE_DIR $ZSH_CONFIG_DIR
 HISTFILE=$ZSH_CONFIG_DIR/histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt sharehistory histignoredups histignorespace histreduceblanks autocd autopushd extendedglob alwaystoend dvorak
+setopt sharehistory histignorealldups histignorespace histreduceblanks
+setopt pathdirs autocd autopushd correctall extendedglob alwaystoend dvorak
 
 # Only set tty if running interactively
 if tty -s; then
@@ -61,7 +62,6 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
-setopt HIST_IGNORE_ALL_DUPS
 ZSH_HIGHLIGHT_STYLES[default]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
