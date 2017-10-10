@@ -191,6 +191,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id redshift
 exec --no-startup-id xbindkeys
 exec --no-startup-id solaar
+exec --no-startup-id pullover
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
 
