@@ -54,10 +54,15 @@ zstyle ':completion:*' rehash true
 zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -U compinit ; compinit
+autoload -U bashcompinit ; bashcompinit
 
 plugins=(command-not-found history-substring-search sudo zsh-autosuggestions zsh-completions)
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if gopass --help &>/dev/null; then
+    source <(gopass completion bash)
+fi
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
