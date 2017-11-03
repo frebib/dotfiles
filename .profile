@@ -32,4 +32,8 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
     dbus-update-activation-environment --systemd DISPLAY
 fi
-export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+
+# Start the gnome-keyring if it's installed
+if which gnome-keyring-daemon &>/dev/null; then
+    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+fi
