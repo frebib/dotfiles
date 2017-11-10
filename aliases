@@ -58,6 +58,14 @@ alias env='env | sort'
 alias ssh="ssh -tt"
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 which gopass &>/dev/null && alias pass='gopass'
+alias abuild='docker run -ti --rm \
+    -e USER \
+    -e PWD \
+    -w $PWD \
+    -v ~/.abuild:/home/$USER/.abuild \
+    -v ~/.config/git:/home/$USER/.config/git:ro \
+    -v ~/.gnupg:/home/$USER/.gnupg \
+    frebib/alpine-sdk abuild'
 
 # System aliases
 alias s="sudo systemctl"
