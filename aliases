@@ -258,7 +258,7 @@ i3b() {
 }
 alias sf=screenfetch
 alias nf=neofetch
-randstr() { tr -dc 'a-zA-Z0-9' /dev/urandom | fold -w $1 | head -n 1; }
+randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
