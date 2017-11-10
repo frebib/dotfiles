@@ -16,7 +16,7 @@ HISTFILE=$ZSH_CONFIG_DIR/histfile
 HISTSIZE=100000
 SAVEHIST=100000
 setopt sharehistory histignorealldups histignorespace histreduceblanks
-setopt pathdirs autocd autopushd correctall extendedglob alwaystoend dvorak
+setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
 
 # Only set tty if running interactively
 if tty -s; then
