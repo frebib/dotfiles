@@ -180,3 +180,6 @@ com Wq wq
 com WQ wq
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
+
+autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
