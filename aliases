@@ -20,6 +20,7 @@ alias md="mkdir -p"
 mcd(){
     mkdir -p $1 && cd $1
 }
+alias cdt='cd `mktemp -d`'
 alias grep='grep --color'
 alias -g H='| head'
 alias -g T='| tail'
