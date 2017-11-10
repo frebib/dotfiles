@@ -57,6 +57,7 @@ alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
+which gopass &>/dev/null && alias pass='gopass'
 
 # System aliases
 alias s="sudo systemctl"
