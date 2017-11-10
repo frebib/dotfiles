@@ -39,6 +39,10 @@ set smartcase
 set guifont=Sauce\ Code\ Pro\ 10.5
 set guioptions=
 
+" Whitespace highlight settings
+set list
+set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
+
 nnoremap <LeftMouse> <nop>
 nnoremap <RightMouse> <nop>
 
