@@ -23,6 +23,24 @@ fi
 setopt sharehistory histignorealldups histignorespace histreduceblanks
 setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
 
+
+# Completion initialisation
+autoload -U compinit ; compinit
+autoload -U bashcompinit ; bashcompinit
+
+# gopass completion
+if gopass --help &>/dev/null; then
+    source <(gopass completion bash)
+fi
+
+zstyle ':completion:*:sudo|_::' environ PATH="/sbin:/usr/sbin:$PATH" HOME="/root"
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':compinstall'  filename "$HOME/.zshrc"
+
+
 # Load antigen & plugins
 antigen_src="$ZSH_DIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
@@ -43,14 +61,6 @@ antigen bundle zsh-users/zsh-history-substring-search
 
 antigen apply
 
-# Completion initialisation
-autoload -U compinit ; compinit
-autoload -U bashcompinit ; bashcompinit
-
-# gopass completion
-if gopass --help &>/dev/null; then
-    source <(gopass completion bash)
-fi
 
 # Set some key-binds
 bindkey -e
@@ -70,12 +80,6 @@ bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-zstyle ':completion:*:sudo|_::' environ PATH="/sbin:/usr/sbin:$PATH" HOME="/root"
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle ':completion:*' rehash true
-zstyle :compinstall filename "$HOME/.zshrc"
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
