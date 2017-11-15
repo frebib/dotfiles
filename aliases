@@ -97,6 +97,7 @@ alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias ga="git add"
+alias gap="git -c interactive.diffFilter=\"git diff --color-words\" add -p"
 alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit"
@@ -117,18 +118,19 @@ alias gp="git push"
 alias gpf="gp --force"
 alias gpsu="git push --set-upstream"
 alias gpsuom="git push --set-upstream origin master"
+alias gpall="git remote | xargs -L1 git push"
 alias gl="git pull --rebase"
 alias glp="gl && gp"
 gd() {
     local commit=$1
     if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
-        git diff $@
+        git diff --color-words $@
         return
     else
-        git diff "@~${commit:1}^!"
+        git diff --color-words "@~${commit:1}^!"
     fi
 }
-alias gds="git diff --staged"
+alias gds="git diff --staged --color-words"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 
