@@ -24,7 +24,16 @@ setopt sharehistory histignorealldups histignorespace histreduceblanks
 setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
 
 # Load antigen & plugins
-source "$ZSH_DIR/antigen.zsh"
+antigen_src="$ZSH_DIR/antigen.zsh"
+if [ ! -f "$antigen_src" ]; then
+    if which curl &>/dev/null; then
+        getcmd='curl -L'
+    else
+        getcmd='wget -qO-'
+    fi
+    eval $getcmd git.io/antigen > "$antigen_src"
+fi
+source "$antigen_src"
 
 antigen bundle sudo
 antigen bundle zsh-users/zsh-completions
