@@ -8,6 +8,7 @@ set expandtab
 set smarttab
 set smartindent
 set number
+set linebreak
 set autoindent
 set laststatus=2
 set mouse=nicr
