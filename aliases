@@ -62,10 +62,11 @@ alias abuild='docker run -ti --rm \
     -e USER \
     -e PWD \
     -w $PWD \
+    -v $PWD:$PWD \
     -v ~/.abuild:/home/$USER/.abuild \
     -v ~/.config/git:/home/$USER/.config/git:ro \
     -v ~/.gnupg:/home/$USER/.gnupg \
-    frebib/alpine-sdk abuild'
+    frebib/alpine-sdk:edge abuild'
 
 # System aliases
 alias s="sudo systemctl"
