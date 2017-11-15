@@ -2,13 +2,13 @@
 	name = Joe Groocock
 	email = frebib@gmail.com
 	signingkey = CFBB6A86
-
 [commit]
 	gpgsign = true
 [color]
 	ui = auto
 [alias]
-	  verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
+	verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
+	pushall = !git remote | xargs -L1 git push
 [rebase]
 	autoStash = true
 [push]
