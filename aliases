@@ -246,9 +246,9 @@ alias zp=zpool
 
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
-alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
+alias aliases="$EDITOR $DOTFILES/aliases ; exec zsh"
 alias vimrc="$EDITOR ~/.vimrc"
-alias zshrc="$EDITOR ~/.zshrc ; source ~/.zshrc"
+alias zshrc="$EDITOR ~/.zshrc ; exec zsh"
 alias xinitrc="$EDITOR ~/.xinitrc"
 alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
 alias xsession="$EDITOR ~/.xsession"
