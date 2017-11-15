@@ -9,6 +9,7 @@ export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 export EDITOR="vim"
 export VISUAL="vim"
+export LESS="-RSNI"
 export PAGER="less -R"
 export TERMINAL="termite"
 export BROWSER="chromium"
