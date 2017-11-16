@@ -53,7 +53,6 @@ if [ ! -f "$antigen_src" ]; then
 fi
 source "$antigen_src"
 
-antigen bundle sudo
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Tarrasch/zsh-syntax-highlighting
@@ -119,5 +118,11 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=green'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
-source "$ZSH_DIR/fish-theme.zsh"
 source "$DOTFILES/aliases"
+
+# Load some manual plugins
+source "$ZSH_DIR/plugins/sudo.zsh"
+source "$ZSH_DIR/plugins/fish-theme.zsh"
+
+# Reload zsh-syntax-highlighting, because reasons -_-
+source "$ADOTDIR/bundles/Tarrasch/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
