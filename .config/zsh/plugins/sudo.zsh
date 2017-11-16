@@ -15,6 +15,8 @@ sudo-command-line() {
     else
         LBUFFER="sudo $LBUFFER"
     fi
+
+    _zsh_highlight
 }
 zle -N sudo-command-line
 # Defined shortcut keys: [Esc] [Esc]

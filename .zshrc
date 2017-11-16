@@ -123,6 +123,3 @@ source "$DOTFILES/aliases"
 # Load some manual plugins
 source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
-
-# Reload zsh-syntax-highlighting, because reasons -_-
-source "$ADOTDIR/bundles/Tarrasch/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
