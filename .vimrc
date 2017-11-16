@@ -64,11 +64,13 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'PotatoesMaster/i3-vim-syntax'
-Plugin 'solarnz/thrift.vim'
-Plugin 'lervag/vimtex'
+Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'tpope/vim-abolish'
 
 call vundle#end()
+
+filetype plugin on
 
 set omnifunc=syntaxcomplete#Complete
 
