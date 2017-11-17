@@ -9,8 +9,8 @@ export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 export EDITOR="vim"
 export VISUAL="vim"
-export LESS="-RSNI"
-export PAGER="less -R"
+export LESS="-RNI"
+export PAGER="less $LESS"
 export TERMINAL="termite"
 export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
