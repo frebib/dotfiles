@@ -25,8 +25,8 @@ fi
 
 # Merge system clipboards
 if [ -n "$DISPLAY" ] && which autocutsel &>/dev/null; then
-    autocutsel -fork &
-    autocutsel -selection PRIMARY -fork &
+    autocutsel -fork
+    autocutsel -selection PRIMARY -fork
 fi
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
