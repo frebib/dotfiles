@@ -17,6 +17,7 @@ alias lat='la -t'
 alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
+alias rd="rmdir -p"
 mcd(){
     mkdir -p $1 && cd $1
 }
