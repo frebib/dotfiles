@@ -93,14 +93,6 @@ let vim_markdown_preview_browser='Chromium'
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
 
-" lervag/vimtex plugin
-nmap <silent><buffer> <Nop> <plug>(vimtex-env-delete)
-nmap <silent><buffer> <Nop> <plug>(vimtex-cmd-delete)
-nmap <silent><buffer> <Nop> <plug>(vimtex-env-delete-math)
-nmap <silent><buffer> <Nop> <plug>(vimtex-env-toggle-star)
-nmap <silent><buffer> <Nop> <plug>(vimtex-delim-toggle-modifier)
-xmap <silent><buffer> <Nop> <plug>(vimtex-delim-toggle-modifier)
-
 let mapleader="\<space>"
 " Unbind arrow keys
 for prefix in ['n', 'v']
@@ -178,6 +170,12 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 	" Fold-related keybindings
 	noremap zh zj
 	noremap zt zk
+
+    " Disable some default vimtex mappings that conflict with rebound keys
+    let g:vimtex_mappings_disable = {
+        \ 'n': ['tse', 'tsd', 'tsD', 'tsc', 'dse', 'dsc', 'ds$', 'dsd'],
+        \ 'x': ['tsd', 'tsD'],
+        \}
 
 endif
 
