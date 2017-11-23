@@ -1,5 +1,10 @@
 set nocompatible              " be iMproved, required
 
+" Reconfigure Vim to be clean!
+set rtp+=~/.config/vim
+set directory=.,~/.config/vim
+set viminfo+=n~/.config/vim/viminfo
+
 syntax enable
 filetype plugin on
 set tabstop=4
@@ -15,7 +20,8 @@ set laststatus=2
 set mouse=nicr
 set encoding=utf-8
 set background=dark
-set directory=$HOME/.vim/swapfiles//
+set directory=$HOME/.config/vim/swapfiles//
+set omnifunc=syntaxcomplete#Complete
 
 set title
 set clipboard=unnamed
@@ -46,8 +52,9 @@ set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/vim/bundle/Vundle.vim
 call vundle#begin()
+call vundle#rc('~/.config/vim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'

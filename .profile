@@ -2,10 +2,15 @@ export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 export LC_NUMERIC=en_GB
 
-export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-export DOTFILES=$CONFIG_DIR/dotfiles
+export CONFIG_DIR="$HOME/.config"
+export XDG_CONFIG_HOME="$CONFIG_DIR"
+export DOTFILES="$CONFIG_DIR/dotfiles"
 export PATH="${PATH}:$DOTFILES/scripts"
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
+# Allow Vim to load from ~/.config/vim
+export MYVIMRC="$CONFIG_DIR/vim/vimrc"
+export VIMINIT=":so $MYVIMRC"
 
 export EDITOR="vim"
 export VISUAL="vim"
