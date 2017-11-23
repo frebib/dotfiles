@@ -78,6 +78,9 @@ call vundle#end()
 " Change to dvorak-mapped keys
 let g:use_dvorak = 1
 
+" YouCompleteMe config
+let g:ycm_confirm_extra_conf = 0
+
 " Vim-Airline config
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
