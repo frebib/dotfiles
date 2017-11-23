@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 
 syntax enable
+filetype plugin on
 set tabstop=4
 set shiftwidth=0   " Use tabstop
 set softtabstop=-1 " Use tabstop
@@ -28,8 +29,8 @@ set scrolloff=6
 set autowriteall
 set nojoinspaces
 
-"nnoremap <LeftMouse> <nop>
-"nnoremap <RightMouse> <nop>
+nnoremap <LeftMouse> <nop>
+nnoremap <RightMouse> <nop>
 
 " Search options
 set hlsearch
@@ -44,12 +45,6 @@ set guioptions=
 set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
 
-nnoremap <LeftMouse> <nop>
-nnoremap <RightMouse> <nop>
-
-" Change to dvorak-mapped keys
-let g:use_dvorak = 1
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -58,21 +53,22 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'tpope/vim-abolish'
 Plugin 'vim-scripts/vim-auto-save'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'PotatoesMaster/i3-vim-syntax'
-Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'lervag/vimtex'
 Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'tpope/vim-abolish'
 
 call vundle#end()
 
-filetype plugin on
-
-set omnifunc=syntaxcomplete#Complete
+" Change to dvorak-mapped keys
+let g:use_dvorak = 1
 
 " Vim-Airline config
 let g:Powerline_symbols = 'fancy'
@@ -88,6 +84,14 @@ let vim_markdown_preview_toggle=0
 let vim_markdown_preview_browser='Chromium'
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
+
+" lervag/vimtex plugin
+nmap <silent><buffer> <Nop> <plug>(vimtex-env-delete)
+nmap <silent><buffer> <Nop> <plug>(vimtex-cmd-delete)
+nmap <silent><buffer> <Nop> <plug>(vimtex-env-delete-math)
+nmap <silent><buffer> <Nop> <plug>(vimtex-env-toggle-star)
+nmap <silent><buffer> <Nop> <plug>(vimtex-delim-toggle-modifier)
+xmap <silent><buffer> <Nop> <plug>(vimtex-delim-toggle-modifier)
 
 let mapleader="\<space>"
 " Unbind arrow keys
@@ -139,10 +143,10 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 	nnoremap <C-w><C-t> <C-w><C-k>
 	nnoremap <C-w><C-n> <C-w><C-l>
 
-	"nnoremap <C-d> <C-w>h
-	"nnoremap <C-h> <C-w>j
-	"nnoremap <C-t> <C-w>k
-	"nnoremap <C-n> <C-w>l
+	nnoremap <C-d> <C-w>h
+	nnoremap <C-h> <C-w>j
+	nnoremap <C-t> <C-w>k
+	nnoremap <C-n> <C-w>l
 
 	" Account for tag jumping
 	nnoremap <C-j> <C-t>
@@ -186,4 +190,3 @@ cmap w!! w !sudo tee > /dev/null %
 
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
-autocmd FileType tex LLPStartPreview
