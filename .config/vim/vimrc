@@ -50,6 +50,7 @@ set guioptions=
 " Whitespace highlight settings
 set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
+highlight SpecialKey ctermfg=7
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/vim/bundle/Vundle.vim
