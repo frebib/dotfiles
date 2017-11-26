@@ -49,7 +49,7 @@ signal=10
 
 [iface]
 label=
-interval=300
+interval=60
 signal=15
 
 [separator]
