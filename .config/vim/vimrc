@@ -4,9 +4,11 @@ set nocompatible              " be iMproved, required
 set rtp+=~/.config/vim
 set directory=.,~/.config/vim
 set viminfo+=n~/.config/vim/viminfo
+set directory=$HOME/.config/vim/swapfiles//
 
 syntax enable
 filetype plugin on
+
 set tabstop=4
 set shiftwidth=0   " Use tabstop
 set softtabstop=-1 " Use tabstop
@@ -17,12 +19,9 @@ set number
 set linebreak
 set autoindent
 set laststatus=2
-set mouse=nicr
 set encoding=utf-8
 set background=dark
-set directory=$HOME/.config/vim/swapfiles//
 set omnifunc=syntaxcomplete#Complete
-
 set title
 set clipboard=unnamed
 set wildmenu
@@ -32,11 +31,11 @@ set ttyfast
 set autoread
 set showmatch
 set scrolloff=6
-set autowriteall
 set nojoinspaces
 
-nnoremap <LeftMouse> <nop>
-nnoremap <RightMouse> <nop>
+" Autosave settings
+set autowrite
+autocmd InsertLeave * save
 
 " Search options
 set hlsearch
@@ -52,6 +51,7 @@ set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
 highlight SpecialKey ctermfg=7
 
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/vim/bundle/Vundle.vim
 call vundle#begin()
@@ -64,7 +64,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-abolish'
-Plugin 'vim-scripts/vim-auto-save'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
@@ -87,14 +86,17 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 
-" vim-auto-save
-let g:auto_save = 1  " enable AutoSave on Vim startup
-
 " vim-markdown plugin
 let vim_markdown_preview_toggle=0
 let vim_markdown_preview_browser='Chromium'
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
+
+
+" Disable mouse
+set mouse=nicr
+nnoremap <LeftMouse> <nop>
+nnoremap <RightMouse> <nop>
 
 let mapleader="\<space>"
 " Unbind arrow keys
@@ -160,7 +162,7 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 
 	" Remappings for the T key
 	noremap j t
-	noremap J T
+	"noremap J T
 
 	" Remapping for the L key
 	noremap l n
@@ -181,12 +183,6 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
         \}
 
 endif
-
-" Interface with system clipboard
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
 
 " Save aliases.
 noremap <Leader>q :wq<CR>
