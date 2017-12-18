@@ -31,17 +31,17 @@ if [ -f "$CONFIG_DIR/secrets" ]; then
 fi
 
 # Merge system clipboards
-if [ -n "$DISPLAY" ] && which autocutsel &>/dev/null; then
+if [ -n "$DISPLAY" ] && which autocutsel >/dev/null 2>&1; then
     autocutsel -fork
     autocutsel -selection PRIMARY -fork
 fi
 
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && which dbus-launch >/dev/null 2>&1; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
     dbus-update-activation-environment --systemd DISPLAY
 fi
 
 # Start the gnome-keyring if it's installed
-if which gnome-keyring-daemon &>/dev/null; then
+if which gnome-keyring-daemon >/dev/null 2>&1; then
     export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
 fi
