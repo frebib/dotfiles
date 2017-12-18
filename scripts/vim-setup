@@ -1,18 +1,29 @@
-YCM=~/.vim/bundle/YouCompleteMe
+#!/bin/sh
+set -e
 
-sudo pacman -Sy python cmake clang --needed --noconfirm
+############################
+## Check for dependencies ##
+############################
+error() { >&2 printf "Error: %s" "$1"; exit 1; }
+
+which cmake >/dev/null 2>&1 || error 'cmake is not installed'
+which clang >/dev/null 2>&1 || error 'clang is not installed'
+which python >/dev/null 2>&1 || error 'python is not installed'
+
+[ -z "$VIMDIR" ] && error '$VIMDIR is not set'
 
 #######################
 ## Initialise Vundle ##
 #######################
-mkdir -p ~/.vim/{bundle,swapfiles}
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+mkdir -p "$VIMDIR/bundle" "$VIMDIR/swapfiles"
+if [ ! -d "$VIMDIR/bundle/Vundle.vim" ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git "$VIMDIR/bundle/Vundle.vim"
+fi
 vim +PluginUpdate +qall
-
 
 #########################
 ## Setup YouCompleteMe ##
 #########################
-cd "$YCM"
+cd "$VIMDIR/bundle/YouCompleteMe"
 git submodule update --init --recursive
 ./install.py --system-libclang --clang-completer

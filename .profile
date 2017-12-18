@@ -9,7 +9,8 @@ export PATH="${PATH}:$DOTFILES/scripts"
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 # Allow Vim to load from ~/.config/vim
-export MYVIMRC="$CONFIG_DIR/vim/vimrc"
+export VIMDIR="$CONFIG_DIR/vim"
+export MYVIMRC="$VIMDIR/vimrc"
 export VIMINIT=":so $MYVIMRC"
 
 export EDITOR="vim"
