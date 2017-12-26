@@ -69,6 +69,8 @@ bindkey "^[[1;3D" backward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[3;3~" delete-word
 
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 x-bash-backward-kill-word(){
