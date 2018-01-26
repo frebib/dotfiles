@@ -20,6 +20,7 @@
 	rebase = true
 [core]
 	autocrlf = input
+	excludesfile = /home/frebib/.config/git/gitignore
 [diff]
 	algorithm = patience
 [sendemail]

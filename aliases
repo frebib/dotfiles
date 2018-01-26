@@ -93,6 +93,7 @@ alias -s git="git clone --recursive"
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
+alias ggignore='$EDITOR ~/.config/git/gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
@@ -249,6 +250,7 @@ alias ssha='eval `ssh-agent` ; ssh-add'
 alias aliases="$EDITOR $DOTFILES/aliases ; exec zsh"
 alias vimrc="$EDITOR $MYVIMRC"
 alias zshrc="$EDITOR ~/.zshrc ; exec zsh"
+alias gitrc="$EDITOR ~/.config/git/config"
 alias xinitrc="$EDITOR ~/.xinitrc"
 alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
 alias xsession="$EDITOR ~/.xsession"
