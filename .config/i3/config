@@ -175,8 +175,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc pause
 bindsym XF86AudioStop  exec --no-startup-id mpc stop
 bindsym XF86AudioNext  exec --no-startup-id mpc next
 bindsym XF86AudioPrev  exec --no-startup-id mpc previous
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  +1000 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  -1000 && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 exec --no-startup-id "ip monitor | while read line; do pkill -RTMIN+15 i3blocks; done"
 
