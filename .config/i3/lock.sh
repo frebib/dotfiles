@@ -5,9 +5,6 @@ tmpbg='/tmp/screen.png'
 
 (( $# )) && { icon=$1; }
 
-# screenshot
-scrot "$tmpbg"
-
 PX=0
 PY=0
 # lockscreen image info
@@ -25,17 +22,19 @@ SROY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
 PX=$(($SROX + $SRX/2 - $RX/2))
 PY=$(($SROY + $SRY/2 - $RY/2))
 
+# screenshot, pixelise and overlay
+maim | convert - -scale 5% -scale 2000% $icon -geometry +$PX+$PY -composite -matte $tmpbg
 
-# pixelize and add lock icon
-convert $tmpbg -scale 5% -scale 2000% $tmpbg
-convert $tmpbg $icon -geometry +$PX+$PY -composite -matte $tmpbg
-
-playing=$(mpc status | grep playing | wc -l)
-[[ $playing == 1 ]] && mpc pause
+if command mpc 2>&1 1>/dev/null; then
+    playing=$(mpc status | grep playing | wc -l)
+    [[ $playing == 1 ]] && mpc pause
+fi
 
 i3lock -i "$tmpbg" -n -e
 
-[[ $playing == 1 ]] && mpc play
+if command mpc 2>&1 1>/dev/null; then
+    [[ $playing == 1 ]] && mpc play
+fi
 
 
 rm "$tmpbg"
