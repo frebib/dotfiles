@@ -41,8 +41,7 @@ separator_block_width=12
 #interval=persist
 
 [volume]
-instance=Master
-interval=10
+interval=persist
 signal=10
 
 [separator]
