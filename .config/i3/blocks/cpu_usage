@@ -1,53 +1,31 @@
-#!/usr/bin/perl
-#
-# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
-# Copyright 2014 Vivien Didelot <vivien@didelot.org>
-# Copyright 2014 Andreas Guldstrand <andreas.guldstrand@gmail.com>
-#
-# Licensed under the terms of the GNU GPL v3, or any later version.
+#!/bin/bash
+# by Paul Colby (http://colby.id.au), no rights reserved ;)
+# https://github.com/Leo-G/DevopsWiki/wiki/How-Linux-CPU-Usage-Time-and-Percentage-is-calculated
 
-use strict;
-use warnings;
-use utf8;
-use Getopt::Long;
+PREV_TOTAL=0
+PREV_IDLE=0
 
-# default values
-my $t_warn = 50;
-my $t_crit = 80;
-my $cpu_usage = -1;
+while true; do
+    # Get the total CPU statistics, discarding the 'cpu ' prefix.
+    CPU=(`sed -n 's/^cpu\s//p' /proc/stat`)
+    IDLE=${CPU[3]} # Just the idle CPU time.
 
-sub help {
-    print "Usage: cpu_usage [-w <warning>] [-c <critical>]\n";
-    print "-w <percent>: warning threshold to become yellow\n";
-    print "-c <percent>: critical threshold to become red\n";
-    exit 0;
-}
+    # Calculate the total CPU time.
+    TOTAL=0
+    for VALUE in "${CPU[@]}"; do
+        let "TOTAL=$TOTAL+$VALUE"
+    done
 
-GetOptions("help|h" => \&help,
-           "w=i"    => \$t_warn,
-           "c=i"    => \$t_crit);
+    # Calculate the CPU usage since we last checked.
+    let "DIFF_IDLE=$IDLE-$PREV_IDLE"
+    let "DIFF_TOTAL=$TOTAL-$PREV_TOTAL"
+    let "DIFF_USAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
+    echo -e "$DIFF_USAGE%\n$DIFF_USAGE%"
 
-# Get CPU usage
-$ENV{LC_ALL}="en_US"; # if mpstat is not run under en_US locale, things may break, so make sure it is
-open (MPSTAT, 'mpstat 1 1 |') or die 'Cannot run mpstat';
-while (<MPSTAT>) {
-    if (/^.*\s+(\d+\.\d+)\s+$/) {
-        $cpu_usage = 100 - $1; # 100% - %idle
-        last;
-    }
-}
-close(MPSTAT);
+    # Remember the total and idle CPU times for the next check.
+    PREV_TOTAL="$TOTAL"
+    PREV_IDLE="$IDLE"
 
-#$cpu_usage eq -1 and die 'Can\'t find CPU information';
-
-# Print short_text, full_text
-printf "%.0f%%\n"x2, $cpu_usage;
-
-# Print color, if needed
-if ($cpu_usage >= $t_crit) {
-    print "#FF0000\n";
-} elsif ($cpu_usage >= $t_warn) {
-    print "#FFCB00\n";
-}
-
-exit 0;
+    # Wait before checking again.
+    sleep 1
+done

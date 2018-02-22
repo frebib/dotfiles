@@ -41,8 +41,7 @@ separator_block_width=12
 #interval=persist
 
 [volume]
-instance=Master
-interval=10
+interval=persist
 signal=10
 
 [separator]
@@ -63,7 +62,7 @@ signal=5
 
 [cpu_usage]
 label=
-interval=5
+interval=persist
 
 [separator]
 
