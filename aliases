@@ -11,16 +11,15 @@ alias ..ll="cd..;ll"
 alias ..l="..ll"
 
 alias l=ll
-alias ll="ls -lFh"
-alias la="ls -lAFh"
-alias lat='la -t'
+alias ll="ls -lFh  --group-directories-first"
+alias la="ls -lAFh --group-directories-first"
+alias lt='ls -lAFh --sort=time'
 alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
 alias rd="rmdir -p"
-mcd(){
-    mkdir -p $1 && cd $1
-}
+mcd(){ mkdir -p $@ && cd $@; }
+alias -- -='cd -'
 alias cdt='cd `mktemp -d`'
 alias grep='grep --color'
 alias -g H='| head'
@@ -53,6 +52,7 @@ alias cp='cp -ir'
 alias pacman='pacman --color=always'
 alias pacaur='pacaur --color=always'
 alias tree='tree --dirsfirst -C -F'
+alias make="make -j$(nproc)"
 alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
@@ -132,6 +132,7 @@ gd() {
     fi
 }
 alias gds="git diff --staged --color-words"
+alias gsh="git show --color-words"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 
@@ -148,7 +149,7 @@ alias grro="grr origin"
 
 alias gsta='git stash'
 alias gstd='gsta drop'
-alias gstl='gsta list'
+alias gstl='gsta list --stat --color'
 alias gstp='gsta pop'
 alias gstv="gsta show -p stash@{0}"
 
