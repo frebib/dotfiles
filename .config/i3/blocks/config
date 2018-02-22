@@ -62,7 +62,7 @@ signal=5
 
 [cpu_usage]
 label=
-interval=2
+interval=persist
 
 [separator]
 
