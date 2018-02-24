@@ -151,7 +151,7 @@ focus_follows_mouse yes
 
 # keybindings
 bindsym $mod+Shift+j reload
-bindsym $mod+Shift+p restart
+#bindsym $mod+Shift+p restart
 bindsym $mod+c       exec chromium
 bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
 bindsym $mod+Ctrl+v  exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
@@ -163,6 +163,8 @@ bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term  --ge
 bindsym $mod+l       exec ~/.config/i3/lock.sh
 # -fg "#CCD3DAE3" -bg "#CC383C4A" -hlbg "#CC5294E2" 
 bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
+bindsym $mod+Shift+p exec rofi-pass
+bindsym $mod+Shift+e exec rofi-emoji
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
 bindsym $mod+Mod1+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
