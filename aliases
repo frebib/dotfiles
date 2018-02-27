@@ -93,6 +93,7 @@ alias -s git="git clone --recursive"
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
+alias gitc='$EDITOR ~/.config/git/config'
 alias ggignore='$EDITOR ~/.config/git/gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
