@@ -1,4 +1,6 @@
 bookmarks
+.config/secrets
+.config/imgur-screenshot/credentials.conf
 
 *.log
 .xournal/recent-files

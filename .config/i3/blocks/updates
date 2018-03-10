@@ -1,13 +1,31 @@
-#!/bin/python2
+#!/bin/bash
+set -e
 
-import commands
-import os
+for p in pacaur yaourt pacman; do
+    if $p --version &>/dev/null; then
+        PAC="$p"
+        break;
+    fi
+done
 
-button = os.environ.get('BLOCK_BUTTON')
-if button == '1':
-  os.system("i3-sensible-terminal -r i3blocks-update-term -e 'pacaur -Syu'")
+if [ -z "$PAC" ]; then
+    >&2 echo "Error: No Arch package manager found?"
+fi
 
-updates = commands.getstatusoutput("/usr/bin/checkupdates | wc -l")[1]
-if updates and updates != '0':
-  print updates
-  print updates
+if [ "$BLOCK_BUTTON" == 1 ]; then
+    nohup i3-sensible-terminal -r i3blocks-update-term -e "sh -c '$PAC -Syu; pkill -RTMIN+5 i3blocks'" &>/dev/null &
+    disown
+fi
+
+if [ $p = "pacman" ]; then
+    exec 3< <(checkupdates)
+else
+    exec 3< <({ checkupdates & cower -u & })
+fi
+
+count="$(wc -l <&3)"
+
+if [ -n "$count" -a "$count" -gt 0 ]; then
+    echo $count
+    echo $count
+fi

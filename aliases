@@ -11,15 +11,16 @@ alias ..ll="cd..;ll"
 alias ..l="..ll"
 
 alias l=ll
-alias ll="ls -lFh"
-alias la="ls -lAFh"
-alias lat='la -t'
+alias ll="ls -lFh  --group-directories-first"
+alias la="ls -lAFh --group-directories-first"
+alias lt='ls -lAFh --sort=time'
 alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
-mcd(){
-    mkdir -p $1 && cd $1
-}
+alias rd="rmdir -p"
+mcd(){ mkdir -p $@ && cd $@; }
+alias -- -='cd -'
+alias cdt='cd `mktemp -d`'
 alias grep='grep --color'
 alias -g H='| head'
 alias -g T='| tail'
@@ -34,9 +35,7 @@ alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
 alias -g COL="| column -t"
 alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
-calc() {
-    echo "$@" | bc -l
-}
+calc() { bc -l <<< "$@"; }
 
 alias svi=sudoedit
 # This will enable us to use aliases in sudo.
@@ -52,12 +51,25 @@ alias mv='mv -i'
 alias cp='cp -ir'
 alias pacman='pacman --color=always'
 alias pacaur='pacaur --color=always'
-alias less='less -R'
 alias tree='tree --dirsfirst -C -F'
+alias make="make -j$(nproc)"
 alias dd='dd status=progress'
+alias env='env | sort'
+alias ssh="ssh -tt"
+alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
+which gopass &>/dev/null && alias pass='gopass'
+alias abuild='docker run -ti --rm \
+    -e USER \
+    -e PWD \
+    -w $PWD \
+    -v $PWD:$PWD \
+    -v ~/.abuild:/home/$USER/.abuild \
+    -v ~/.config/git:/home/$USER/.config/git:ro \
+    -v ~/.gnupg:/home/$USER/.gnupg \
+    frebib/alpine-sdk:edge abuild'
 
 # System aliases
-alias s=systemctl
+alias s="sudo systemctl"
 alias j=journalctl
 alias p=pacaur
 alias ps='ps aux'
@@ -75,24 +87,25 @@ alias -s rar="unrar l"
 alias -s tar="tar tf"
 alias -s gz="tar tf"
 alias -s jar="java -jar"
-alias -s git="git clone"
+alias -s git="git clone --recursive"
 
 
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
+alias ggignore='$EDITOR ~/.config/git/gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias ga="git add"
+alias gap="git -c interactive.diffFilter=\"git diff --color-words\" add -p"
 alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit"
 alias gcm="gc -m"
-alias gcma="git commit --amend -m"
-alias gcman="git commit --amend --no-edit -m"
 alias gca="git commit --amend"
 alias gcan="git commit --amend --no-edit"
+alias gcam="git commit --amend -m"
 alias gst="git status"
 
 alias gm="git merge"
@@ -106,18 +119,20 @@ alias gp="git push"
 alias gpf="gp --force"
 alias gpsu="git push --set-upstream"
 alias gpsuom="git push --set-upstream origin master"
+alias gpall="git remote | xargs -L1 git push"
 alias gl="git pull --rebase"
 alias glp="gl && gp"
 gd() {
     local commit=$1
     if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
-        git diff $@
+        git diff --color-words $@
         return
     else
-        git diff "@~${commit:1}^!"
+        git diff --color-words "@~${commit:1}^!"
     fi
 }
-alias gds="git diff --staged"
+alias gds="git diff --staged --color-words"
+alias gsh="git show --color-words"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 
@@ -126,6 +141,7 @@ alias gundo="git reset @~1"
 alias gclean="git clean"
 alias gbr="git branch"
 alias gr="git remote"
+alias grv="git remote -v"
 alias gra="gr add"
 alias grr="gr rm"
 alias grao="gra origin"
@@ -133,7 +149,7 @@ alias grro="grr origin"
 
 alias gsta='git stash'
 alias gstd='gsta drop'
-alias gstl='gsta list'
+alias gstl='gsta list --stat --color'
 alias gstp='gsta pop'
 alias gstv="gsta show -p stash@{0}"
 
@@ -148,7 +164,7 @@ alias dbl='docker build --pull'
 alias dbl.='docker build --pull .'
 alias drun='docker run -ti'
 alias dkl='docker kill'
-dklrm() { docker kill $1 ; docker rm $1 }
+dklrm() { docker kill $@ ; docker rm $@ }
 alias dst='docker stop'
 alias drst='docker restart'
 alias dnet='docker network'
@@ -157,21 +173,63 @@ alias dlg='docker logs -f'
 alias dalpine='docker run -ti --rm alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
-alias dsh='_dsh exec'
-alias drsh='_dsh "run --rm"'
+alias dprune='docker system prune -f'
+alias dsh='_CMD=dsh _dsh exec'
+alias drsh='_CMD=drsh _dsh run --rm --entrypoint='
 _dsh() {
-    local dowhat="$1"
-    local user=$(echo "$2" | cut -d'@' -f1 -s)
-    local prog="${@:3:$#}"
-    local usercmd=""
-    if [ -z "$user" ]; then
-        host="$2"
-    else
-        host=`echo $2 | cut -d'@' -f2 -s`
-        usercmd="--user=$user "
+    if [ $# -lt 2 ]; then
+        echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
+        return 64
     fi
 
-    eval "docker $dowhat -ti $usercmd$host ${prog:-"/bin/sh"}"
+    local dowhat="$1"
+    local docker_args=()
+    shift
+
+    while [ "${1:0:1}" = '-' ]; do
+        if [ "${1:0:2}" != '--' ]; then
+            docker_args+=("$1")
+            shift
+        fi
+        docker_args+=("$1")
+        shift
+    done
+
+    local user="$(echo "$1" | cut -d'@' -f1 -s)"
+    local prog="${@:2:$#}"
+    local usercmd=""
+    if [ -z "$user" ]; then
+        host="$1"
+    else
+        host=`echo $1 | cut -d'@' -f2 -s`
+        usercmd="--user=$user"
+    fi
+
+    if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" <&- ]; then
+        echo "No such container $host" >&2
+        return 5
+    fi
+
+    if [ -z "$prog" ]; then
+        set -o pipefail
+        local rm=
+        if [ "$dowhat" = 'run' ]; then
+            rm='--rm --entrypoint='
+        fi
+        for shell in bash sh; do
+            if shell_path="$(eval "docker $dowhat $rm $host which $shell" <&- | sed 's|[\r\n]||g')"; then
+                prog="$shell_path"
+                break
+            fi
+        done
+        set +o pipefail
+        if [ -z "$prog" ]; then
+            echo "Warning: No shell found in path.. trying /bin/sh" >&2
+            prog=/bin/sh
+        fi
+    fi
+
+    docker $dowhat ${docker_args[@]} -ti $usercmd $host $(xargs <<< $prog)
 }
 
 alias dm='docker-machine'
@@ -188,15 +246,12 @@ alias zpool='sudo zpool'
 alias z=zfs
 alias zp=zpool
 
-# Packer, Vagrant aliases
-alias pk=packer
-alias v=vagrant
-
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
-alias aliases="$EDITOR $DOTFILES/aliases ; source ~/.zshrc"
-alias vimrc="$EDITOR ~/.vimrc"
-alias zshrc="$EDITOR ~/.zshrc ; source ~/.zshrc"
+alias aliases="$EDITOR $DOTFILES/aliases ; exec zsh"
+alias vimrc="$EDITOR $MYVIMRC"
+alias zshrc="$EDITOR ~/.zshrc ; exec zsh"
+alias gitrc="$EDITOR ~/.config/git/config"
 alias xinitrc="$EDITOR ~/.xinitrc"
 alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
 alias xsession="$EDITOR ~/.xsession"
@@ -209,9 +264,8 @@ i3b() {
 }
 alias sf=screenfetch
 alias nf=neofetch
-randstr() {
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $1 | head -n 1
-}
+randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
 

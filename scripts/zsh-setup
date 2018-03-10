@@ -2,9 +2,9 @@
 set -e
 
 # Install pkgfile for command-not-found support
-sudo pacman -S pkgfile --no-confirm --needed
+sudo pacman -S pkgfile --noconfirm --needed
 sudo systemctl enable --now pkgfile-update.service
-pkgfile --update
+sudo pkgfile --update
 
 dest="$HOME/.local/share"
 mkdir -p "$dest"

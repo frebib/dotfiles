@@ -61,12 +61,18 @@ urxvt*highlightSelection:   true
 urxvt*colorMode:            on
 
 ! black
-*.color0:       #263238
-*.color8:       #37474f
+*.color0:       #333638
+
+!white
+*.color15:      #eceff1
+
+! gray
+*.color7:       #8b9396
+*.color8:       #475760
 
 ! red
-*.color1:       #ff9800
-*.color9:       #ffa74d
+*.color1:       #ff3f00
+*.color9:       #ef5345
 
 ! green
 *.color2:       #8bc34a
@@ -77,20 +83,16 @@ urxvt*colorMode:            on
 *.color11:      #ffa000
 
 ! blue
-*.color4:       #03a9f4
-*.color12:      #81d4fa
+*.color4:       #0266f4
+*.color12:      #3f86da
 
 ! magenta
-*.color5:       #e91e63
-*.color13:      #A56ECC
+*.color5:       #cc17cc
+*.color13:      #a56ecC
 
 ! cyan
-*.color6:       #009688
-*.color14:      #26a69a
-
-! white
-*.color7:       #cfd8dc
-*.color15:      #eceff1
+*.color6:       #10aeba
+*.color14:      #5ddae2
 
 
 !-----------------------------

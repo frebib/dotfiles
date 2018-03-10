@@ -11,7 +11,7 @@ case $option in
     windows)
         windows=`efibootmgr | grep -Po -m1 'Boot\K(\d{4}).*Windows.*' | head -c4`
         sudo efibootmgr -n $windows
-        reboot;;
+        systemctl reboot;;
 esac
 
 exit 0

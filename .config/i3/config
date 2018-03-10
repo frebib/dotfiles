@@ -118,12 +118,14 @@ bar {
 }
 
 # Window rules
+for_window [class="Pinentry"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [window_role="floating-term"] floating enable
+for_window [window_role="pop-up"] floating enable
 for_window [window_role="i3blocks-update-term"] floating enable
 for_window [window_role="i3blocks-clock-term"] floating enable
-for_window [title="rofi"] floating enable
+for_window [title="^rofi$"] floating enable
 
 new_window pixel 5
 new_float none
@@ -136,7 +138,7 @@ focus_follows_mouse yes
 
 # keybindings
 bindsym $mod+Shift+j reload
-bindsym $mod+Shift+p restart
+#bindsym $mod+Shift+p restart
 bindsym $mod+c       exec chromium
 bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
 bindsym $mod+Ctrl+v  exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
@@ -148,10 +150,12 @@ bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term  --ge
 bindsym $mod+l       exec ~/.config/i3/lock.sh
 # -fg "#CCD3DAE3" -bg "#CC383C4A" -hlbg "#CC5294E2" 
 bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
+bindsym $mod+Shift+p exec rofi-pass
+bindsym $mod+Shift+e exec rofi-emoji
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
 bindsym $mod+Mod1+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
-bindsym $mod+numbersign exec notify-send "$(xclip -o | gpg --decrypt 2>&1)"
+bindsym $mod+numbersign exec "termite -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ &&\ read'"
 bindsym $mod+g       exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
 
 # Media player controls
@@ -160,30 +164,29 @@ bindsym XF86AudioPause exec --no-startup-id mpc pause
 bindsym XF86AudioStop  exec --no-startup-id mpc stop
 bindsym XF86AudioNext  exec --no-startup-id mpc next
 bindsym XF86AudioPrev  exec --no-startup-id mpc previous
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-exec --no-startup-id "ip monitor | while read line; do pkill -RTMIN+15 i3blocks; done"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  +1000
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  -1000
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
+bindsym XF86MonBrightnessUp  exec xbacklight -inc 5 && pkill -RTMIN+12 i3blocks
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && pkill -RTMIN+12 i3blocks
+exec --no-startup-id "ip monitor | while read; do pkill -RTMIN+15 i3blocks; done"
 
 # app launch shortcuts
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
-exec xautolock -time 5 -locker ~/.config/i3/lock.sh
+exec --no-startup-id xautolock -time 5 -locker ~/.config/i3/lock.sh -nocloseout -nocloseerr
 
 # startup programs
 exec --no-startup-id pulseaudio
-exec --no-startup-id dropbox
-exec --no-startup-id insync start
-exec --no-startup-id nm-applet
+exec --no-startup-id nextcloud
 exec --no-startup-id blueman-applet
 exec --no-startup-id redshift
 exec --no-startup-id xbindkeys
 exec --no-startup-id onboard
-exec --no-startup-id ~/.local/share/surface-scripts/rotationd
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
 
+exec i3-msg 'workspace 1; exec sleep 2 && chromium'
 exec i3-msg 'workspace 2; exec i3-sensible-terminal'
-exec i3-msg 'workspace 3; exec sleep 2 && chromium'
 
 # vim:ft=i3
