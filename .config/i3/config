@@ -48,8 +48,8 @@ set $surf eDP1
 set $hdmi HDMI1
 
 # Workspace -> Screen
-workspace 1 output $surf
-workspace 2 output $hdmi
+workspace 1 output $hdmi
+workspace 5 output $surf
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -102,8 +102,8 @@ bar {
 
     workspace_buttons yes
     strip_workspace_numbers yes
-    tray_output $surf
-    tray_padding 4
+    tray_output $hdmi
+    tray_padding 2
     position top
     height 20
 
