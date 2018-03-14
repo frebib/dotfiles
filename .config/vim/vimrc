@@ -98,6 +98,10 @@ set mouse=nicr
 nnoremap <LeftMouse> <nop>
 nnoremap <RightMouse> <nop>
 
+" Remap completion
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
+
 let mapleader="\<space>"
 " Unbind arrow keys
 for prefix in ['n', 'v']
