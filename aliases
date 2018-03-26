@@ -65,11 +65,10 @@ which gopass 1>/dev/null 2>/dev/null && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
     -e PWD \
+    -e HOME \
     -w $PWD \
     -v $PWD:$PWD \
-    -v ~/.abuild:/home/$USER/.abuild \
-    -v ~/.config/git:/home/$USER/.config/git:ro \
-    -v ~/.gnupg:/home/$USER/.gnupg \
+    -v ~/.abuild:$HOME/.abuild \
     frebib/alpine-sdk:edge abuild'
 
 # System aliases
