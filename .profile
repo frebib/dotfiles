@@ -4,7 +4,12 @@ export LC_NUMERIC=en_GB
 
 export CONFIG_DIR="$HOME/.config"
 export XDG_CONFIG_HOME="$CONFIG_DIR"
-export DOTFILES="$(dirname "$(readlink -m "$0")")"
+case "$(basename "$(readlink -f /proc/$$/exe)")" in
+    zsh)  thisfile="$(readlink -f "${(%):-%N}")";;
+    bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
+    *)   thisfile="$(find /proc/$$/fd/ | xargs readlink -f | grep .profile | head -n1)";;
+esac
+export DOTFILES="$(dirname "${thisfile:-$CONFIG_DIR/dotfiles}")"
 export PATH="${PATH}:$DOTFILES/scripts"
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
