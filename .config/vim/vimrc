@@ -34,8 +34,13 @@ set scrolloff=6
 set nojoinspaces
 
 " Autosave settings
+function SaveIfExist()
+    if @% != "" && filereadable(@%)
+        write
+    endif
+endfunction
 set autowrite
-autocmd InsertLeave * save
+autocmd InsertLeave * call SaveIfExist()
 
 " Search options
 set hlsearch
