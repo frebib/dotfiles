@@ -49,7 +49,7 @@ set guioptions=
 " Whitespace highlight settings
 set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
-highlight SpecialKey ctermfg=7
+highlight SpecialKey ctermfg=8
 
 
 " set the runtime path to include Vundle and initialize
