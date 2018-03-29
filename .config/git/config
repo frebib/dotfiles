@@ -1,32 +1,38 @@
 [user]
 	name = Joe Groocock
-	email = frebib@gmail.com
+	email = me@frebib.net
 	signingkey = CFBB6A86
-[commit]
-	gpgsign = true
-[color]
-	ui = auto
-[alias]
-	verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
-	pushall = !git remote | xargs -L1 git push
-[rebase]
-	autoStash = true
-[push]
-	default = upstream
-[advice]
-	statusHints = false
-	pushUpdateRejected = false
-[pull]
-	rebase = true
 [core]
 	autocrlf = input
 	excludesfile = /home/frebib/.config/git/gitignore
+[commit]
+	gpgsign = true
+[push]
+	default = upstream
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[color]
+	ui = auto
+[log]
+	date = relative
+[format]
+	pretty = format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
+[alias]
+	verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
+	pushall = !git remote | xargs -L1 git push
+	count = !echo $(pwd) && git rev-list HEAD --count
+	unpushed = !git log --oneline @{u}..HEAD
+[advice]
+	statusHints = false
+	pushUpdateRejected = false
 [diff]
 	algorithm = patience
 [sendemail]
-	from = Joe Groocock <frebib@gmail.com>
-	smtpserver = smtp.gmail.com
-	smtpuser = frebib@gmail.com
-	smtpencryption = tls
-	smtpserverport = 587
+	from = Joe Groocock <me@frebib.net>
+	smtpserver = smtp.zoho.com
+	smtpuser = me@frebib.net
+	smtpencryption = ssl
+	smtpserverport = 465
 	suppresscc = self
