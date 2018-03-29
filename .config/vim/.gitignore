@@ -2,5 +2,6 @@
 /spell/
 /swapfiles/
 /viminfo
+/viminf*.tmp
 /vim-latex
 /.netrwhist
