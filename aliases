@@ -59,8 +59,8 @@ alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
-alias acme.sh='acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
-alias acmesh='acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
+alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
+alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 exists gopass && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
