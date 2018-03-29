@@ -4,7 +4,7 @@ export LC_NUMERIC=en_GB
 
 export CONFIG_DIR="$HOME/.config"
 export XDG_CONFIG_HOME="$CONFIG_DIR"
-export DOTFILES="$CONFIG_DIR/dotfiles"
+export DOTFILES="$(dirname "$(readlink -m "$0")")"
 export PATH="${PATH}:$DOTFILES/scripts"
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
