@@ -20,6 +20,7 @@ export TERMINAL="termite"
 export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_QPA_PLATFORMTHEME=gtk2
+export GOPATH="$HOME/.cache/go"
 
 export LESS="-RNI"
 export PAGER="less $LESS"
