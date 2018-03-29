@@ -29,7 +29,7 @@ export GOPATH="$HOME/.cache/go"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
-export LESS="-RNI"
+export LESS="-RI"
 export PAGER="less $LESS"
 if exists tput; then
     export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green

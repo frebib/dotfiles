@@ -92,7 +92,6 @@ alias -s gz="tar tf"
 alias -s jar="java -jar"
 alias -s git="git clone --recursive"
 
-
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
@@ -102,7 +101,7 @@ alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias ga="git add"
-alias gap="git -c interactive.diffFilter=\"git diff --color-words\" add -p"
+alias gap="git add -p"
 alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit"
@@ -130,14 +129,13 @@ alias glp="gl && gp"
 gd() {
     local commit=$1
     if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
-        git diff --color-words $@
-        return
+        git diff $@
     else
-        git diff --color-words "@~${commit:1}^!"
+        git diff "@~${commit:1}^!"
     fi
 }
-alias gds="git diff --staged --color-words"
-alias gsh="git show --color-words"
+alias gds="git diff --staged"
+alias gsh="git show"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 

@@ -4,7 +4,8 @@
 	signingkey = CFBB6A86
 [core]
 	autocrlf = input
-	excludesfile = /home/frebib/.config/git/gitignore
+	excludesfile = $HOME/.config/git/gitignore
+	pager = diff-so-fancy | less
 [commit]
 	gpgsign = true
 [push]
@@ -13,8 +14,6 @@
 	rebase = true
 [rebase]
 	autoStash = true
-[color]
-	ui = auto
 [log]
 	date = relative
 [format]
@@ -27,8 +26,6 @@
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
-[diff]
-	algorithm = patience
 [sendemail]
 	from = Joe Groocock <me@frebib.net>
 	smtpserver = smtp.zoho.com
@@ -36,3 +33,25 @@
 	smtpencryption = ssl
 	smtpserverport = 465
 	suppresscc = self
+[diff]
+	algorithm = patience
+[interactive]
+	diffFilter = diff-so-fancy --patch-mode
+[color]
+	ui = true
+[color "diff"]
+	meta = cyan
+	frag = magenta
+	commit = yellow
+	old = red
+	new = green
+	whitespace = red 88 reverse
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red 88
+	newNormal = green
+	newHighlight = green 22
+[diff-so-fancy]
+	changeHunkIndicators = false
+
+# vim: noet

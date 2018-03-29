@@ -22,7 +22,7 @@ highlight  = #5294E2
 
 # Normal colours
 color0  =     #333638
-color1  =     #ff3f00
+color1  =     #f41f1c
 color2  =     #8bc34a
 color3  =     #ffc107
 color4  =     #0266f4
@@ -32,7 +32,7 @@ color7  =     #8b9396
 
 # Bright colours
 color8  =     #475760
-color9  =     #ef5345
+color9  =     #e53727
 color10 =     #9ccc65
 color11 =     #ffa000
 color12 =     #81b3f9
