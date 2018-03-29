@@ -56,6 +56,12 @@ set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
 highlight SpecialKey ctermfg=8
 
+if exists('+colorcolumn')
+    highlight ColorColumn ctermbg=8
+    autocmd filetype c,h,cpp,hpp set colorcolumn=81
+    autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
+endif
+
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/vim/bundle/Vundle.vim
