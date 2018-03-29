@@ -55,6 +55,8 @@ case $BLOCK_BUTTON in
         break;;
     2)  curl -s https://api.ipify.org | tee >(xclip -i);
         break;;
-    *)  echo "$LOCIP" | tee >(xclip -i);
+    0|3)  echo "$LOCIP" | tee >(xclip -i);
+        break;;
+    *)  echo "$LOCIP"
         break;;
 esac
