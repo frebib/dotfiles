@@ -61,7 +61,7 @@ alias ssh="ssh -tt"
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 alias acme.sh='acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 alias acmesh='acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
-which gopass 1>/dev/null 2>/dev/null && alias pass='gopass'
+exists gopass && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
     -e PWD \
