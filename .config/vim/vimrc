@@ -32,15 +32,16 @@ set autoread
 set showmatch
 set scrolloff=6
 set nojoinspaces
+set updatetime=500  " reduce delay from 4s default
 
 " Autosave settings
-function SaveIfExist()
-    if @% != "" && filereadable(@%)
+function! SaveIfExist()
+    if @% != "" && filereadable(@%) && !&readonly
         write
     endif
 endfunction
 set autowrite
-autocmd InsertLeave * call SaveIfExist()
+autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost * call SaveIfExist()
 
 " Search options
 set hlsearch
@@ -233,10 +234,10 @@ endif
 
 " Save aliases.
 noremap <Leader>q :wq<CR>
-com W w
-com Q q
-com Wq wq
-com WQ wq
+com! W w
+com! Q q
+com! Wq wq
+com! WQ wq
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
