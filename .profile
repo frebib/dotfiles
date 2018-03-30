@@ -55,7 +55,7 @@ if [ -f "$CONFIG_DIR/secrets" ]; then
 fi
 
 # Merge system clipboards
-if [ -n "$DISPLAY" ] && exists autocutsel; then
+if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
     autocutsel -fork
     autocutsel -selection PRIMARY -fork
 fi
