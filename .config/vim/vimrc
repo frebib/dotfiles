@@ -50,6 +50,7 @@ autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfEx
 set hlsearch
 set ignorecase
 set smartcase
+set magic
 
 " More natural splits
 set splitbelow          " Horizontal split below current.
