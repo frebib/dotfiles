@@ -14,6 +14,7 @@ alias l=ll
 alias ll="ls -lFh  --group-directories-first"
 alias la="ls -lAFh --group-directories-first"
 alias lt='ls -lAFh --sort=time'
+alias lsz='ls -lAFh --sort=size'
 alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
@@ -30,6 +31,7 @@ alias -g C="| wc -l"
 alias -g S="| sort"
 alias -g U="| uniq"
 alias -g count="| wc -l"
+alias -g NO="1> /dev/null"
 alias -g NE="2> /dev/null"
 alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
@@ -57,15 +59,16 @@ alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
-which gopass &>/dev/null && alias pass='gopass'
+alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
+alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
+exists gopass && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
     -e PWD \
+    -e HOME \
     -w $PWD \
     -v $PWD:$PWD \
-    -v ~/.abuild:/home/$USER/.abuild \
-    -v ~/.config/git:/home/$USER/.config/git:ro \
-    -v ~/.gnupg:/home/$USER/.gnupg \
+    -v ~/.abuild:$HOME/.abuild \
     frebib/alpine-sdk:edge abuild'
 
 # System aliases
@@ -89,20 +92,21 @@ alias -s gz="tar tf"
 alias -s jar="java -jar"
 alias -s git="git clone --recursive"
 
-
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
+alias gitc='$EDITOR ~/.config/git/config'
 alias ggignore='$EDITOR ~/.config/git/gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias ga="git add"
-alias gap="git -c interactive.diffFilter=\"git diff --color-words\" add -p"
+alias gap="git add -p"
 alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit"
 alias gcm="gc -m"
+gcmst() { git stash -u -k && git commit -m "$1" && git stash pop; }
 alias gca="git commit --amend"
 alias gcan="git commit --amend --no-edit"
 alias gcam="git commit --amend -m"
@@ -125,14 +129,13 @@ alias glp="gl && gp"
 gd() {
     local commit=$1
     if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
-        git diff --color-words $@
-        return
+        git diff $@
     else
-        git diff --color-words "@~${commit:1}^!"
+        git diff "@~${commit:1}^!"
     fi
 }
-alias gds="git diff --staged --color-words"
-alias gsh="git show --color-words"
+alias gds="git diff --staged"
+alias gsh="git show"
 alias glg="git log --stat --color"
 alias glog="git log --oneline --decorate --color --graph"
 

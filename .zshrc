@@ -13,8 +13,10 @@ HISTFILE="$ZSH_DIR/histfile"
 HISTSIZE=999999
 SAVEHIST=999999
 
+exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
+
 # Only set tty if running interactively
-if tty -s; then
+if exists tty && tty -s; then
     # Resolve at shell runtime
     export GPG_TTY="$(tty)"
 fi
@@ -23,13 +25,12 @@ fi
 setopt sharehistory histignorealldups histignorespace histreduceblanks
 setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
 
-
 # Completion initialisation
 autoload -U compinit ; compinit
 autoload -U bashcompinit ; bashcompinit
 
 # gopass completion
-if gopass --help &>/dev/null; then
+if exists gopass; then
     source <(gopass completion bash)
 fi
 
@@ -44,7 +45,7 @@ zstyle ':compinstall'  filename "$HOME/.zshrc"
 # Load antigen & plugins
 antigen_src="$ZSH_DIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
-    if which curl &>/dev/null; then
+    if exists curl; then
         getcmd='curl -L'
     else
         getcmd='wget -qO-'

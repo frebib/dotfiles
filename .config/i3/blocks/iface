@@ -51,6 +51,12 @@ LOCIP=$(ip addr show $IF | perl -n -e "/$AF ([^\/]+).* scope global/ && print \$
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
-    1) curl -s https://api.ipify.org;;
-    *) echo "$LOCIP";;
+    1)  curl -s https://api.ipify.org;
+        break;;
+    2)  curl -s https://api.ipify.org | tee >(xclip -i);
+        break;;
+    0|3)  echo "$LOCIP" | tee >(xclip -i);
+        break;;
+    *)  echo "$LOCIP"
+        break;;
 esac
