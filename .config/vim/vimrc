@@ -57,7 +57,7 @@ set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
 
 " GVim settings
-set guifont=Sauce\ Code\ Pro\ 10.5
+set guifont=Sauce\ Code\ Pro\ 9
 set guioptions=
 
 " Whitespace highlight settings
