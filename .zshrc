@@ -5,9 +5,10 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZSH_DIR="$CONFIG_DIR/zsh"
 ZSH_CACHE_DIR="$CONFIG_DIR/oh-my-zsh/cache"
 ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
-ANTIGEN_LOG="$ADOTDIR/log/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
+LOG_DIR="$ZSH_DIR/log"
+ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
 
-mkdir -p "$ZSH_CACHE_DIR" "$ZSH_DIR" "$ADOTDIR/log"
+mkdir -p "$ZSH_CACHE_DIR" "$ZSH_DIR" "$LOG_DIR"
 
 HISTFILE="$ZSH_DIR/histfile"
 HISTSIZE=999999
@@ -43,14 +44,9 @@ zstyle ':compinstall'  filename "$HOME/.zshrc"
 
 
 # Load antigen & plugins
-antigen_src="$ZSH_DIR/antigen.zsh"
+antigen_src="$ADOTDIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
-    if exists curl; then
-        getcmd='curl -L'
-    else
-        getcmd='wget -qO-'
-    fi
-    eval $getcmd git.io/antigen > "$antigen_src"
+    git clone https://github.com/zsh-users/antigen.git "$ADOTDIR"
 fi
 source "$antigen_src"
 
