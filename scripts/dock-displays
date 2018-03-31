@@ -15,3 +15,7 @@ MODENAME=${MODELINE%% *}
 xrandr --newmode $MODELINE 2>/dev/null || true
 xrandr --addmode $OUTPUT $MODENAME 2>/dev/null || true
 xrandr --output  $OUTPUT --mode $MODENAME
+
+if [ -f ~/.fehbg -a -x ~/.fehbg ]; then
+    ~/.fehbg
+fi
