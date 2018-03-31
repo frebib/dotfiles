@@ -35,6 +35,8 @@ set scrolloff=6
 set nojoinspaces
 set updatetime=500  " reduce delay from 4s default
 
+let mapleader="\<space>"
+
 " Autosave settings
 function! SaveIfExist()
     if @% != "" && filereadable(@%) && !&readonly
@@ -90,6 +92,7 @@ Plugin 'chr4/nginx.vim'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'lervag/vimtex'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -135,6 +138,12 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_autopreview = 1
 
+" NERDTree configuration
+map  <leader><space> :NERDTreeToggle<CR>
+
+" FZF configurationn
+map  <leader><tab> :Files<CR>
+
 " Disable mouse
 set mouse=nicr
 nnoremap <LeftMouse> <nop>
@@ -144,7 +153,6 @@ nnoremap <RightMouse> <nop>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
 
-let mapleader="\<space>"
 " Unbind arrow keys
 for prefix in ['n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
@@ -231,6 +239,8 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
         \ 'n': ['tse', 'tsd', 'tsD', 'tsc', 'dse', 'dsc', 'ds$', 'dsd'],
         \ 'x': ['tsd', 'tsD'],
         \}
+
+    let NERDTreeMapOpenInTab='\t'
 
 endif
 
