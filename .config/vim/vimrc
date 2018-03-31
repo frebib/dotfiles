@@ -39,12 +39,12 @@ let mapleader="\<space>"
 
 " Autosave settings
 function! SaveIfExist()
-    if @% != "" && filereadable(@%) && !&readonly
+    if @% != "" && filereadable(@%) && !&readonly && &modified
         write
     endif
 endfunction
 set autowrite
-autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost * call SaveIfExist()
+autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
 
 " Search options
 set hlsearch
