@@ -18,6 +18,7 @@ set smartindent
 set number
 set linebreak
 set autoindent
+set breakindent
 set laststatus=2
 set encoding=utf-8
 set background=dark
