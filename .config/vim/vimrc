@@ -35,6 +35,9 @@ set scrolloff=6
 set nojoinspaces
 set updatetime=500  " reduce delay from 4s default
 
+" te seems like the correct shorthand, not tabe
+cmap te tabedit
+
 " Autosave settings
 function! SaveIfExist()
     if @% != "" && filereadable(@%) && !&readonly
