@@ -1,6 +1,6 @@
 [options]
 font = SauceCodePro 9.8
-scrollback_lines = 100000
+scrollback_lines = 1000000
 cursor_blink = off
 size_hints = true
 
@@ -10,30 +10,34 @@ foreground = #ECEFF1
 background = rgba(56, 60, 74, 0.95)
 highlight  = #5294E2
 
-# black
+# Colour order:
+#   black
+#   red
+#   green
+#   yellow
+#   blue
+#   magenta
+#   cyan
+#   white/gray
+
+# Normal colours
 color0  =     #333638
-# white
-color15 =     #eceff1
-# gray
-color7  =     #8b9396
-color8  =     #475760
-# red
-color1  =     #ff3f00
-color9  =     #ef5345
-# green
+color1  =     #f41f1c
 color2  =     #8bc34a
-color10 =     #9ccc65
-# yellow
 color3  =     #ffc107
-color11 =     #ffa000
-# blue
 color4  =     #0266f4
-color12 =     #81b3f9
-# magenta
 color5  =     #cc17cc
-color13 =     #a56ecc
-# cyan
 color6  =     #10aeba
+color7  =     #8b9396
+
+# Bright colours
+color8  =     #475760
+color9  =     #e53727
+color10 =     #9ccc65
+color11 =     #ffa000
+color12 =     #81b3f9
+color13 =     #a56ecc
 color14 =     #5ddae2
+color15 =     #eceff1
 
 # vim: ft=dosini cms=#%s

@@ -34,6 +34,7 @@ URLS=(
     'https://emojipedia.org/objects/'
     'https://emojipedia.org/symbols/'
     'https://emojipedia.org/flags/'
+    'https://emojipedia.org/modifiers/'
 )
 
 

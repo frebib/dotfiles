@@ -1,32 +1,57 @@
 [user]
 	name = Joe Groocock
-	email = frebib@gmail.com
+	email = me@frebib.net
 	signingkey = CFBB6A86
+[core]
+	autocrlf = input
+	excludesfile = $HOME/.config/git/gitignore
+	pager = diff-so-fancy | less
 [commit]
 	gpgsign = true
-[color]
-	ui = auto
+[push]
+	default = upstream
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[log]
+	date = relative
+[format]
+	pretty = format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
 [alias]
 	verbs = !git log --pretty=format:'%s' | cut -d \" \" -f 1 | sort | uniq -c | sort -nr
 	pushall = !git remote | xargs -L1 git push
-[rebase]
-	autoStash = true
-[push]
-	default = upstream
+	count = !echo $(pwd) && git rev-list HEAD --count
+	unpushed = !git log --oneline @{u}..HEAD
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
-[pull]
-	rebase = true
-[core]
-	autocrlf = input
-	excludesfile = /home/frebib/.config/git/gitignore
+[sendemail]
+	from = Joe Groocock <me@frebib.net>
+	smtpserver = smtp.zoho.com
+	smtpuser = me@frebib.net
+	smtpencryption = ssl
+	smtpserverport = 465
+	suppresscc = self
 [diff]
 	algorithm = patience
-[sendemail]
-	from = Joe Groocock <frebib@gmail.com>
-	smtpserver = smtp.gmail.com
-	smtpuser = frebib@gmail.com
-	smtpencryption = tls
-	smtpserverport = 587
-	suppresscc = self
+[interactive]
+	diffFilter = diff-so-fancy --patch-mode
+[color]
+	ui = true
+[color "diff"]
+	meta = cyan
+	frag = magenta
+	commit = yellow
+	old = red
+	new = green
+	whitespace = red 88 reverse
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red 88
+	newNormal = green
+	newHighlight = green 22
+[diff-so-fancy]
+	changeHunkIndicators = false
+
+# vim: noet

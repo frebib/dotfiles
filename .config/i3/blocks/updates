@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-for p in pacaur yaourt pacman; do
+for p in trizen pacaur yaourt pacman; do
     if $p --version &>/dev/null; then
         PAC="$p"
         break;
@@ -13,7 +13,7 @@ if [ -z "$PAC" ]; then
 fi
 
 if [ "$BLOCK_BUTTON" == 1 ]; then
-    nohup i3-sensible-terminal -r i3blocks-update-term -e "sh -c '$PAC -Syu; pkill -RTMIN+5 i3blocks'" &>/dev/null &
+    nohup i3-sensible-terminal -r i3blocks-update-term -e "sh -c '$PAC -Syu || exec zsh; pkill -RTMIN+5 i3blocks'" &>/dev/null &
     disown
 fi
 

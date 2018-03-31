@@ -32,10 +32,16 @@ set autoread
 set showmatch
 set scrolloff=6
 set nojoinspaces
+set updatetime=500  " reduce delay from 4s default
 
 " Autosave settings
+function! SaveIfExist()
+    if @% != "" && filereadable(@%) && !&readonly
+        write
+    endif
+endfunction
 set autowrite
-autocmd InsertLeave * save
+autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost * call SaveIfExist()
 
 " Search options
 set hlsearch
@@ -49,7 +55,13 @@ set guioptions=
 " Whitespace highlight settings
 set list
 set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
-highlight SpecialKey ctermfg=7
+highlight SpecialKey ctermfg=8
+
+if exists('+colorcolumn')
+    highlight ColorColumn ctermbg=8
+    autocmd filetype c,h,cpp,hpp set colorcolumn=81
+    autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
+endif
 
 
 " set the runtime path to include Vundle and initialize
@@ -60,14 +72,20 @@ call vundle#rc('~/.config/vim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
+Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'chr4/nginx.vim'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'lervag/vimtex'
 Plugin 'JamshedVesuna/vim-markdown-preview'
@@ -79,6 +97,15 @@ let g:use_dvorak = 1
 
 " YouCompleteMe config
 let g:ycm_confirm_extra_conf = 0
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+"let g:vimtex_view_method='zathura'
+let g:tex_flavor='latex'
+autocmd FileType tex silent VimtexCompile
+autocmd FileType tex setlocal spell
+autocmd FileType tex TagbarOpen
 
 " Vim-Airline config
 let g:Powerline_symbols = 'fancy'
@@ -92,11 +119,29 @@ let vim_markdown_preview_browser='Chromium'
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
 
+" Syntastic configuration
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Tagbar configuration
+let g:tagbar_width = 50
+let g:tagbar_compact = 1
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autopreview = 1
 
 " Disable mouse
 set mouse=nicr
 nnoremap <LeftMouse> <nop>
 nnoremap <RightMouse> <nop>
+
+" Remap completion
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
 
 let mapleader="\<space>"
 " Unbind arrow keys
@@ -105,6 +150,10 @@ for prefix in ['n', 'v']
         exe prefix . "noremap " . key . " <Nop>"
     endfor
 endfor
+
+" Source: https://github.com/ChrisLane/dotfiles/blob/1f5efd44e1b78224568645eaec2e6e243959c0a9/.vimrc#L66
+" Remove whitespace at end of lines with F5
+:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " Dvorak Hackery
 " Source: https://github.com/sporkbox/vimrc/blob/master/vimrc
@@ -186,13 +235,12 @@ endif
 
 " Save aliases.
 noremap <Leader>q :wq<CR>
-com W w
-com Q q
-com Wq wq
-com WQ wq
+com! W w
+com! Q q
+com! Wq wq
+com! WQ wq
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
-autocmd FileType tex silent VimtexCompile
