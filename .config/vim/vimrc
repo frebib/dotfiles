@@ -253,11 +253,13 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 endif
 
 " Save aliases.
-noremap <Leader>q :wq<CR>
 com! W w
 com! Q q
 com! Wq wq
 com! WQ wq
+com! Wqa wqa
+com! WQa wqa
+com! WQA wqa
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
