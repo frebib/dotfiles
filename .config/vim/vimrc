@@ -51,6 +51,10 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" More natural splits
+set splitbelow          " Horizontal split below current.
+set splitright          " Vertical split to right of current.
+
 " GVim settings
 set guifont=Sauce\ Code\ Pro\ 10.5
 set guioptions=
