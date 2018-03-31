@@ -74,6 +74,10 @@ if exists('+colorcolumn')
     autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
 endif
 
+" Highlight line and column of cursor
+set cul cuc
+highlight CursorLine   cterm=NONE ctermbg=8
+highlight CursorColumn cterm=NONE ctermbg=8
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/vim/bundle/Vundle.vim
