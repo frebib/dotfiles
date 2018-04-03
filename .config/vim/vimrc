@@ -116,6 +116,7 @@ endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "let g:vimtex_view_method='zathura'
 let g:tex_flavor='latex'
+let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
 autocmd FileType tex silent VimtexCompile
 autocmd FileType tex setlocal spell
 autocmd FileType tex TagbarOpen
