@@ -128,7 +128,7 @@ for_window [title="^rofi$"] floating enable
 new_window pixel 5
 new_float none
 
-gaps inner 11
+gaps inner 9
 gaps outer 1
 #smart_gaps on
 

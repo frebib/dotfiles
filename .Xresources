@@ -38,7 +38,7 @@ urxvt.iso14755_52:          false
 urxvt.perl-ext-common:      default,clipboard,vtwheel,font-size
 urxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 urxvt.keysym.Shift-Control-V:   perl:clipboard:paste
-urxvt.url-launcher:         /usr/bin/google-chrome-stable
+urxvt.url-launcher:         /usr/bin/chromium
 urxvt.matcher.button:       1
 
 urxvt.keysym.C-Up:     font-size:increase
@@ -94,25 +94,3 @@ urxvt*colorMode:            on
 *.color6:       #10aeba
 *.color14:      #5ddae2
 
-
-!-----------------------------
-! Rofi config
-
-! State:            'bg',       'fg',     'bgalt'     'hlbg',   'hlfg'
-rofi.color-window:  #F2383C4A,  #2F343F
-rofi.color-normal:  #00383C4A,  #D3DAE3,  #00383C4A,  #5294E2,  #ECEFF1
-rofi.bc:            #CC383C4A
-rofi.bw:            5
-rofi.padding:       8
-rofi.lines:         14
-rofi.width:         40
-rofi.font:          Noto Sans 18
-rofi.line-margin:   4
-rofi.sep:           |
-rofi.prompt:        >
-rofi.ssh-command:   {terminal} -e "{ssh-client} {host}"
-rofi.separator-style: solid
-
-rofi.matching:      glob
-rofi.tokenize:      true
-rofi.normal-window: true

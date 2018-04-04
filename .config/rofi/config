@@ -1,0 +1,26 @@
+!-----------------------------
+! Rofi config
+!-----------------------------
+
+! State:            'bg',       'fg',     'bgalt'     'hlbg',   'hlfg'
+rofi.color-window:  #F2383C4A,  #2F343F
+rofi.color-normal:  #00383C4A,  #D3DAE3,  #00383C4A,  #5294E2,  #ECEFF1
+rofi.bc:            #CC383C4A
+rofi.bw:            5
+rofi.padding:       8
+rofi.lines:         14
+rofi.width:         40
+rofi.font:          Noto Sans 18
+rofi.line-margin:   6
+rofi.sep:           |
+rofi.prompt:        >
+rofi.ssh-command:   {terminal} -e "{ssh-client} {host}"
+rofi.separator-style: solid
+rofi.kb-row-tab:    Shift+Tab
+rofi.kb-row-select: Tab
+
+rofi.matching:      glob
+rofi.tokenize:      true
+rofi.normal-window: true
+
+! vim: ft=xdefaults

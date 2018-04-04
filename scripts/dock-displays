@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+
+SCALE=${1:-1.4}
+OUTPUT=eDP1
+NWIDTH=2160
+NHEIGHT=1440
+
+WIDTH="$(bc <<< "$NWIDTH / $SCALE")" # $(($NWIDTH / $SCALE))
+HEIGHT="$(bc <<< "$NHEIGHT / $SCALE")" # $(($NHEIGHT / $SCALE))
+
+MODELINE=$(cvt $WIDTH $HEIGHT | sed -n 's/Modeline\s*//p' | tr -d \")
+MODENAME=${MODELINE%% *}
+
+xrandr --newmode $MODELINE 2>/dev/null || true
+xrandr --addmode $OUTPUT $MODENAME 2>/dev/null || true
+xrandr --output  $OUTPUT --mode $MODENAME
+
+if [ -f ~/.fehbg -a -x ~/.fehbg ]; then
+    ~/.fehbg
+fi

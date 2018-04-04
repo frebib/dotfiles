@@ -18,6 +18,7 @@ set smartindent
 set number
 set linebreak
 set autoindent
+set breakindent
 set laststatus=2
 set encoding=utf-8
 set background=dark
@@ -34,27 +35,34 @@ set scrolloff=6
 set nojoinspaces
 set updatetime=500  " reduce delay from 4s default
 
+let mapleader="\<space>"
+
 " Autosave settings
 function! SaveIfExist()
-    if @% != "" && filereadable(@%) && !&readonly
+    if @% != "" && filereadable(@%) && !&readonly && &modified
         write
     endif
 endfunction
 set autowrite
-autocmd CursorHold,CursorHoldI,InsertLeave,FocusLost * call SaveIfExist()
+autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
 
 " Search options
 set hlsearch
 set ignorecase
 set smartcase
+set magic
+
+" More natural splits
+set splitbelow          " Horizontal split below current.
+set splitright          " Vertical split to right of current.
 
 " GVim settings
-set guifont=Sauce\ Code\ Pro\ 10.5
+set guifont=Sauce\ Code\ Pro\ 9
 set guioptions=
 
 " Whitespace highlight settings
 set list
-set listchars=eol:$,space:.,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:$,space:·,tab:>-,trail:◦,extends:▶,precedes:◀
 highlight SpecialKey ctermfg=8
 
 if exists('+colorcolumn')
@@ -63,6 +71,10 @@ if exists('+colorcolumn')
     autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
 endif
 
+" Highlight line and column of cursor
+set cul cuc
+highlight CursorLine   cterm=NONE ctermbg=8
+highlight CursorColumn cterm=NONE ctermbg=8
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/vim/bundle/Vundle.vim
@@ -89,6 +101,7 @@ Plugin 'chr4/nginx.vim'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'lervag/vimtex'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -103,6 +116,7 @@ endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "let g:vimtex_view_method='zathura'
 let g:tex_flavor='latex'
+let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
 autocmd FileType tex silent VimtexCompile
 autocmd FileType tex setlocal spell
 autocmd FileType tex TagbarOpen
@@ -134,6 +148,12 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_autopreview = 1
 
+" NERDTree configuration
+map  <leader><space> :NERDTreeToggle<CR>
+
+" FZF configurationn
+map  <leader><tab> :Files<CR>
+
 " Disable mouse
 set mouse=nicr
 nnoremap <LeftMouse> <nop>
@@ -143,7 +163,6 @@ nnoremap <RightMouse> <nop>
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
 
-let mapleader="\<space>"
 " Unbind arrow keys
 for prefix in ['n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
@@ -231,14 +250,18 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
         \ 'x': ['tsd', 'tsD'],
         \}
 
+    let NERDTreeMapOpenInTab='\t'
+
 endif
 
 " Save aliases.
-noremap <Leader>q :wq<CR>
 com! W w
 com! Q q
 com! Wq wq
 com! WQ wq
+com! Wqa wqa
+com! WQa wqa
+com! WQA wqa
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
 
