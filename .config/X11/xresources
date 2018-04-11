@@ -1,0 +1,89 @@
+! Colour order:
+!   black
+!   red
+!   green
+!   yellow
+!   blue
+!   magenta
+!   cyan
+!   white/gray
+
+! Normal colours
+*.color0:       #333638
+*.color1:       #f41f1c
+*.color2:       #8bc34a
+*.color3:       #ffc107
+*.color4:       #0266f4
+*.color5:       #cc17cc
+*.color6:       #10aeba
+*.color7:       #8b9396
+
+! Bright colours
+*.color8:       #475760
+*.color9:       #e53727
+*.color10:      #9ccc65
+*.color11:      #ffa000
+*.color12:      #81b3f9
+*.color13:      #a56ecc
+*.color14:      #5ddae2
+*.color15:      #eceff1
+
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
+Xft.lcdfilter:  lcddefault
+
+
+
+!!======================!!
+!! RXVT-unicode setting !!
+!!======================!!
+
+urxvt.depth:                32
+urxvt.internalBorder:       6
+urxvt.blurRadius:           25
+urxvt.saveLines:            10000
+urxvt.preeditType:          Root
+
+urxvt.scrollBar:            false
+urxvt.jumpScroll:           false
+urxvt.scrollTtyOutput:      false
+urxvt.scrollWithBuffer:     true
+urxvt.scrollTtyKeypress:    true
+
+urxvt.altSendsEscape:       true
+xterm.metaSendsEscape:      true
+
+urxvt.termName:             xterm-256color
+
+urxvt.font:                 xft:SauceCodePro Nerd Font:style=regular:size=9
+urxvt.imFont:               xft:SauceCodePro Nerd Font:style=regular:size=9
+urxvt.boldFont:             xft:SauceCodePro Nerd Font:style=bold:size=9
+urxvt.italicFont:           xft:SauceCodePro Nerd Font:style=italic:size=9
+urxvt.boldItalicFont:       xft:SauceCodePro Nerd Font:style=bold,italic:size=9
+
+
+urxvt.iso14755:             false
+urxvt.iso14755_52:          false
+urxvt.perl-ext-common:      default,vtwheel,font-size
+urxvt.url-launcher:         /usr/bin/chromium
+urxvt.matcher.button:       1
+
+urxvt.keysym.C-Up:          font-size:increase
+urxvt.keysym.C-Down:        font-size:decrease
+urxvt.keysym.C-equal:       font-size:reset
+urxvt.keysym.C-slash:       font-size:show
+
+! special
+*.foreground:               #ECEFF1
+*.background:               #002B36
+*.cursorColor:              #5294E2
+*.highlightColor:           #5294E2
+urxvt.background:           [95]#383C4A
+urxvt.scrollColor:          #767B87
+urxvt.dynamicColors:        on
+urxvt.highlightSelection:   true
+urxvt.colorMode:            on

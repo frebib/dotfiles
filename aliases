@@ -97,8 +97,8 @@ alias -s git="git clone --recursive"
 # Git Aliases
 alias g=git
 alias gignore='$EDITOR .gitignore'
-alias gitc='$EDITOR ~/.config/git/config'
-alias ggignore='$EDITOR ~/.config/git/gitignore'
+alias gitc='$EDITOR $XDG_CONFIG_HOME/git/config'
+alias ggignore='$EDITOR $XDG_CONFIG_HOME/git/gitignore'
 alias gcl="git clone --recursive"
 alias gco="git checkout"
 alias gcom="git checkout master"
@@ -254,18 +254,18 @@ alias zp=zpool
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
 alias aliases="$EDITOR $DOTFILES/aliases ; exec zsh"
-alias vimrc="$EDITOR $MYVIMRC"
-alias zshrc="$EDITOR ~/.zshrc ; exec zsh"
-alias gitrc="$EDITOR ~/.config/git/config"
-alias xinitrc="$EDITOR ~/.xinitrc"
-alias xresources="$EDITOR ~/.Xresources ; xrdb merge ~/.Xresources"
-alias xsession="$EDITOR ~/.xsession"
+alias vimrc="$EDITOR $VIMRC"
+alias zshrc="$EDITOR ${ZDOTDIR:-$HOME}/.zshrc ; exec zsh"
+alias gitrc="$EDITOR $XDG_CONFIG_HOME/git/config"
+alias xinitrc="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
+alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONFIG_HOME/X11/Xresources"
+alias xsession="$EDITOR $XDG_CONFIG_HOME/X11/xsession"
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
-alias i3c="$EDITOR ~/.config/i3/config ; i3-msg restart"
-alias i3bc="$EDITOR ~/.config/i3/blocks/config ; i3-msg restart"
+alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
+alias i3bc="$EDITOR $XDG_CONFIG_HOME/i3/blocks/config ; i3-msg restart"
 i3b() {
-    $EDITOR ~/.config/i3/blocks/$@
+    $EDITOR $XDG_CONFIG_HOME/i3/blocks/$@
 }
 alias sf=screenfetch
 alias nf=neofetch

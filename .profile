@@ -2,34 +2,41 @@ export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 export LC_NUMERIC=en_GB
 
-export CONFIG_DIR="$HOME/.config"
-export XDG_CONFIG_HOME="$CONFIG_DIR"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_LOCAL_HOME="$HOME/.local"
+export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
 case "$(basename "$(readlink -f /proc/$$/exe)")" in
     zsh)  thisfile="$(readlink -f "${(%):-%N}")";;
     bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
     *)   thisfile="$(find /proc/$$/fd/ | xargs readlink -f | grep .profile | head -n1)";;
 esac
-export DOTFILES="$(dirname "${thisfile:-$CONFIG_DIR/dotfiles}")"
+export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles}")"
 export PATH="${PATH}:$DOTFILES/scripts"
-export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 # Allow Vim to load from ~/.config/vim
-export VIMDIR="$CONFIG_DIR/vim"
+export VIMDIR="$XDG_CONFIG_HOME/vim"
 export MYVIMRC="$VIMDIR/vimrc"
 export VIMINIT=":so $MYVIMRC"
-
 export EDITOR="vim"
 export VISUAL="vim"
 
 # Allow ZSH to load from ~/.config/zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
+# Configure X11 config file paths
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export XSESSION="$XDG_CONFIG_HOME/X11/xsession"
+
 export MANPAGER="less -+N"
 export TERMINAL="termite"
 export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_QPA_PLATFORMTHEME=gtk2
-export GOPATH="$HOME/.cache/go"
+export GOPATH="$XDG_LOCAL_HOME/go"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
@@ -52,9 +59,9 @@ if exists tput; then
 fi
 
 # Source secret keys and values into environment
-if [ -f "$CONFIG_DIR/secrets" ]; then
+if [ -f "$XDG_CONFIG_HOME/secrets" ]; then
     set -o allexport
-    source $CONFIG_DIR/secrets
+    source $XDG_CONFIG_HOME/secrets
     set +o allexport
 fi
 

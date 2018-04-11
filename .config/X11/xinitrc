@@ -12,7 +12,7 @@ if [ -d "$xinitdir" ]; then
 fi
 
 source ~/.profile
-source ~/.xsession
-xrdb -merge ~/.Xresources
+source $XDG_CONFIG_HOME/X11/xsession
+xrdb -merge $XDG_CONFIG_HOME/X11/xresources
 
 exec i3
