@@ -20,6 +20,10 @@ export VIMINIT=":so $MYVIMRC"
 
 export EDITOR="vim"
 export VISUAL="vim"
+
+# Allow ZSH to load from ~/.config/zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 export MANPAGER="less -+N"
 export TERMINAL="termite"
 export BROWSER="chromium"
