@@ -41,6 +41,7 @@ let mapleader="\<space>"
 " Autosave settings
 function! SaveIfExist()
     if @% != "" && filereadable(@%) && !&readonly && &modified
+        SyntasticCheck
         write
     endif
 endfunction
@@ -128,6 +129,14 @@ let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " vim-markdown plugin
 let vim_markdown_preview_toggle=0
