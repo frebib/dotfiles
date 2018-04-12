@@ -59,11 +59,11 @@ xterm.metaSendsEscape:      true
 
 urxvt.termName:             xterm-256color
 
-urxvt.font:                 xft:SauceCodePro Nerd Font:style=regular:size=9
-urxvt.imFont:               xft:SauceCodePro Nerd Font:style=regular:size=9
-urxvt.boldFont:             xft:SauceCodePro Nerd Font:style=bold:size=9
-urxvt.italicFont:           xft:SauceCodePro Nerd Font:style=italic:size=9
-urxvt.boldItalicFont:       xft:SauceCodePro Nerd Font:style=bold,italic:size=9
+urxvt.font:                 xft:Source Code Pro:style=regular:size=9
+urxvt.imFont:               xft:Source Code Pro:style=regular:size=9
+urxvt.boldFont:             xft:Source Code Pro:style=bold:size=9
+urxvt.italicFont:           xft:Source Code Pro:style=italic:size=9
+urxvt.boldItalicFont:       xft:Source Code Pro:style=bold,italic:size=9
 
 
 urxvt.iso14755:             false
