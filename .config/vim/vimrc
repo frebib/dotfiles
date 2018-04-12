@@ -1,10 +1,11 @@
 set nocompatible              " be iMproved, required
 
 " Reconfigure Vim to be clean!
-set rtp+=~/.config/vim
-set directory=.,~/.config/vim
-set viminfo+=n~/.config/vim/viminfo
-set directory=$HOME/.config/vim/swapfiles//
+set undodir=$XDG_CACHE_HOME/vim/undo
+set directory=$XDG_CACHE_HOME/vim/swap
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set viminfo+='1000,n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath+=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 syntax enable
 filetype plugin on
@@ -40,6 +41,7 @@ let mapleader="\<space>"
 " Autosave settings
 function! SaveIfExist()
     if @% != "" && filereadable(@%) && !&readonly && &modified
+        SyntasticCheck
         write
     endif
 endfunction
@@ -117,6 +119,7 @@ let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 "let g:vimtex_view_method='zathura'
 let g:tex_flavor='latex'
 let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
+let g:syntastic_tex_checkers = ['chktex']
 autocmd FileType tex silent VimtexCompile
 autocmd FileType tex setlocal spell
 autocmd FileType tex TagbarOpen
@@ -126,6 +129,14 @@ let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " vim-markdown plugin
 let vim_markdown_preview_toggle=0
@@ -149,10 +160,12 @@ let g:tagbar_singleclick = 1
 let g:tagbar_autopreview = 1
 
 " NERDTree configuration
-map  <leader><space> :NERDTreeToggle<CR>
+map  <leader><tab> :NERDTreeToggle<CR>
 
 " FZF configurationn
-map  <leader><tab> :Files<CR>
+map  <leader><space> :Files<CR>
+map  <leader>b     :Buffers<CR>
+map  <leader>l     :Lines<CR>
 
 " Disable mouse
 set mouse=nicr
@@ -250,7 +263,8 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
         \ 'x': ['tsd', 'tsD'],
         \}
 
-    let NERDTreeMapOpenInTab='\t'
+    " NERDTree configuration
+    let NERDTreeMapOpenInTab='\t'   " prevent t opening file
 
 endif
 

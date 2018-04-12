@@ -18,8 +18,8 @@ export PATH="${PATH}:$DOTFILES/scripts:$HOME/.local/share/surface-scripts"
 
 # Allow Vim to load from ~/.config/vim
 export VIMDIR="$XDG_CONFIG_HOME/vim"
-export MYVIMRC="$VIMDIR/vimrc"
-export VIMINIT=":so $MYVIMRC"
+export VIMRC="$VIMDIR/vimrc"
+export VIMINIT=":so $VIMRC"
 export EDITOR="vim"
 export VISUAL="vim"
 
