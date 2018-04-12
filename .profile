@@ -29,7 +29,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Configure X11 config file paths
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-export XSESSION="$XDG_CONFIG_HOME/X11/xsession"
 
 export MANPAGER="less -+N"
 export TERMINAL="termite"
