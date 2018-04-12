@@ -54,6 +54,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Tarrasch/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle mafredri/zsh-async
 
 antigen apply
 
@@ -122,3 +123,4 @@ source "$DOTFILES/aliases"
 # Load some manual plugins
 source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
+[ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
