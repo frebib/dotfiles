@@ -4,7 +4,7 @@
 #   century is about apparently...
 #
 #   Requirements:
-#     rofi, xsel, xdotool, curl, xmllint
+#     rofi, xclip, xdotool, curl, xmllint
 #
 #   Usage:
 #     1. Download all emoji
@@ -21,10 +21,9 @@
 #
 
 # Where to save the emojis file.
-EMOJI_FILE="$HOME/.cache/emojis.txt"
+EMOJI_FILE="${XDG_CACHE_DIR:-$HOME/.cache}/emojis.txt"
 
 # Urls of emoji to download.
-# You can remove what you don't need.
 URLS=(
     'https://emojipedia.org/people/'
     'https://emojipedia.org/nature/'
@@ -39,7 +38,9 @@ URLS=(
 
 
 function download() {
-    echo "" > "$EMOJI_FILE"
+    notify "$(basename "$0")" 'Downloading all emoji for your pleasure'
+
+    echo -n > "$EMOJI_FILE"
 
     for url in "${URLS[@]}"; do
         echo "Downloading: $url"
@@ -58,20 +59,51 @@ function download() {
 
         echo "$emojis" >> "$EMOJI_FILE"
     done
+
+    notify "$(basename "$0")" "We're all set!"
 }
 
+function toclip() {
+    xclip -i -selection primary
+    xclip -o -selection primary | xclip -i -selection clipboard
+}
+
+function repeat() {
+    local rplc str="$1" count="$2"
+    rplc="$(printf "%${count}s")"
+    echo "${rplc// /"$str"}"
+}
+
+function notify() {
+   if which notify-send 1>/dev/null 2>/dev/null; then
+        notify-send "$1" "$2"
+    fi
+}
 
 function display() {
     emoji=$(cat "$EMOJI_FILE" | grep -v '#' | grep -v '^[[:space:]]*$')
-    line=$(echo "$emoji" | rofi -dmenu -i -p emoji -kb-custom-1 Ctrl+c $@)
+    update="⏫ Update emoji cache"
+    emoji=$(printf "$emoji\n$update")
+    line=$(echo "$emoji" | rofi -dmenu -i -p emoji -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
     exit_code=$?
 
+    if [ "${line[@]}" == "$update" ]; then
+        download
+        exit 0
+    fi
+
     line=($line)
+    last=${line[${#line[@]}-1]}
+
+    quantifier="${last:${#last}-1:1}"
+    echo "$quantifier" | egrep -q '^[0-9]+$' || quantifier=1
+    emoijs="$(repeat "${line[0]}" "$quantifier")"
 
     if [ $exit_code == 0 ]; then
-        xdotool type --clearmodifiers "${line[0]}"
+        xdotool type --clearmodifiers "$emoijs"
+        echo -n "$emoijs" | xclip -i
     elif [ $exit_code == 10 ]; then
-        echo -n "${line[0]}" | xsel -i -b
+        echo -n "$emoijs" | xclip -i
     fi
 }
 
