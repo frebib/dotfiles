@@ -160,10 +160,12 @@ let g:tagbar_singleclick = 1
 let g:tagbar_autopreview = 1
 
 " NERDTree configuration
-map  <leader><space> :NERDTreeToggle<CR>
+map  <leader><tab> :NERDTreeToggle<CR>
 
 " FZF configurationn
-map  <leader><tab> :Files<CR>
+map  <leader><space> :Files<CR>
+map  <leader>b     :Buffers<CR>
+map  <leader>l     :Lines<CR>
 
 " Disable mouse
 set mouse=nicr
@@ -261,7 +263,8 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
         \ 'x': ['tsd', 'tsD'],
         \}
 
-    let NERDTreeMapOpenInTab='\t'
+    " NERDTree configuration
+    let NERDTreeMapOpenInTab='\t'   " prevent t opening file
 
 endif
 
