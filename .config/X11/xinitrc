@@ -11,9 +11,16 @@ if [ -d "$xinitdir" ]; then
     done
 fi
 
-source ~/.profile
-source $XDG_CONFIG_HOME/X11/xsession
+source $HOME/.profile
+
 xrdb -merge $XDG_CONFIG_HOME/X11/xresources
-~/.local/share/surfacetools/rotationd --once
+xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
+xrandr --output eDP1 --primary
+
+setxkbmap -option caps:none
+xset r rate 200 18
+
+~/.local/share/surface-scripts/pend &
+~/.local/share/surface-scripts/rotationd &
 
 exec i3
