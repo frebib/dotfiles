@@ -1,10 +1,11 @@
 set nocompatible              " be iMproved, required
 
 " Reconfigure Vim to be clean!
-set rtp+=~/.config/vim
-set directory=.,~/.config/vim
-set viminfo+=n~/.config/vim/viminfo
-set directory=$HOME/.config/vim/swapfiles//
+set undodir=$XDG_CACHE_HOME/vim/undo
+set directory=$XDG_CACHE_HOME/vim/swap
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set viminfo+='1000,n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath+=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 syntax enable
 filetype plugin on
