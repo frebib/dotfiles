@@ -58,7 +58,8 @@ alias make="make -j$(nproc)"
 alias dd='dd status=progress'
 alias env='env | sort'
 alias ssh="ssh -tt"
-alias vim="vim --servername vim -p"
+vim --version 2>/dev/null | command grep -q +clientserver && \
+    alias vim="vim --servername vim -p"
 alias vi=vim
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
