@@ -35,7 +35,10 @@ export TERMINAL="termite"
 export BROWSER="chromium"
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 export QT_QPA_PLATFORMTHEME=gtk2
-export GOPATH="$XDG_LOCAL_HOME/go"
+
+# Go configuration
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 

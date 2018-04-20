@@ -104,6 +104,7 @@ Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'lervag/vimtex'
 Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'junegunn/fzf.vim'
+Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call vundle#end()
 

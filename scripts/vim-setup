@@ -26,4 +26,4 @@ vim +PluginUpdate +qall
 #########################
 cd "$VIMDIR/bundle/YouCompleteMe"
 git submodule update --init --recursive
-./install.py --system-libclang --clang-completer
+./install.py --system-libclang --clang-completer --go-completer --rust-completer --js-completer --java-completer
