@@ -19,4 +19,22 @@ xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
 setxkbmap -option caps:none
 xset r rate 200 18
 
+
+export TERMINAL="termite"
+export BROWSER="chromium"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export QT_QPA_PLATFORMTHEME=gtk2
+export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
+# Merge system clipboards
+if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
+    autocutsel -fork
+    autocutsel -selection PRIMARY -fork
+fi
+
+# Start the gnome-keyring if it's installed
+if exists gnome-keyring-daemon; then
+    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+fi
+
 exec i3
