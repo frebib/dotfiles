@@ -56,7 +56,7 @@ alias pacaur='pacaur --color=always'
 alias tree='tree --dirsfirst -C -F'
 alias make="make -j$(nproc)"
 alias dd='dd status=progress'
-alias env='env | sort'
+alias env='env | sort | sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias ssh="ssh -tt"
 vim --version 2>/dev/null | command grep -q +clientserver && \
     alias vim="vim --servername vim -p"
