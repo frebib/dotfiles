@@ -186,8 +186,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && pkill -RTMIN+12 i3blocks
 exec --no-startup-id "ip monitor | while read; do pkill -RTMIN+15 i3blocks; done"
 
 # app launch shortcuts
-exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
+exec --no-startup-id feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
 exec --no-startup-id xautolock -time 5 -locker ~/.config/i3/lock.sh -nocloseout -nocloseerr
 
 # startup programs
