@@ -24,7 +24,7 @@ fi
 
 # Set some useful ZSH/Bash options
 setopt sharehistory histignorealldups histignorespace histreduceblanks
-setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
+setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend dvorak
 
 # Completion initialisation
 autoload -U compinit ; compinit
