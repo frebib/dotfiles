@@ -9,9 +9,6 @@ set runtimepath+=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 silent !mkdir -p $XDG_CACHE_HOME/vim/swap $XDG_CACHE_HOME/vim/undo $XDG_CACHE_HOME/vim/backup
 
-syntax enable
-filetype plugin on
-
 set tabstop=4
 set shiftwidth=0   " Use tabstop
 set softtabstop=-1 " Use tabstop
@@ -80,35 +77,37 @@ set cul cuc
 highlight CursorLine   cterm=NONE ctermbg=8
 highlight CursorColumn cterm=NONE ctermbg=8
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.config/vim/bundle/Vundle.vim
-call vundle#begin()
-call vundle#rc('~/.config/vim/bundle')
+if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
+  silent !curl -fsSLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $VIMRC
+endif
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-commentary'
-Plugin 'majutsushi/tagbar'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'chr4/nginx.vim'
-Plugin 'PotatoesMaster/i3-vim-syntax'
-Plugin 'lervag/vimtex'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'junegunn/fzf.vim'
-Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+call plug#begin('$XDG_CONFIG_HOME/vim/plug')
 
-call vundle#end()
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree', { 'on':  'NERTreeToggle' }
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chr4/nginx.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'lervag/vimtex'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+call plug#end()
 
 " Change to dvorak-mapped keys
 let g:use_dvorak = 1
