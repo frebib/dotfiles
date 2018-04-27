@@ -1,0 +1,24 @@
+root:
+  askformore: false
+  autoimport: true
+  autosync: true
+  cliptimeout: 45
+  noconfirm: false
+  nopager: false
+  path: /home/frebib/.local/share/pass
+  safecontent: false
+  usesymbols: false
+  nocolor: false
+mounts:
+  spritsail:
+    askformore: false
+    autoimport: true
+    autosync: true
+    cliptimeout: 45
+    noconfirm: false
+    nopager: false
+    path: /home/frebib/.local/share/pass-spritsail
+    safecontent: false
+    usesymbols: false
+    nocolor: false
+version: 1.6.10

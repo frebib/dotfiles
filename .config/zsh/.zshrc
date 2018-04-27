@@ -17,14 +17,14 @@ SAVEHIST=999999
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
 # Only set tty if running interactively
-if exists tty && tty -s; then
+if exists tty && tty -s 1>/dev/null 2>/dev/null; then
     # Resolve at shell runtime
     export GPG_TTY="$(tty)"
 fi
 
 # Set some useful ZSH/Bash options
 setopt sharehistory histignorealldups histignorespace histreduceblanks
-setopt pathdirs autocd autopushd extendedglob alwaystoend dvorak
+setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend dvorak
 
 # Completion initialisation
 autoload -U compinit ; compinit

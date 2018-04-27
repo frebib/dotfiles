@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+#
+#   Use rofi to pick fontawesome because that's what this
+#   century is about apparently...
+#
+#   Requirements:
+#     rofi, xclip, xdotool, curl, xmllint
+#
+#   Usage:
+#     1. Download all fontawesome
+#        $ rofi-fontawesome --download
+#
+#     2. Run it!
+#        $ rofi-fontawesome
+#
+#   Notes:
+#     * You'll need a fontawesome font like "Noto fontawesome" or "fontawesomeOne".
+#     * Confirming an item will automatically paste it WITHOUT
+#       writing it to your clipboard.
+#     * Ctrl+C will copy it to your clipboard WITHOUT pasting it.
+#
+
+# Where to save the fontawesomes file.
+FONTAWESOME_FILE="${XDG_CACHE_DIR:-$HOME/.cache}/fontawesome.txt"
+
+function download() {
+    notify "$(basename "$0")" 'Downloading all Font Awesome for your pleasure'
+
+    echo -n > "$FONTAWESOME_FILE"
+
+    curl https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/advanced-options/metadata/icons.json | \
+        jq '.[] | "\\u" + .unicode + "\t" + .label' -r | \
+        xargs -0 printf \
+        > "$FONTAWESOME_FILE"
+
+    notify "$(basename "$0")" "We're all set!"
+}
+
+function toclip() {
+    xclip -i -selection primary
+    xclip -o -selection primary | xclip -i -selection clipboard
+}
+
+function repeat() {
+    local rplc str="$1" count="$2"
+    rplc="$(printf "%${count}s")"
+    echo "${rplc// /"$str"}"
+}
+
+function notify() {
+   if which notify-send 1>/dev/null 2>/dev/null; then
+        notify-send "$1" "$2"
+    fi
+}
+
+function display() {
+    fontawesome=$(cat "$FONTAWESOME_FILE" | grep -v '#' | grep -v '^[[:space:]]*$')
+    update=""$'\t'"Update Font Awesome cache"
+    fontawesome=$(printf "$fontawesome\n$update")
+    line=$(echo "$fontawesome" | rofi -dmenu -i -p fontawesome -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
+    exit_code=$?
+
+    if [ "${line[@]}" == "$update" ]; then
+        download
+        exit 0
+    fi
+
+    #IFS=$'\t'
+    line=($line)
+    last=${line[${#line[@]}-1]}
+
+    quantifier="${last:${#last}-1:1}"
+    echo "$quantifier" | egrep -q '^[0-9]+$' || quantifier=1
+    icons="$(repeat "${line[0]}" "$quantifier")"
+
+    if [ $exit_code == 0 ]; then
+        xdotool type --clearmodifiers "$icons"
+        echo -n "$icons" | xclip -i
+    elif [ $exit_code == 10 ]; then
+        echo -n "$icons" | xclip -i
+    fi
+}
+
+
+if [[ "$1" =~ -D|--download ]]; then
+    download
+    exit 0
+elif [[ "$1" =~ -h|--help ]]; then
+    echo "usage: $0 [-D|--download]"
+    exit 0
+fi
+
+[ ! -f "$FONTAWESOME_FILE" ] && download
+display

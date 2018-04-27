@@ -97,13 +97,13 @@ function display() {
 
     quantifier="${last:${#last}-1:1}"
     echo "$quantifier" | egrep -q '^[0-9]+$' || quantifier=1
-    emoijs="$(repeat "${line[0]}" "$quantifier")"
+    emojis="$(repeat "${line[0]}" "$quantifier")"
 
     if [ $exit_code == 0 ]; then
-        xdotool type --clearmodifiers "$emoijs"
-        echo -n "$emoijs" | xclip -i
+        xdotool type --clearmodifiers "$emojis"
+        echo -n "$emojis" | xclip -i
     elif [ $exit_code == 10 ]; then
-        echo -n "$emoijs" | xclip -i
+        echo -n "$emojis" | xclip -i
     fi
 }
 

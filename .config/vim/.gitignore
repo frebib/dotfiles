@@ -1,7 +1,8 @@
-/bundle/
+/.netrwhist
+/autoload/plug.vim
+/plug/
 /spell/
 /swapfiles/
-/viminfo
-/viminf*.tmp
 /vim-latex
-/.netrwhist
+/viminf*.tmp
+/viminfo

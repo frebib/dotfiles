@@ -6,7 +6,8 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_LOCAL_HOME="$HOME/.local"
-export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
+mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_LOCAL_HOME"
 
 case "$(basename "$(readlink -f /proc/$$/exe)")" in
     zsh)  thisfile="$(readlink -f "${(%):-%N}")";;
@@ -16,31 +17,41 @@ esac
 export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles}")"
 export PATH="${PATH}:$DOTFILES/scripts:$HOME/.local/share/surface-scripts"
 
-# Allow Vim to load from ~/.config/vim
+# Override paths for non-compliant programs
+# https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
+# Vim
 export VIMDIR="$XDG_CONFIG_HOME/vim"
 export VIMRC="$VIMDIR/vimrc"
 export VIMINIT=":so $VIMRC"
 export EDITOR="vim"
 export VISUAL="vim"
-
-# Allow ZSH to load from ~/.config/zsh
+# ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
-# Configure X11 config file paths
+# Gnupg
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+# X11
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+# GTK2
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
+# Cargo/Rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+# Pass
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
-export MANPAGER="less -+N"
-export TERMINAL="termite"
-export BROWSER="chromium"
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-export QT_QPA_PLATFORMTHEME=gtk2
-export GOPATH="$XDG_LOCAL_HOME/go"
+# Go configuration
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
+# Configure less and add colours
 export LESS="-RI"
 export PAGER="less $LESS"
+export MANPAGER="less -+N"
+# Disable histfile
+export LESSHISTFILE=-
+
 if exists tput; then
     export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
     export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
@@ -64,21 +75,9 @@ if [ -f "$XDG_CONFIG_HOME/secrets" ]; then
     set +o allexport
 fi
 
-# Merge system clipboards
-if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
-    autocutsel -fork
-    autocutsel -selection PRIMARY -fork
-fi
-
+# Start a dbus session daemon for programs that require it
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
     dbus-update-activation-environment --systemd DISPLAY
 fi
 
-# Start the gnome-keyring if it's installed
-if exists gnome-keyring-daemon; then
-    export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
-fi
-
-# Always add SSH key to the running agent; local or remote
-#ssh-add

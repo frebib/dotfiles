@@ -27,24 +27,4 @@ done
 cd $HOME
 mkdir -p .local/share/ && cd .local/share
 echo cd `pwd`
-ln -sfv $DOTFILES/fonts .
 ln -sfv $DOTFILES/surfacetools .
-
-sudo -s << EOF
-cd ~
-echo -n "cd "
-pwd
-
-ln -sfv $DOTFILES .config/
-ln -sfv $userhome/.zshrc .
-ln -sfv $userhome/.profile .
-ln -sfv $userhome/.zprofile .
-ln -sfv $userhome/.vimrc .
-ln -sfv $userhome/.vim/ .
-ln -sfv $userhome/.gtkrc-2.0 .
-
-mkdir -p .config && cd .config/
-echo -n "cd "
-pwd
-ln -sfv $userhome/.config/gtk-3.0 .
-EOF
