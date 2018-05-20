@@ -53,7 +53,6 @@ source "$antigen_src"
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle Tarrasch/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle mafredri/zsh-async
 
 antigen apply
@@ -78,16 +77,9 @@ zle -N x-bash-backward-kill-word
 bindkey '^[^[[3~' x-bash-backward-kill-word
 bindkey '^[^[[3^' x-bash-backward-kill-word
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^[[A' fzf-history-widget
+bindkey '^[[B' fzf-history-widget
 
-
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-
-HISTORY_SUBSTRING_SEARCH_FUZZY=true
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[default]='fg=12'
