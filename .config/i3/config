@@ -3,13 +3,14 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 floating_modifier $mod
 
 font pango:Noto Sans 9
 
 # kill focused window
 bindsym $mod+apostrophe kill
-bindsym Mod1+F4 kill
+bindsym $alt+F4 kill
 
 # change window focus
 bindsym $mod+d focus left
@@ -73,10 +74,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move workspaces across screens
-bindsym $mod+Mod1+d move workspace to output left
-bindsym $mod+Mod1+n move workspace to output right
-bindsym $mod+Mod1+t move workspace to output up
-bindsym $mod+Mod1+h move workspace to output down
+bindsym $mod+$alt+d move workspace to output left
+bindsym $mod+$alt+n move workspace to output right
+bindsym $mod+$alt+t move workspace to output up
+bindsym $mod+$alt+h move workspace to output down
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -167,7 +168,7 @@ bindsym $mod+Shift+p exec rofi-pass
 bindsym $mod+Shift+e exec rofi-emoji
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
-bindsym $mod+Mod1+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
+bindsym $mod+$alt+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
 bindsym $mod+numbersign exec "termite -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
 bindsym $mod+r       exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
 bindsym $mod+g       exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
