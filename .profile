@@ -12,9 +12,9 @@ mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME" "$XDG_DATA_HOME" "$XDG_LOCAL_HOME"
 case "$(basename "$(readlink -f /proc/$$/exe)")" in
     zsh)  thisfile="$(readlink -f "${(%):-%N}")";;
     bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
-    *)   thisfile="$(find /proc/$$/fd/ | xargs readlink -f | grep .profile | head -n1)";;
+    *)   thisfile="$(find /proc/$$/fd/ | xargs -n1 -r readlink -f | grep profile | head -n1)";;
 esac
-export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles}")"
+export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles/.profile}")"
 export PATH="${PATH}:$DOTFILES/scripts"
 
 # Override paths for non-compliant programs
