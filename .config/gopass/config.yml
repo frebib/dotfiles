@@ -1,24 +1,36 @@
 root:
   askformore: false
+  autoclip: false
   autoimport: true
   autosync: true
+  check_recipient_hash: false
   cliptimeout: 45
+  concurrency: 1
+  editrecipients: false
+  nocolor: false
   noconfirm: false
   nopager: false
-  path: /home/frebib/.local/share/pass
+  notifications: false
+  path: gpgcli-gitcli-fs+file:///home/frebib/.local/share/pass
+  recipient_hash: {}
   safecontent: false
   usesymbols: false
-  nocolor: false
 mounts:
   spritsail:
     askformore: false
+    autoclip: false
     autoimport: true
     autosync: true
+    check_recipient_hash: false
     cliptimeout: 45
+    concurrency: 1
+    editrecipients: false
+    nocolor: false
     noconfirm: false
     nopager: false
-    path: /home/frebib/.local/share/pass-spritsail
+    notifications: false
+    path: gpgcli-gitcli-fs+file:///home/frebib/.local/share/pass-spritsail
+    recipient_hash: {}
     safecontent: false
     usesymbols: false
-    nocolor: false
-version: 1.6.10
+version: 1.8.0
