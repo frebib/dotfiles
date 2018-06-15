@@ -1,0 +1,42 @@
+* {
+  background-color: transparent;
+  text-color:       #D3DAE3;
+  border-color:     @text-color;
+}
+
+window {
+  border:           0.3em;
+  border-color:     #2f343f;
+  padding:          0.8em;
+  background-color: rgba(56, 60, 74, 0.9);
+  transparency:     "real";
+}
+
+inputbar {
+  padding:          0 0 0.3em;
+  border:           0 0 0.1em;
+}
+prompt {
+  padding:          0 0.4em 0 0.2em;
+}
+
+listview {
+  padding:          0.3em 0;
+}
+element {
+  padding:          0.1em 0.2em;
+}
+
+button {
+  border:           0 0 0.1em;
+  border-color:     transparent;
+}
+button.selected.normal {
+  border-color:     @text-color;
+}
+
+element.selected.normal {
+  background-color: rgb(64, 132, 214);
+}
+
+/* vim: ft=css sw=2 */
