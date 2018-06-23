@@ -67,6 +67,7 @@ alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh -
 exists gopass && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
+    -e UID="$(id -u)" \
     -e PWD \
     -e HOME \
     -w $PWD \
