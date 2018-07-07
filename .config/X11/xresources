@@ -36,7 +36,7 @@ Xft.hinting:    true
 Xft.hintstyle:  hintfull
 Xft.lcdfilter:  lcddefault
 
-
+Xcursor.theme: Breeze_Obsidian
 
 !!======================!!
 !! RXVT-unicode setting !!

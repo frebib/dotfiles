@@ -67,6 +67,7 @@ alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh -
 exists gopass && alias pass='gopass'
 alias abuild='docker run -ti --rm \
     -e USER \
+    -e UID="$(id -u)" \
     -e PWD \
     -e HOME \
     -w $PWD \
@@ -176,7 +177,7 @@ alias drst='docker restart'
 alias dnet='docker network'
 alias dvol='docker volume'
 alias dlg='docker logs -f'
-alias dalpine='docker run -ti --rm alpine /bin/sh'
+alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
