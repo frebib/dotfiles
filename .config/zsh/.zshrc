@@ -49,16 +49,18 @@ fi
 source "$antigen_src"
 
 antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle toadjaune/zsh-autosuggestions@compatibility-syntax-hl
 antigen bundle Tarrasch/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle mafredri/zsh-async
 
 antigen apply
 
+# Vim mode!
+bindkey -v
+export KEYTIMEOUT=25
 
 # Set some key-binds
-bindkey -e
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;3D" backward-word
@@ -80,6 +82,9 @@ bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
