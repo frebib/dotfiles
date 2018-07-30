@@ -149,8 +149,7 @@
     max_icon_size = 44
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
-
+    icon_path = /usr/share/icons/Xenlism-Wildfire/Status/:/usr/share/icons/Xenlism-Wildfire/Devices/:/usr/share/icons/Adwaita/scalable/status:/usr/share/icons/Adwaita/scalable/devices
     frame_width = 3
     frame_color = "#404552"
 
