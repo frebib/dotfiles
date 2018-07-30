@@ -3,12 +3,8 @@ unsetopt MULTIBYTE
 # Config and cache directory paths
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZSH_DIR="$CONFIG_DIR/zsh"
-ZSH_CACHE_DIR="$CONFIG_DIR/oh-my-zsh/cache"
-ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
 LOG_DIR="$ZSH_DIR/log"
-ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
-
-mkdir -p "$ZSH_CACHE_DIR" "$ZSH_DIR" "$LOG_DIR"
+mkdir -p "$LOG_DIR"
 
 HISTFILE="$ZSH_DIR/histfile"
 HISTSIZE=999999
@@ -40,10 +36,12 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-zstyle ':compinstall'  filename "$HOME/.zshrc"
+zstyle ':compinstall'  filename "${ZDOTDIR:-~}/.zshrc"
 
 
 # Load antigen & plugins
+ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
+ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
 antigen_src="$ADOTDIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
     git clone https://github.com/zsh-users/antigen.git "$ADOTDIR"
