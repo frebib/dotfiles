@@ -202,6 +202,7 @@ exec --no-startup-id solaar
 exec --no-startup-id pullover
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
+exec --no-startup-id thunderbird
 
 exec i3-msg 'workspace 1; exec sleep 2 && chromium'
 exec i3-msg 'workspace 2; exec i3-sensible-terminal'
