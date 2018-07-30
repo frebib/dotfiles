@@ -31,62 +31,37 @@ markup=none
 align=center
 color=#F3F4F5
 separator=false
-separator_block_width=12
-
-#[window title]
-#command=xtitle -s #| sed 's/^$/ /g'"
-#color=#A6D1FA
-#align=center
-#min_width=700
-#interval=persist
+separator_block_width=14
 
 [volume]
 interval=persist
 signal=10
 
-[separator]
-
 [iface]
-label=
+label=
 interval=60
 signal=15
 
-[separator]
-
 [updates]
-label=
+label=
 interval=600
 signal=5
 
-[separator]
-
 [cpu_usage]
-label=
+label=
 interval=persist
 
-[separator]
-
 [memory]
-label=
+label=
 interval=10
-
-[separator]
 
 [temperature]
 label=
 interval=5
 
-[separator]
-
-#[battery]
-#label=
-#interval=5
-
 [keyboard]
 label=
 interval=30
-
-[separator]
 
 [clock]
 interval=5
