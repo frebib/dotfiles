@@ -6,7 +6,7 @@ set $mod Mod4
 set $alt Mod1
 floating_modifier $mod
 
-font pango:Noto Sans 9
+font pango:sans 9
 
 # kill focused window
 bindsym $mod+apostrophe kill
