@@ -8,7 +8,7 @@ root:
   concurrency: 1
   editrecipients: false
   nocolor: false
-  noconfirm: false
+  noconfirm: true
   nopager: false
   notifications: false
   path: gpgcli-gitcli-fs+file:///home/frebib/.local/share/pass
@@ -26,11 +26,10 @@ mounts:
     concurrency: 1
     editrecipients: false
     nocolor: false
-    noconfirm: false
+    noconfirm: true
     nopager: false
     notifications: false
     path: gpgcli-gitcli-fs+file:///home/frebib/.local/share/pass-spritsail
     recipient_hash: {}
     safecontent: false
     usesymbols: false
-version: 1.8.0
