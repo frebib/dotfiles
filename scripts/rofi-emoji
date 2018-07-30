@@ -84,7 +84,7 @@ function display() {
     emoji=$(cat "$EMOJI_FILE" | grep -v '#' | grep -v '^[[:space:]]*$')
     update="⏫ Update emoji cache"
     emoji=$(printf "$emoji\n$update")
-    line=$(echo "$emoji" | rofi -dmenu -i -p emoji -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
+    line=$(echo "$emoji" | rofi -dmenu -i -p emoji -normal-window -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
     exit_code=$?
 
     if [ "${line[@]}" == "$update" ]; then
