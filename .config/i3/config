@@ -166,6 +166,7 @@ bindsym $mod+l       exec ~/.config/i3/lock.sh
 bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p exec rofi-pass
 bindsym $mod+Shift+e exec rofi-emoji
+bindsym $mod+Shift+i exec rofi-fontawesome
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
 bindsym $mod+$alt+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
