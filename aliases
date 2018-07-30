@@ -40,6 +40,7 @@ alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
 calc() { bc -l <<< "$@"; }
 
 alias svi=sudoedit
+alias svim=sudoedit
 # This will enable us to use aliases in sudo.
 # (If alias finishes with a space or tab, the shell will check if the next command is also aliased.)
 # Source: https://github.com/mayah/home/blob/master/.zsh/zshrc.d/alias.zsh

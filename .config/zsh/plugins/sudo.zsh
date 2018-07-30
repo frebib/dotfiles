@@ -4,14 +4,11 @@ sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
         LBUFFER="${LBUFFER#sudo }"
-    elif [[ $BUFFER == $EDITOR\ * ]] || [[ $BUFFER == vi\ * ]]; then
-        LBUFFER="${LBUFFER#$EDITOR }"
-        LBUFFER="${LBUFFER#vi }"
-        LBUFFER="svi $LBUFFER"
-    elif [[ $BUFFER == sudoedit\ * ]] || [[ $BUFFER == svi\ * ]]; then
+    elif [[ $BUFFER == $EDITOR\ * ]] || [[ $BUFFER == vi\ * ]] || [[ $BUFFER == vim\ * ]]; then
+        LBUFFER="s$LBUFFER"
+    elif [[ $BUFFER == sudoedit\ * ]] || [[ $BUFFER == svi\ * ]]|| [[ $BUFFER == svim\ * ]]; then
         LBUFFER="${LBUFFER#sudoedit }"
-        LBUFFER="${LBUFFER#svi }"
-        LBUFFER="$EDITOR $LBUFFER"
+        LBUFFER="${LBUFFER#s}"
     else
         LBUFFER="sudo $LBUFFER"
     fi
