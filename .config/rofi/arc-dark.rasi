@@ -8,7 +8,7 @@ window {
   border:           0.3em;
   border-color:     #2f343f;
   padding:          0.8em;
-  background-color: rgba(56, 60, 74, 0.9);
+  background-color: rgba(56, 60, 74, 0.95);
   transparency:     "real";
 }
 

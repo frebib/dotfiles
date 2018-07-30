@@ -2,8 +2,8 @@ configuration {
   theme: "arc-dark";
   font: "sans 14";
   dpi: 0;
-  width: 40;
-  lines: 12;
+  width: 35;
+  lines: 10;
 
   /* show-icons: true; */
   separator-style: "solid";
