@@ -78,6 +78,7 @@ fi
 # Start a dbus session daemon for programs that require it
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
-    dbus-update-activation-environment --systemd DISPLAY
+    dbus-update-activation-environment --systemd \
+        DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 fi
 
