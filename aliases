@@ -225,6 +225,7 @@ _dsh() {
     fi
 
     if [ -z "$prog" ]; then
+        shell_args=()
         if [ "$dowhat" = 'run' ]; then
             shell_args=(--rm --entrypoint=)
         fi
