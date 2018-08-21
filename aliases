@@ -186,10 +186,12 @@ alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
-alias dsh='_CMD=dsh _dsh exec'
-alias drsh='_CMD=drsh _dsh run --rm --entrypoint='
+alias dsh='_CMD=dsh _dsh 2 exec'
+alias drsh='_CMD=drsh _dsh 4 run --rm --entrypoint='
 _dsh() {
-    if [ $# -lt 2 ]; then
+    minargs=$1
+    shift
+    if [ $# -lt $minargs ]; then
         echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
         return 64
     fi
@@ -223,18 +225,19 @@ _dsh() {
     fi
 
     if [ -z "$prog" ]; then
-        set -o pipefail
-        local rm=
         if [ "$dowhat" = 'run' ]; then
-            rm='--rm --entrypoint='
+            shell_args=(--rm --entrypoint=)
         fi
         for shell in bash sh; do
-            if shell_path="$(eval "docker $dowhat $rm $host which $shell" <&- | sed 's|[\r\n]||g')"; then
+            shell_path="$(set -o pipefail; docker $dowhat ${shell_args[@]} "$host" which "$shell" <&- | sed 's|[\r\n]||g')"
+            retval=$?
+            if [ $retval -eq 0 ]; then
                 prog="$shell_path"
                 break
+            elif [ $retval -ge 125 ]; then
+                return
             fi
         done
-        set +o pipefail
         if [ -z "$prog" ]; then
             echo "Warning: No shell found in path.. trying /bin/sh" >&2
             prog=/bin/sh
