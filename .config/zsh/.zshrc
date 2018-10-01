@@ -20,7 +20,7 @@ fi
 
 # Set some useful ZSH/Bash options
 setopt sharehistory histignorealldups histignorespace histreduceblanks
-setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend dvorak
+setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend interactivecomments dvorak
 
 # Completion initialisation
 autoload -U compinit ; compinit
@@ -38,6 +38,13 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':compinstall'  filename "${ZDOTDIR:-~}/.zshrc"
 
+# Pre-load vi-mode edit-command-line before antigen plugins are loaded
+autoload -z edit-command-line
+zle -N edit-command-line
+
+export WORDCHARS='*?_[]~=&;!#$%^(){}'
+x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
+zle -N x-bash-backward-kill-word
 
 # Load antigen & plugins
 ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
@@ -49,9 +56,9 @@ fi
 source "$antigen_src"
 
 antigen bundle zsh-users/zsh-completions
-antigen bundle toadjaune/zsh-autosuggestions@compatibility-syntax-hl
-antigen bundle Tarrasch/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle mafredri/zsh-async
 
 antigen apply
@@ -69,21 +76,12 @@ bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[3;3~" delete-word
-
-export WORDCHARS='*?_[]~=&;!#$%^(){}'
-x-bash-backward-kill-word(){
-    WORDCHARS='' zle kill-word
-}
-zle -N x-bash-backward-kill-word
 bindkey '^[^[[3~' x-bash-backward-kill-word
 bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
-
-autoload -z edit-command-line
-zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
@@ -94,6 +92,7 @@ HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 
 typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root line)
 ZSH_HIGHLIGHT_STYLES[default]='fg=12'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
