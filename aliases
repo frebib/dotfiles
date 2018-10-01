@@ -9,6 +9,7 @@ alias ..ll="cd..;ll"
 alias ..l="..ll"
 
 alias l=ll
+alias ls='ls --color=auto'
 alias ll="ls -lFh  --group-directories-first"
 alias la="ls -lAFh --group-directories-first"
 alias lt='ls -lAFh --sort=time'
@@ -46,7 +47,6 @@ alias sudo='sudo -E '
 alias open=xdg-open
 
 # Command rewrites
-alias ls='ls --color=always'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -ir'
