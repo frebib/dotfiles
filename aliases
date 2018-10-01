@@ -57,6 +57,7 @@ alias make="make -j$(nproc)"
 alias dd='dd status=progress'
 alias env='env | sort | sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias ssh="ssh -tt"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
 vim --version 2>/dev/null | command grep -q +clientserver && \
     alias vim="vim --servername vim -p"
 alias vi=vim
