@@ -1,5 +1,3 @@
-#!/usr/bin/zsh
-
 # Common Aliases
 alias -g ...=../..
 alias -g ....=../../..
@@ -11,6 +9,7 @@ alias ..ll="cd..;ll"
 alias ..l="..ll"
 
 alias l=ll
+alias ls='ls --color=auto'
 alias ll="ls -lFh  --group-directories-first"
 alias la="ls -lAFh --group-directories-first"
 alias lt='ls -lAFh --sort=time'
@@ -40,6 +39,7 @@ alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
 calc() { bc -l <<< "$@"; }
 
 alias svi=sudoedit
+alias svim=sudoedit
 # This will enable us to use aliases in sudo.
 # (If alias finishes with a space or tab, the shell will check if the next command is also aliased.)
 # Source: https://github.com/mayah/home/blob/master/.zsh/zshrc.d/alias.zsh
@@ -47,7 +47,6 @@ alias sudo='sudo -E '
 alias open=xdg-open
 
 # Command rewrites
-alias ls='ls --color=always'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -ir'
@@ -58,6 +57,7 @@ alias make="make -j$(nproc)"
 alias dd='dd status=progress'
 alias env='env | sort | sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias ssh="ssh -tt"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
 vim --version 2>/dev/null | command grep -q +clientserver && \
     alias vim="vim --servername vim -p"
 alias vi=vim
@@ -65,7 +65,7 @@ alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 exists gopass && alias pass='gopass'
-alias abuild='docker run -ti --rm \
+alias alpine-sdk='docker run -ti --rm \
     -e USER \
     -e UID="$(id -u)" \
     -e PWD \
@@ -73,7 +73,13 @@ alias abuild='docker run -ti --rm \
     -w $PWD \
     -v $PWD:$PWD \
     -v ~/.abuild:$HOME/.abuild \
-    frebib/alpine-sdk:edge abuild'
+    -v ~/.abuild/distfiles:/var/cache/distfiles \
+    frebib/alpine-sdk:edge'
+alias abuild='alpine-sdk abuild'
+alias abuild-sign='alpine-sdk abuild-sign'
+alias apk='alpine-sdk apk'
+alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xargs hddtemp | sort -t: -k3'
+alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 
 # System aliases
 alias s="sudo systemctl"
@@ -181,10 +187,12 @@ alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
-alias dsh='_CMD=dsh _dsh exec'
-alias drsh='_CMD=drsh _dsh run --rm --entrypoint='
+alias dsh='_CMD=dsh _dsh 2 exec'
+alias drsh='_CMD=drsh _dsh 4 run --rm --entrypoint='
 _dsh() {
-    if [ $# -lt 2 ]; then
+    minargs=$1
+    shift
+    if [ $# -lt $minargs ]; then
         echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
         return 64
     fi
@@ -218,18 +226,20 @@ _dsh() {
     fi
 
     if [ -z "$prog" ]; then
-        set -o pipefail
-        local rm=
+        shell_args=()
         if [ "$dowhat" = 'run' ]; then
-            rm='--rm --entrypoint='
+            shell_args=(--rm --entrypoint=)
         fi
         for shell in bash sh; do
-            if shell_path="$(eval "docker $dowhat $rm $host which $shell" <&- | sed 's|[\r\n]||g')"; then
+            shell_path="$(set -o pipefail; docker $dowhat ${shell_args[@]} "$host" which "$shell" <&- | sed 's|[\r\n]||g')"
+            retval=$?
+            if [ $retval -eq 0 ]; then
                 prog="$shell_path"
                 break
+            elif [ $retval -ge 125 ]; then
+                return
             fi
         done
-        set +o pipefail
         if [ -z "$prog" ]; then
             echo "Warning: No shell found in path.. trying /bin/sh" >&2
             prog=/bin/sh
@@ -272,7 +282,5 @@ alias sf=screenfetch
 alias nf=neofetch
 randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
-
-alias lab="ssh -tt tw '~/ctl' 2>/dev/null"
 
 # vim: ft=sh

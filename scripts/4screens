@@ -11,4 +11,4 @@ xrandr --output $BOTTOM_LEFT --primary --mode 1920x1080 --pos 0x1080 --rotate no
        --output $TOP_RIGHT --mode 1920x1080 --pos 1920x0 --rotate inverted \
        --output $BOTTOM_RIGHT --mode 1920x1080 --pos 1920x1080 --rotate normal
 
-[ -e ~/.fehbg ] && ~/.fehbg
+feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg

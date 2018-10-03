@@ -38,6 +38,8 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 # Pass
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+# Python
+export PYTHONHISTFILE="$XDG_DATA_HOME/python/histfile"
 
 # Go configuration
 export GOPATH="$XDG_DATA_HOME/go"
@@ -78,6 +80,7 @@ fi
 # Start a dbus session daemon for programs that require it
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
-    dbus-update-activation-environment --systemd DISPLAY
+    dbus-update-activation-environment --systemd \
+        DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 fi
 

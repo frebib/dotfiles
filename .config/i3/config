@@ -6,7 +6,7 @@ set $mod Mod4
 set $alt Mod1
 floating_modifier $mod
 
-font pango:Noto Sans 9
+font pango:sans 9
 
 # kill focused window
 bindsym $mod+apostrophe kill
@@ -151,6 +151,7 @@ bindsym $mod+l       exec ~/.config/i3/lock.sh
 bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p exec rofi-pass
 bindsym $mod+Shift+e exec rofi-emoji
+bindsym $mod+Shift+i exec rofi-fontawesome
 bindsym --release Print        exec imgur-screenshot
 bindsym --release $mod+Print   exec imgur-screenshot -f
 bindsym $mod+$alt+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
@@ -189,6 +190,7 @@ exec --no-startup-id onboard
 exec --no-startup-id touchegg
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
+exec --no-startup-id thunderbird
 
 exec i3-msg 'workspace 1; exec chromium'
 

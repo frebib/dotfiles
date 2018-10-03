@@ -5,7 +5,9 @@
 [core]
 	autocrlf = input
 	excludesfile = $HOME/.config/git/gitignore
-	pager = diff-so-fancy | less
+	pager = /usr/share/git/diff-highlight/diff-highlight | $PAGER
+[interactive]
+	diffFilter = /usr/share/git/diff-highlight/diff-highlight
 [commit]
 	gpgsign = true
 [push]
@@ -35,8 +37,6 @@
 	suppresscc = self
 [diff]
 	algorithm = patience
-[interactive]
-	diffFilter = diff-so-fancy --patch-mode
 [color]
 	ui = true
 [color "diff"]
@@ -51,7 +51,5 @@
 	oldHighlight = red 88
 	newNormal = green
 	newHighlight = green 22
-[diff-so-fancy]
-	changeHunkIndicators = false
 
 # vim: noet

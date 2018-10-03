@@ -3,12 +3,8 @@ unsetopt MULTIBYTE
 # Config and cache directory paths
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZSH_DIR="$CONFIG_DIR/zsh"
-ZSH_CACHE_DIR="$CONFIG_DIR/oh-my-zsh/cache"
-ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
 LOG_DIR="$ZSH_DIR/log"
-ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
-
-mkdir -p "$ZSH_CACHE_DIR" "$ZSH_DIR" "$LOG_DIR"
+mkdir -p "$LOG_DIR"
 
 HISTFILE="$ZSH_DIR/histfile"
 HISTSIZE=999999
@@ -24,7 +20,7 @@ fi
 
 # Set some useful ZSH/Bash options
 setopt sharehistory histignorealldups histignorespace histreduceblanks
-setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend dvorak
+setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend interactivecomments dvorak
 
 # Completion initialisation
 autoload -U compinit ; compinit
@@ -40,10 +36,19 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-zstyle ':compinstall'  filename "$HOME/.zshrc"
+zstyle ':compinstall'  filename "${ZDOTDIR:-~}/.zshrc"
 
+# Pre-load vi-mode edit-command-line before antigen plugins are loaded
+autoload -z edit-command-line
+zle -N edit-command-line
+
+export WORDCHARS='*?_[]~=&;!#$%^(){}'
+x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
+zle -N x-bash-backward-kill-word
 
 # Load antigen & plugins
+ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
+ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
 antigen_src="$ADOTDIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
     git clone https://github.com/zsh-users/antigen.git "$ADOTDIR"
@@ -52,15 +57,17 @@ source "$antigen_src"
 
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle Tarrasch/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle mafredri/zsh-async
 
 antigen apply
 
+# Vim mode!
+bindkey -v
+export KEYTIMEOUT=25
 
 # Set some key-binds
-bindkey -e
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;3D" backward-word
@@ -69,19 +76,13 @@ bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[3;3~" delete-word
-
-export WORDCHARS='*?_[]~=&;!#$%^(){}'
-x-bash-backward-kill-word(){
-    WORDCHARS='' zle kill-word
-}
-zle -N x-bash-backward-kill-word
 bindkey '^[^[[3~' x-bash-backward-kill-word
 bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
-
+bindkey -M vicmd v edit-command-line
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
@@ -91,6 +92,7 @@ HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 
 typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root line)
 ZSH_HIGHLIGHT_STYLES[default]='fg=12'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'

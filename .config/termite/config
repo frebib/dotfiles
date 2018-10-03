@@ -1,5 +1,5 @@
 [options]
-font = Source Code Pro 9.8
+font = monospace 9.8
 scrollback_lines = 1000000
 cursor_blink = off
 size_hints = true
