@@ -96,6 +96,7 @@ bindkey -M vicmd j vi-find-next-char-skip
 bindkey -M vicmd l vi-repeat-search
 
 
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
