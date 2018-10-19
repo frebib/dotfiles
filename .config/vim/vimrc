@@ -215,10 +215,6 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 	noremap h j
 	noremap t k
 	noremap n l
-	noremap D H
-	noremap H J
-	noremap T K
-	noremap N L
 
 	noremap gh gj
 	noremap gt gk
@@ -275,6 +271,18 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 
     " NERDTree configuration
     let NERDTreeMapOpenInTab='\t'   " prevent t opening file
+
+    " Also remap keys in :Explore
+    augroup netrw_dvorak_fix
+        autocmd!
+        autocmd filetype netrw call Fix_netrw_maps_for_dvorak()
+    augroup END
+    function! Fix_netrw_maps_for_dvorak()
+        noremap <buffer> d h
+        noremap <buffer> h j
+        noremap <buffer> t k
+        noremap <buffer> n l
+    endfunction
 
 endif
 
