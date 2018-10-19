@@ -15,7 +15,7 @@ case "$(basename "$(readlink -f /proc/$$/exe)")" in
     *)   thisfile="$(find /proc/$$/fd/ | xargs -n1 -r readlink -f | grep profile | head -n1)";;
 esac
 export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles/.profile}")"
-export PATH="${PATH}:$DOTFILES/scripts"
+export PATH="${PATH}:/sbin:/usr/sbin:$DOTFILES/scripts"
 
 # Override paths for non-compliant programs
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
