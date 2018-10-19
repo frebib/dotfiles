@@ -82,7 +82,19 @@ bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
-bindkey -M vicmd v edit-command-line
+
+bindkey "^V" edit-command-line
+bindkey -M vicmd "^V" edit-command-line
+
+bindkey -M vicmd d vi-backward-char
+bindkey -M vicmd h vi-down-line-or-history
+bindkey -M vicmd t vi-up-line-or-history
+bindkey -M vicmd n vi-forward-char
+bindkey -M vicmd k vi-delete
+bindkey -M vicmd K vi-kill-eol
+bindkey -M vicmd j vi-find-next-char-skip
+bindkey -M vicmd l vi-repeat-search
+
 
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
