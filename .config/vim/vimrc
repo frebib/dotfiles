@@ -102,12 +102,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chr4/nginx.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'lervag/vimtex'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Syntax Highlighting
+Plug 'chr4/nginx.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'arrufat/vala.vim'
 
 call plug#end()
 
