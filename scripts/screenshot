@@ -1,0 +1,55 @@
+#!/bin/sh
+set -e
+
+NOTIFY_APPNAME="$(basename "$0")"
+NOTIFY_ICONPATH="/usr/share/icons/Xenlism-Wildfire/Apps/screenshot.svg"
+
+SCROT_CMD="maim -m 10 -us %"
+FILENAME=`date "+$NOTIFY_APPNAME-%Y-%m-%d-%H%M%S.png"`
+DIRECTORY="$HOME/pictures/screenshots"
+
+SCP_HOST=frebib@Poseidon.nerdhouse.io
+SCP_PATH=/dave/www/frebib.net/s
+URL_PATH=https://frebib.net/s
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+send_notification() {
+    title="$1"
+    body="$2"
+    replace_id="$3"
+
+    notify-send \
+        -a "$NOTIFY_APPNAME" \
+        -i "$NOTIFY_ICONPATH" \
+        "$title" "$body" \
+        $(if [ -n "$replace_id" ]; then printf "%s" "-r $replace_id"; fi) \
+        -p
+}
+
+# Make the screenshot directory
+mkdir -p "$DIRECTORY"
+
+# Take the screenshot and save it
+out_path="$DIRECTORY/$FILENAME"
+if ! error=$(eval ${SCROT_CMD//\%/$out_path} 2>&1); then
+    send_notification "Screenshot error" "Failed to take a screenshot:<br><br>$error" >/dev/null
+    exit 1
+fi
+
+notif_id=$(send_notification "Screenshot uploading" "$FILENAME<br><br>The image is available in the clipboard immediately" || true)
+
+# Add image to clipboard
+xclip -i "$out_path" -selection primary -t image/png
+
+# 'Upload' the screenshot
+if ! error=$(scp -C $out_path $SCP_HOST:$SCP_PATH 2>&1); then
+    send_notification "Screenshot upload error" "Failed to upload image:<br><br>$error" >/dev/null
+    exit 2
+fi
+
+# Add URL to clipboard
+out_url="$URL_PATH/$FILENAME"
+echo "$out_url" | xclip -i -selection clipboard
+send_notification "Screenshot uploaded!" "$out_url" $notif_id >/dev/null || true
+
