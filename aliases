@@ -118,6 +118,7 @@ alias gc="git commit"
 alias gcm="gc -m"
 gcmst() { git stash -u -k && git commit -m "$1" && git stash pop; }
 alias gca="git commit --amend"
+alias gcn="git commit --no-edit"
 alias gcan="git commit --amend --no-edit"
 alias gcam="git commit --amend -m"
 alias gst="git status"
