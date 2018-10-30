@@ -263,6 +263,8 @@ alias zfs='sudo zfs'
 alias zpool='sudo zpool'
 alias z=zfs
 alias zp=zpool
+zl() { (set -o pipefail; command zfs list $@ | grep -Ev 'docker/[0-9a-f]{64}'); return $?; }
+_zl() { _zfs "list $@" }
 
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
