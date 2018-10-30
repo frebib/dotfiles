@@ -40,6 +40,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 # Python
 export PYTHONHISTFILE="$XDG_DATA_HOME/python/histfile"
+# Weechat
+export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
 # Go configuration
 export GOPATH="$XDG_DATA_HOME/go"
