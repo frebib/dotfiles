@@ -36,7 +36,6 @@ alias -g NUL="&> /dev/null"
 alias -g BG="&;disown"
 alias -g COL="| column -t"
 alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
-calc() { bc -l <<< "$@"; }
 
 alias svi=sudoedit
 alias svim=sudoedit
@@ -80,6 +79,7 @@ alias abuild-sign='alpine-sdk abuild-sign'
 alias apk='alpine-sdk apk'
 alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xargs hddtemp | sort -t: -k3'
 alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
+alias calc="noglob bc -l <<<" # noglob allows * without quoting
 
 # System aliases
 alias s="sudo systemctl"
