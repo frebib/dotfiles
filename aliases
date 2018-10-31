@@ -93,10 +93,7 @@ alias kl='killall -s 9'
 alias chx='chmod +x'
 
 # File default aliases
-pdf() {
-    evince $@ NE BG
-}
-alias -s pdf=pdf
+alias -s pdf="open"
 alias -s zip="unzip -l"
 alias -s rar="unrar l"
 alias -s tar="tar tf"
