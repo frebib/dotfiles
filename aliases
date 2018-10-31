@@ -18,7 +18,7 @@ alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
 alias rd="rmdir -p"
-mcd(){ mkdir -p $@ && cd $@; }
+mcd(){ mkdir -p -- $@ && cd -- $@; }
 alias -- -='cd -'
 alias cdt='cd `mktemp -d`'
 alias grep='grep --color'
