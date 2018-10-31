@@ -54,7 +54,6 @@ alias pacaur='pacaur --color=always'
 alias tree='tree --dirsfirst -C -F'
 alias make="make -j$(nproc)"
 alias dd='dd status=progress'
-alias env='env | sort | sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias ssh="ssh -tt"
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
 vim --version 2>/dev/null | command grep -q +clientserver && \
@@ -80,6 +79,9 @@ alias apk='alpine-sdk apk'
 alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xargs hddtemp | sort -t: -k3'
 alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias calc="noglob bc -l <<<" # noglob allows * without quoting
+
+# Function aliases
+env() { command env $@ | stripansi | sort; }
 
 # System aliases
 alias s="sudo systemctl"
