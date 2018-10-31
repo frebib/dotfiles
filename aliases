@@ -250,9 +250,7 @@ _dsh() {
 }
 
 alias dm='docker-machine'
-dm-con() {
-    eval $(docker-machine env $1)
-}
+dm-con() { eval $(docker-machine env $1); }
 alias dmc=dm-con
 
 alias dc='docker-compose'
@@ -277,9 +275,8 @@ alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
 alias i3bc="$EDITOR $XDG_CONFIG_HOME/i3/blocks/config ; i3-msg restart"
-i3b() {
-    $EDITOR $XDG_CONFIG_HOME/i3/blocks/$@
-}
+i3b() { $EDITOR $XDG_CONFIG_HOME/i3/blocks/$@; }
+
 alias sf=screenfetch
 alias nf=neofetch
 randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
