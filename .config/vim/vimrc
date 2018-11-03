@@ -49,6 +49,9 @@ endfunction
 set autowrite
 autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
 
+" Auto-resize split on window resize
+autocmd VimResized * wincmd =
+
 " Search options
 set hlsearch
 set ignorecase
