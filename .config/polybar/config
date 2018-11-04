@@ -1,0 +1,311 @@
+[colours]
+background = transparent
+text = #eceff1
+icon = #147a82
+warning = #bd2c40
+critical = #bd2c40
+
+[settings]
+format-foreground = ${colours.text}
+format-background = ${colours.background}
+format-spacing = 0
+format-margin  = 2.5
+format-offset  = 0
+
+[bar/i3bar]
+monitor = ${env:MONITOR:HDMI-0}
+dpi  = ${xrdb:Xft.dpi:96}
+fixed-center = false
+enable-ipc = true
+
+width = 100%
+height = 32
+bottom = true
+radius = 0
+
+foreground = ${colours.text}
+background = ${colours.background}
+
+line-size = 0
+line-colour = #f00
+padding-left = 2
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = sans:pixelsize=9;1
+font-1 = FontAwesome5Pro:pixelsize=10;2
+
+modules-left = i3
+modules-center =
+# modules-right = volume updates weather xkeyboard wlan eth memory cpu xbacklight battery temperature date
+modules-right = volume updates weather wlan eth memory cpu xbacklight battery temperature date
+
+tray-position = right
+tray-detached = false
+tray-background = ${root.background}
+tray-offset-x = -4
+tray-offset-y = 0
+tray-maxsize = 16
+tray-padding = 2
+tray-scale = 1.0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/updates]
+type = custom/script
+exec = $XDG_CONFIG_HOME/polybar/update.sh
+tail = true
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
+click-left = i3-msg exec -- i3-sensible-terminal -r i3blocks-update-term -e "yay && kill -USR1 %pid% || kill --USR1 %pid%"
+
+[module/weather]
+type = custom/script
+exec = $XDG_CONFIG_HOME/polybar/weather.sh
+interval = 120
+click-left = i3-msg exec "i3-sensible-terminal -r floating-term -e 'sh -c \"xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity\"'"
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format = <label-layout> <label-indicator>
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
+format-prefix-underline = ${colours.background}
+
+label-layout = %name%
+label-indicator = %name%
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+; pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = ${colours.text}
+label-mode-background = ${colours.background}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-padding = ${self.label-mode-padding}
+label-focused-foreground = ${colours.text}
+label-focused-background = ${colours.background}
+label-focused-underline = ${colours.background}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.label-focused}
+label-unfocused-padding = ${self.label-focused-padding}
+label-unfocused-foreground= ${colours.icon}
+label-unfocused-underline = ${self.label-focused-underline}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.label-focused}
+label-visible-foreground= ${colours.icon}
+label-visible-padding = ${self.label-focused-padding}
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.label-focused}
+label-urgent-foreground = ${colours.warning}
+label-urgent-padding = ${self.label-focused-padding}
+
+
+[module/xbacklight]
+type = internal/xbacklight
+
+label = %percentage%
+format = <label>
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
+
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
+format-underline = ${colours.background}
+label = %percentage%%
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
+label = %percentage_used%%
+
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0
+interval = 3.0
+
+format-connected = <ramp-signal>  <label-connected>
+format-connected-underline = ${colours.background}
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colours.icon}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-foreground = ${colours.icon}
+
+
+[module/eth]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+label-connected = %local_ip%
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colours.icon}
+format-connected-underline = ${colours.background}
+
+;format-disconnected = RIP
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colours.critical}
+
+
+[module/date]
+type = internal/date
+interval = 1
+
+label = %{A3:i3-sensible-terminal -r i3blocks-clock-term -e "sh -c \"xdotool getactivewindow windowsize 500 600; cal -y $(date +%Y); stty -echo; exec sleep infinity\"" &:}%date% %time%%{A}
+
+time = %H:%M
+time-alt = %a %e %b %Y %H:%M:%S
+
+format-prefix = " "
+format-prefix-foreground = ${colours.icon}
+
+
+[module/volume]
+type = internal/pulseaudio
+
+label-volume = %percentage%
+format-volume = %{A3:pavucontrol:}<ramp-volume>  <label-volume>%{A}
+format-muted = %{A3:pavucontrol:}<label-muted>%{A}
+
+label-volume-foreground = ${root.foreground}
+format-muted-foreground = ${colours.icon}
+ramp-volume-foreground  = ${colours.icon}
+
+label-muted = ""
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = ""
+ramp-volume-4 = ""
+ramp-volume-5 = ""
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 95
+
+format-full = <label-full>
+format-charging = <label-charging>
+format-discharging = <ramp-capacity>  <label-discharging>
+
+format-full-underline = ${self.format-charging-underline}
+format-charging-underline = ${colours.background}
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = "  "
+format-charging-prefix = "  "
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+format-full-prefix-foreground = ${colours.icon}
+format-charging-prefix-foreground = ${colours.icon}
+ramp-capacity-foreground = ${colours.icon}
+ramp-capacity-0-foreground = ${colours.critical}
+ramp-capacity-1-foreground = ${colours.warning}
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 2
+warn-temperature = 70
+
+format = <ramp>  <label>
+format-warn = <ramp>  <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colours.background}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-foreground = ${colours.icon}
+
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+label-open = 
+label-close = cancel
+label-separator = |
+label-open-foreground = ${colours.icon}
+label-close-foreground = ${colours.background}
+label-separator-foreground = ${colours.icon}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+; vim:ft=dosini
