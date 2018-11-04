@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Run all system xinitrc shell scripts
 xinitdir="/etc/X11/xinit/xinitrc.d"
@@ -11,27 +11,8 @@ if [ -d "$xinitdir" ]; then
     done
 fi
 
-source $HOME/.profile
-
-xrdb -merge $XDG_CONFIG_HOME/X11/xresources
-xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
-
-setxkbmap -option caps:none
-xset r rate 200 18
-
-
-export TERMINAL="termite"
-export BROWSER="chromium"
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-export QT_QPA_PLATFORMTHEME=gtk2
-export QT_STYLE_OVERRIDE=gtk2
-export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
-
-# Merge system clipboards
-if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
-    autocutsel -fork
-    autocutsel -selection PRIMARY -fork
-fi
+# Source generic xprofile stuff
+source "$(dirname "${BASH_SOURCE[0]}")/xprofile"
 
 # Start the gnome-keyring if it's installed
 if exists gnome-keyring-daemon; then
