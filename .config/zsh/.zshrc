@@ -58,7 +58,7 @@ source "$antigen_src"
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting@feature/redrawhook
 antigen bundle mafredri/zsh-async
 
 antigen apply
@@ -82,8 +82,21 @@ bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
-bindkey -M vicmd v edit-command-line
 
+bindkey "^V" edit-command-line
+bindkey -M vicmd "^V" edit-command-line
+
+bindkey -M vicmd d vi-backward-char
+bindkey -M vicmd h vi-down-line-or-history
+bindkey -M vicmd t vi-up-line-or-history
+bindkey -M vicmd n vi-forward-char
+bindkey -M vicmd k vi-delete
+bindkey -M vicmd K vi-kill-eol
+bindkey -M vicmd j vi-find-next-char-skip
+bindkey -M vicmd l vi-repeat-search
+
+
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
@@ -91,26 +104,31 @@ HISTORY_SUBSTRING_SEARCH_FUZZY=true
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 
-typeset -A ZSH_HIGHLIGHT_STYLES
+default='fg=12'
+prog='fg=blue'
+ZSH_HIGHLIGHT_STYLES=()
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root line)
-ZSH_HIGHLIGHT_STYLES[default]='fg=12'
+ZSH_HIGHLIGHT_STYLES[root]='bg=red'
+ZSH_HIGHLIGHT_STYLES[default]=$default
+ZSH_HIGHLIGHT_STYLES[arg0]=$prog
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green,underline'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[function]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[alias]=$prog
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=4'
+ZSH_HIGHLIGHT_STYLES[function]=$prog
+ZSH_HIGHLIGHT_STYLES[command]=$prog
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=4'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green'
-ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path_separator]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=208'
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=7'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=12'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=12'
+ZSH_HIGHLIGHT_STYLES[history-expansion]=$default
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=$default
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=$default
 ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
@@ -119,11 +137,13 @@ ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=green'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan,bold'
 
 source "$DOTFILES/aliases"
 
 # Load some manual plugins
 source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
+source "$ZSH_DIR/plugins/git-rprompt.zsh"
 [ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
+[ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ] && source /usr/share/doc/pkgfile/command-not-found.zsh

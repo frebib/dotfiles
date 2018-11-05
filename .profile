@@ -14,8 +14,8 @@ case "$(basename "$(readlink -f /proc/$$/exe)")" in
     bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
     *)   thisfile="$(find /proc/$$/fd/ | xargs -n1 -r readlink -f | grep profile | head -n1)";;
 esac
-export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles}")"
-export PATH="${PATH}:$DOTFILES/scripts:$HOME/.local/share/surface-scripts"
+export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles/.profile}")"
+export PATH="${PATH}:/sbin:/usr/sbin:$DOTFILES/scripts:$HOME/.local/share/surface-scripts"
 
 # Override paths for non-compliant programs
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
@@ -40,6 +40,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 # Python
 export PYTHONHISTFILE="$XDG_DATA_HOME/python/histfile"
+# Weechat
+export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
 # Go configuration
 export GOPATH="$XDG_DATA_HOME/go"

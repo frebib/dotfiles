@@ -5,9 +5,9 @@
 [core]
 	autocrlf = input
 	excludesfile = $HOME/.config/git/gitignore
-	pager = /usr/share/git/diff-highlight/diff-highlight | $PAGER
+	pager = diff-highlight | $PAGER
 [interactive]
-	diffFilter = /usr/share/git/diff-highlight/diff-highlight
+	diffFilter = diff-highlight
 [commit]
 	gpgsign = true
 [push]

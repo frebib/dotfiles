@@ -14,15 +14,15 @@ bindsym $alt+F4 kill
 
 # change window focus
 bindsym $mod+d focus left
-bindsym $mod+n focus right
-bindsym $mod+t focus up
 bindsym $mod+h focus down
+bindsym $mod+t focus up
+bindsym $mod+n focus right
 
 # move focused window
 bindsym $mod+Shift+d move left
-bindsym $mod+Shift+n move down
+bindsym $mod+Shift+h move down
 bindsym $mod+Shift+t move up
-bindsym $mod+Shift+h move right
+bindsym $mod+Shift+n move right
 
 # split in horizontal orientation
 bindsym $mod+m split h
@@ -131,49 +131,46 @@ new_float none
 
 gaps inner 9
 gaps outer 1
-#smart_gaps on
 
 focus_follows_mouse yes
 
 # keybindings
-bindsym $mod+Shift+j reload
-#bindsym $mod+Shift+p restart
-bindsym $mod+c       exec chromium
-bindsym $mod+v       exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
-bindsym $mod+Ctrl+v  exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
-bindsym Mod1+Tab     exec ~/.config/i3/alt-tab.sh
-bindsym $mod+Return  exec i3-sensible-terminal
-bindsym $mod+Ctrl+Return  exec i3-sensible-terminal -r floating-term  --geometry 96x30
-bindsym $mod+Shift+Return  exec i3-sensible-terminal -d "`xcwd`"
-bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term  --geometry 96x30 -d "`xcwd`"
-bindsym $mod+l       exec ~/.config/i3/lock.sh
-# -fg "#CCD3DAE3" -bg "#CC383C4A" -hlbg "#CC5294E2" 
-bindsym $mod+space   exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
-bindsym $mod+Shift+p exec rofi-pass
-bindsym $mod+Shift+e exec rofi-emoji
-bindsym $mod+Shift+i exec rofi-fontawesome
-bindsym --release Print        exec imgur-screenshot
-bindsym --release $mod+Print   exec imgur-screenshot -f
-bindsym $mod+$alt+space exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
-bindsym $mod+numbersign exec "termite -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
-bindsym $mod+r       exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
-bindsym $mod+g       exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
+bindsym $mod+Shift+j            reload
+bindsym $mod+c                  exec chromium
+bindsym $mod+v                  exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
+bindsym $mod+Ctrl+v             exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
+bindsym Mod1+Tab                exec ~/.config/i3/alt-tab.sh
+bindsym $mod+Return             exec i3-sensible-terminal
+bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term --geometry 96x30
+bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
+bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term --geometry 96x30 -d "`xcwd`"
+bindsym $mod+l                  exec ~/.config/i3/lock.sh
+bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
+bindsym $mod+Shift+p            exec rofi-pass
+bindsym $mod+Shift+e            exec rofi-emoji
+bindsym $mod+Shift+i            exec rofi-fontawesome
+bindsym --release Print         exec screenshot
+bindsym --release $mod+Print    exec imgur-screenshot
+bindsym $mod+$alt+space         exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
+bindsym $mod+numbersign         exec "termite -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
+bindsym $mod+r                  exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
+bindsym $mod+g                  exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
 
 # Media player controls
-bindsym XF86AudioPlay  exec --no-startup-id mpc toggle
-bindsym XF86AudioPause exec --no-startup-id mpc pause
-bindsym XF86AudioStop  exec --no-startup-id mpc stop
-bindsym XF86AudioNext  exec --no-startup-id mpc next
-bindsym XF86AudioPrev  exec --no-startup-id mpc previous
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  +1000
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  -1000
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
-bindsym XF86MonBrightnessUp  exec xbacklight -inc 5 && pkill -RTMIN+12 i3blocks
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && pkill -RTMIN+12 i3blocks
-exec --no-startup-id "ip monitor | while read; do pkill -RTMIN+15 i3blocks; done"
+bindsym XF86AudioPlay           exec --no-startup-id mpc toggle
+bindsym XF86AudioPause          exec --no-startup-id mpc pause
+bindsym XF86AudioStop           exec --no-startup-id mpc stop
+bindsym XF86AudioNext           exec --no-startup-id mpc next
+bindsym XF86AudioPrev           exec --no-startup-id mpc previous
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  +1000
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  -1000
+bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
+bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 && pkill -RTMIN+12 i3blocks
+bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+12 i3blocks
 
 # app launch shortcuts
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
+exec --no-startup-id "ip monitor | while read; do pkill -RTMIN+15 i3blocks; done"
 exec --no-startup-id feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
 exec --no-startup-id xautolock -time 5 -locker ~/.config/i3/lock.sh -nocloseout -nocloseerr
 
@@ -188,6 +185,7 @@ exec --no-startup-id solaar
 exec --no-startup-id pullover
 exec --no-startup-id onboard
 exec --no-startup-id touchegg
+exec --no-startup-id mailnag
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id thunderbird

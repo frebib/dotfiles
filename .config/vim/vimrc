@@ -5,7 +5,9 @@ set undodir=$XDG_CACHE_HOME/vim/undo//
 set directory=$XDG_CACHE_HOME/vim/swap//
 set backupdir=$XDG_CACHE_HOME/vim/backup//
 set viminfo+='1000,n$XDG_CACHE_HOME/vim/viminfo
-set runtimepath+=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+set runtimepath-=$HOME/.vim
+set runtimepath^=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+let g:netrw_home=$XDG_CACHE_HOME.'/vim'
 
 silent !mkdir -p $XDG_CACHE_HOME/vim/swap $XDG_CACHE_HOME/vim/undo $XDG_CACHE_HOME/vim/backup
 
@@ -46,6 +48,9 @@ function! SaveIfExist()
 endfunction
 set autowrite
 autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
+
+" Auto-resize split on window resize
+autocmd VimResized * wincmd =
 
 " Search options
 set hlsearch
@@ -100,12 +105,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chr4/nginx.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'lervag/vimtex'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Syntax Highlighting
+Plug 'chr4/nginx.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'arrufat/vala.vim'
 
 call plug#end()
 
@@ -213,10 +222,6 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 	noremap h j
 	noremap t k
 	noremap n l
-	noremap D H
-	noremap H J
-	noremap T K
-	noremap N L
 
 	noremap gh gj
 	noremap gt gk
@@ -273,6 +278,18 @@ if (exists("g:use_dvorak") && g:use_dvorak == 1)
 
     " NERDTree configuration
     let NERDTreeMapOpenInTab='\t'   " prevent t opening file
+
+    " Also remap keys in :Explore
+    augroup netrw_dvorak_fix
+        autocmd!
+        autocmd filetype netrw call Fix_netrw_maps_for_dvorak()
+    augroup END
+    function! Fix_netrw_maps_for_dvorak()
+        noremap <buffer> d h
+        noremap <buffer> h j
+        noremap <buffer> t k
+        noremap <buffer> n l
+    endfunction
 
 endif
 

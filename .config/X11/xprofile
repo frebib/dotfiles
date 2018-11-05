@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Graphical-specific environment variables
+export TERMINAL="termite"
+export BROWSER="chromium"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export QT_QPA_PLATFORMTHEME=gtk2
+export QT_STYLE_OVERRIDE=gtk2
+export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
+
+# Load Xorg resources and set the DPI
+xrdb -merge $XDG_CONFIG_HOME/X11/xresources
+xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
+xrandr --output eDP1 --primary
+
+setxkbmap -option caps:none
+xset r rate 200 18
+
+
+# Merge system clipboards
+if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
+    autocutsel -fork
+    autocutsel -selection PRIMARY -fork
+fi
+
+~/.local/share/surface-scripts/pend &
+~/.local/share/surface-scripts/rotationd &
