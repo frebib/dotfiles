@@ -86,7 +86,7 @@ env() { command env $@ | stripansi | sort; }
 # System aliases
 alias s="sudo systemctl"
 alias j=journalctl
-alias p=pacaur
+exists pacman && alias p=yay
 alias ps='ps aux'
 alias catn='tail -n +1 --'
 alias kl='killall -s 9'
