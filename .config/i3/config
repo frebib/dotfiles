@@ -141,11 +141,11 @@ for_window [window_role="i3blocks-update-term"] floating enable
 for_window [window_role="i3blocks-clock-term"] floating enable
 for_window [title="^rofi$"] floating enable
 
-new_window pixel 5
+new_window none
 new_float none
 
-gaps inner 7
-gaps outer 2
+gaps inner 12
+gaps outer 4
 
 focus_follows_mouse yes
 
