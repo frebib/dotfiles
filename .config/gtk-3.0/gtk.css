@@ -3,3 +3,13 @@ TerminalScreen,
 vte-terminal {
     padding: 1.3em;
 }
+
+.window-frame, .window-frame:backdrop {
+    margin: 0;
+    border-style: none;
+    border-radius: 0;
+}
+
+.titlebar {
+    border-radius: 0;
+}
