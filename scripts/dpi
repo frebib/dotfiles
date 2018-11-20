@@ -11,6 +11,7 @@ if [ -z "$1" ]; then
 fi
 
 CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/xsettingsd"
+mkdir -p "$CONF_DIR"
 
 # Build xsettingsd.local
 {
