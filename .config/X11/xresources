@@ -43,7 +43,7 @@ Xcursor.theme: Breeze_Obsidian
 !!======================!!
 
 urxvt.depth:                32
-urxvt.internalBorder:       6
+urxvt.internalBorder:       16
 urxvt.blurRadius:           25
 urxvt.saveLines:            10000
 urxvt.preeditType:          Root
