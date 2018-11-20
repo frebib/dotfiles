@@ -14,43 +14,37 @@ case "$(basename "$(readlink -f /proc/$$/exe)")" in
     bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
     *)   thisfile="$(find /proc/$$/fd/ | xargs -n1 -r readlink -f | grep profile | head -n1)";;
 esac
-export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles/.profile}")"
-export PATH="${PATH}:/sbin:/usr/sbin:$DOTFILES/scripts"
+
+export EDITOR="vim"
+export VISUAL="vim"
 
 # Override paths for non-compliant programs
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
-# Vim
+
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export GOPATH="$XDG_DATA_HOME/go"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/settings.ini"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+export PYTHONHISTFILE="$XDG_DATA_HOME/python/histfile"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 export VIMDIR="$XDG_CONFIG_HOME/vim"
 export VIMRC="$VIMDIR/vimrc"
 export VIMINIT=":so $VIMRC"
-export EDITOR="vim"
-export VISUAL="vim"
-# ZSH
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-# Gnupg
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-# X11
-export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-# GTK2
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/settings.ini
-# Cargo/Rust
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-# Pass
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
-# Python
-export PYTHONHISTFILE="$XDG_DATA_HOME/python/histfile"
-# Weechat
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-# Go configuration
-export GOPATH="$XDG_DATA_HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+export DOTFILES="$(dirname "${thisfile:-$XDG_CONFIG_HOME/dotfiles/.profile}")"
+export PATH="${PATH}:/sbin:/usr/sbin:$DOTFILES/scripts:$GOPATH/bin"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
 # Configure less and add colours
 export LESS="-RI"
-export PAGER="less $LESS"
+export PAGER="less"
 export MANPAGER="less -+N"
 # Disable histfile
 export LESSHISTFILE=-
