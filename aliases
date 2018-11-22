@@ -1,8 +1,35 @@
-# Common Aliases
-alias -g ...=../..
-alias -g ....=../../..
-alias -g .....=../../../..
-alias -g ......=../../../../..
+# Global aliases for ZSH
+if alias -g 2>/dev/null; then
+    alias -g ...=../..
+    alias -g ....=../../..
+    alias -g .....=../../../..
+    alias -g ......=../../../../..
+    alias -g H='| head'
+    alias -g T='| tail'
+    alias -g G='| grep'
+    alias -g L="| less"
+    alias -g C="| wc -l"
+    alias -g S="| sort"
+    alias -g U="| uniq"
+    alias -g count="| wc -l"
+    alias -g NO="1> /dev/null"
+    alias -g NE="2> /dev/null"
+    alias -g NUL="&> /dev/null"
+    alias -g BG="&;disown"
+    alias -g COL="| column -t"
+    alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
+fi
+
+# File default aliases
+if alias -s 2>/dev/null; then
+    alias -s pdf="open"
+    alias -s zip="unzip -l"
+    alias -s rar="unrar l"
+    alias -s tar="tar tf"
+    alias -s gz="tar tf"
+    alias -s jar="java -jar"
+    alias -s git="git clone --recursive"
+fi
 
 alias ..la="cd ..;la"
 alias ..ll="cd..;ll"
@@ -18,24 +45,8 @@ alias al=la # No, I don't need the Mono Assembly Linker
 
 alias md="mkdir -p"
 alias rd="rmdir -p"
-mcd(){ mkdir -p -- $@ && cd -- $@; }
 alias -- -='cd -'
 alias cdt='cd `mktemp -d`'
-alias grep='grep --color'
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L="| less"
-alias -g C="| wc -l"
-alias -g S="| sort"
-alias -g U="| uniq"
-alias -g count="| wc -l"
-alias -g NO="1> /dev/null"
-alias -g NE="2> /dev/null"
-alias -g NUL="&> /dev/null"
-alias -g BG="&;disown"
-alias -g COL="| column -t"
-alias -g CLIP="| xclip -i -selection primary -f | xclip -i -selection clipboard"
 
 alias svi=sudoedit
 alias svim=sudoedit
@@ -49,20 +60,13 @@ alias open=xdg-open
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -ir'
-alias pacman='pacman --color=always'
-alias pacaur='pacaur --color=always'
-alias tree='tree --dirsfirst -C -F'
-alias make="make -j$(nproc)"
 alias dd='dd status=progress'
 alias ssh="ssh -tt"
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
-vim --version 2>/dev/null | command grep -q +clientserver && \
-    alias vim="vim --servername vim -p"
 alias vi=vim
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
-exists gopass && alias pass='gopass'
 alias alpine-sdk='docker run -ti --rm \
     -e USER \
     -e UID="$(id -u)" \
@@ -80,26 +84,33 @@ alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xar
 alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias calc="noglob bc -l <<<" # noglob allows * without quoting
 
+exists pacman && \
+    alias pacman='pacman --color=always'
+exists yay && \
+    alias p='yay'
+exists tree && \
+    alias tree='tree --dirsfirst -C -F'
+exists make && \
+    alias make="make -j$(nproc)"
+exists gopass && \
+    alias pass='gopass'
+echo | busybox grep --color '' >/dev/null 2>&1 && \
+    alias grep='grep --color'
+vim --version 2>/dev/null | command grep -q +clientserver && \
+    alias vim="vim --servername vim -p"
+
 # Function aliases
 env() { command env $@ | stripansi | sort; }
+mcd(){ mkdir -p -- $@ && cd -- $@; }
+randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
 
 # System aliases
 alias s="sudo systemctl"
 alias j=journalctl
-alias p=pacaur
 alias ps='ps aux'
 alias catn='tail -n +1 --'
 alias kl='killall -s 9'
 alias chx='chmod +x'
-
-# File default aliases
-alias -s pdf="open"
-alias -s zip="unzip -l"
-alias -s rar="unrar l"
-alias -s tar="tar tf"
-alias -s gz="tar tf"
-alias -s jar="java -jar"
-alias -s git="git clone --recursive"
 
 # Git Aliases
 alias g=git
@@ -111,6 +122,8 @@ alias gco="git checkout"
 alias gcom="git checkout master"
 alias ga="git add"
 alias gap="git add -p"
+alias gau="git add -u"
+alias gaN="git add -N"
 alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit"
@@ -136,14 +149,7 @@ alias gpsuom="git push --set-upstream origin master"
 alias gpall="git remote | xargs -L1 git push"
 alias gl="git pull --rebase"
 alias glp="gl && gp"
-gd() {
-    local commit=$1
-    if [ -z "$commit" ] || [ ${commit:0:1} != '@' ]; then
-        git diff $@
-    else
-        git diff "@~${commit:1}^!"
-    fi
-}
+alias gd="git diff"
 alias gds="git diff --staged"
 alias gsh="git show"
 alias glg="git log --stat --color"
@@ -177,7 +183,7 @@ alias dbl='docker build --pull'
 alias dbl.='docker build --pull .'
 alias drun='docker run -ti'
 alias dkl='docker kill'
-dklrm() { docker kill $@ ; docker rm $@ }
+dklrm() { docker kill $@ ; docker rm $@; }
 alias dst='docker stop'
 alias drst='docker restart'
 alias dnet='docker network'
@@ -187,13 +193,15 @@ alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
-alias dsh='_CMD=dsh _dsh 2 exec'
-alias drsh='_CMD=drsh _dsh 4 run --rm --entrypoint='
-_dsh() {
-    minargs=$1
+dsh() { do_dsh 2 exec $@; return $?; }
+_dsh() { __docker_complete_running_containers $@; }
+drsh() { do_dsh 4 run --rm --entrypoint= $@; return $?; }
+_drsh() { __docker_container_subcommand $@; }
+do_dsh() {
+    local minargs=$1
     shift
     if [ $# -lt $minargs ]; then
-        echo "Usage: ${_CMD:-$0} [user@]container [program [args]]" >&2
+        echo "Usage: ${funcstack[2]} [user@]container [program [args]]" >&2
         return 64
     fi
 
@@ -249,11 +257,9 @@ _dsh() {
     docker $dowhat ${docker_args[@]} -ti $usercmd $host $(xargs <<< $prog)
 }
 
-alias dm='docker-machine'
-dm-con() { eval $(docker-machine env $1); }
-alias dmc=dm-con
-
 alias dc='docker-compose'
+alias dm='docker-machine'
+alias dmc='eval $(docker-machine env $1)'
 
 # ZFS aliases
 alias zfs='sudo zfs'
@@ -261,7 +267,7 @@ alias zpool='sudo zpool'
 alias z=zfs
 alias zp=zpool
 zl() { (set -o pipefail; command zfs list $@ | grep -Ev 'docker/[0-9a-f]{64}'); return $?; }
-_zl() { _zfs "list $@" }
+_zl() { _zfs "list $@"; }
 
 # General Aliases
 alias ssha='eval `ssh-agent` ; ssh-add'
@@ -274,12 +280,9 @@ alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONF
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
-alias i3bc="$EDITOR $XDG_CONFIG_HOME/i3/blocks/config ; i3-msg restart"
-i3b() { $EDITOR $XDG_CONFIG_HOME/i3/blocks/$@; }
 
 alias sf=screenfetch
 alias nf=neofetch
-randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 # vim: ft=sh

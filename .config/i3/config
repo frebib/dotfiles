@@ -94,27 +94,7 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 
-bar {
-    status_command i3blocks -c ~/.config/i3/blocks/config
-
-    workspace_buttons yes
-    strip_workspace_numbers yes
-    tray_output primary
-    tray_padding 2
-    height 28
-
-    output primary
-    position top
-
-    colors {
-        separator #757575
-        background #2f343f
-        #                  border             background         text
-        focused_workspace  $bg-color          $bg-color          $text-color
-        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-    }
-}
+exec_always --no-startup-id killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar
 
 # Window rules
 for_window [class="Pinentry"] floating enable
@@ -126,11 +106,11 @@ for_window [window_role="i3blocks-update-term"] floating enable
 for_window [window_role="i3blocks-clock-term"] floating enable
 for_window [title="^rofi$"] floating enable
 
-new_window pixel 5
+new_window none
 new_float none
 
-gaps inner 9
-gaps outer 1
+gaps inner 12
+gaps outer 4
 
 focus_follows_mouse yes
 
@@ -141,9 +121,9 @@ bindsym $mod+v                  exec "i3-sensible-terminal -e \\"$SHELL -c vim;$
 bindsym $mod+Ctrl+v             exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
 bindsym Mod1+Tab                exec ~/.config/i3/alt-tab.sh
 bindsym $mod+Return             exec i3-sensible-terminal
-bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term --geometry 96x30
+bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term
 bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
-bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term --geometry 96x30 -d "`xcwd`"
+bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term -d "`xcwd`"
 bindsym $mod+l                  exec ~/.config/i3/lock.sh
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p            exec rofi-pass
@@ -152,7 +132,7 @@ bindsym $mod+Shift+i            exec rofi-fontawesome
 bindsym --release Print         exec screenshot
 bindsym --release $mod+Print    exec imgur-screenshot
 bindsym $mod+$alt+space         exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
-bindsym $mod+numbersign         exec "termite -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
+bindsym $mod+numbersign         exec "i3-sensible-terminal -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
 bindsym $mod+r                  exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
 bindsym $mod+g                  exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
 
@@ -170,7 +150,6 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+12 i3bloc
 
 # app launch shortcuts
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
-exec --no-startup-id "ip monitor | while read; do pkill -RTMIN+15 i3blocks; done"
 exec --no-startup-id feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
 exec --no-startup-id xautolock -time 5 -locker 'dm-tool lock' -nocloseout -nocloseerr
 

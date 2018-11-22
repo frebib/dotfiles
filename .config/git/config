@@ -4,7 +4,7 @@
 	signingkey = CFBB6A86
 [core]
 	autocrlf = input
-	excludesfile = $HOME/.config/git/gitignore
+	excludesfile = /home/frebib/.config/git/gitignore
 	pager = diff-highlight | $PAGER
 [interactive]
 	diffFilter = diff-highlight

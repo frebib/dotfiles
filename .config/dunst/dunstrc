@@ -1,5 +1,5 @@
 [global]
-    font = sans-serif 9.5
+    font = sans 9
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -64,8 +64,8 @@
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
 
-    # 58 = 30 + 28 (bar-height)
-    geometry = "350x6-30+58"
+    # 53 = 30 + 23 (bar-height)
+    geometry = "560x5-30+30"
     
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -74,7 +74,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing windowmanager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 10
+    transparency = 15
     
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -118,7 +118,7 @@
     separator_height = 2
     
     # Padding between text and separator.
-    padding = 12
+    padding = 15
     
     # Horizontal padding.
     horizontal_padding = 16
@@ -150,7 +150,7 @@
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Xenlism-Wildfire/Status/:/usr/share/icons/Xenlism-Wildfire/Devices/:/usr/share/icons/Adwaita/32x32/status:/usr/share/icons/Adwaita/32x32/devices
-    frame_width = 4
+    frame_width = 0
     frame_color = "#404552"
 
 [shortcuts]

@@ -29,7 +29,7 @@
 *.color15:      #eceff1
 
 
-Xft.dpi:        136
+Xft.dpi:        140
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
@@ -43,7 +43,7 @@ Xcursor.theme: Breeze_Obsidian
 !!======================!!
 
 urxvt.depth:                32
-urxvt.internalBorder:       6
+urxvt.internalBorder:       16
 urxvt.blurRadius:           25
 urxvt.saveLines:            10000
 urxvt.preeditType:          Root
