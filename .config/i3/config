@@ -137,7 +137,7 @@ bindsym $mod+Return             exec i3-sensible-terminal
 bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term
 bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
 bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term -d "`xcwd`"
-bindsym $mod+l                  exec ~/.config/i3/lock.sh
+bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p            exec rofi-pass
 bindsym $mod+Shift+e            exec rofi-emoji
@@ -164,7 +164,8 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+12 i3bloc
 # app launch shortcuts
 exec --no-startup-id ~/.config/i3/disable-standby-fs.py
 exec --no-startup-id feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
-exec --no-startup-id xautolock -time 5 -locker 'dm-tool lock' -nocloseout -nocloseerr
+exec --no-startup-id xautolock -time 5 -locker 'dm-tool switch-to-greeter' -nocloseout -nocloseerr
+exec --no-startup-id xss-lock dm-tool switch-to-greeter
 
 # startup programs
 exec --no-startup-id nextcloud

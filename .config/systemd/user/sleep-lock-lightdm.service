@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock X LightDM session before sleeping
+Before=sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dm-tool switch-to-greeter
+# Ensure enough time for the session to lock before sleeping
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target

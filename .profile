@@ -76,6 +76,7 @@ fi
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
     eval $(dbus-launch --sh-syntax --exit-with-session)
     dbus-update-activation-environment --systemd \
-        DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+        DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY \
+        XDG_SEAT_PATH
 fi
 
