@@ -150,11 +150,11 @@ bindsym $mod+r                  exec "bash -c 'pwgen -nc 32 1 | tee >(xargs noti
 bindsym $mod+g                  exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
 
 # Media player controls
-bindsym XF86AudioPlay           exec --no-startup-id mpc toggle
-bindsym XF86AudioPause          exec --no-startup-id mpc pause
-bindsym XF86AudioStop           exec --no-startup-id mpc stop
-bindsym XF86AudioNext           exec --no-startup-id mpc next
-bindsym XF86AudioPrev           exec --no-startup-id mpc previous
+bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
+bindsym XF86AudioPause          exec --no-startup-id playerctl -a pause
+bindsym XF86AudioStop           exec --no-startup-id playerctl -a stop
+bindsym XF86AudioNext           exec --no-startup-id playerctl -a next
+bindsym XF86AudioPrev           exec --no-startup-id playerctl -a previous
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  +1000
 bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  -1000
 bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
