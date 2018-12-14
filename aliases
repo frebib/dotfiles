@@ -266,7 +266,7 @@ alias zfs='sudo zfs'
 alias zpool='sudo zpool'
 alias z=zfs
 alias zp=zpool
-zl() { (set -o pipefail; command zfs list $@ | grep -Ev 'docker/[0-9a-f]{64}'); return $?; }
+zl() { (set -o pipefail; command zfs list $@ | grep -Ev 'docker/[0-9a-f]{64}' | column -t -R 2,3,4); return $?; }
 _zl() { _zfs "list $@"; }
 
 # General Aliases
