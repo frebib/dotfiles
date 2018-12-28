@@ -139,7 +139,7 @@ bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
 bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term -d "`xcwd`"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
-bindsym $mod+Shift+p            exec rofi-pass
+bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
 bindsym $mod+Shift+e            exec rofi-emoji
 bindsym $mod+Shift+i            exec rofi-fontawesome
 bindsym --release Print         exec screenshot
