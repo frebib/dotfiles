@@ -71,8 +71,8 @@ get_icon() {
         522) echo  ;;		# heavy intensity shower rain
         531) echo  ;;		# ragged shower rain
         600) echo  ;;		# light snow
-        601) echo  ;;		# snow
-        602) echo  ;;		# heavy snow
+        601) echo  ;;		# snow
+        602) echo  ;;		# heavy snow
         611) echo  ;;		# sleet
         612) echo  ;;		# shower sleet
         615) echo  ;;		# light rain and snow
@@ -86,11 +86,6 @@ get_icon() {
         741) echo  ;;		# fog
         762) echo  ;;		# volcanic ash
         781) echo  ;;		# tornado
-        800) echo  ;;		# clear sky
-        801) echo  ;;		# few clouds
-        802) echo  ;;		# scattered clouds
-        803) echo  ;;		# broken clouds
-        804) echo  ;;		# overcast clouds
         # 731) echo  ;;		# sand, dust whirls
         # 751) echo  ;;		# sand
         # 761) echo  ;;		# dust
