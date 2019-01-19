@@ -285,4 +285,8 @@ alias sf=screenfetch
 alias nf=neofetch
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
+# Networking aliases
+alias ipa="ip a"
+alias addrs="ip a | grep inet | grep -ve fe80 -e '127\\.0\\.0\\.1/8' -e '::1/128' | sort -n | sed 's/^\\s*//'"
+
 # vim: ft=sh
