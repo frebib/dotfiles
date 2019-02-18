@@ -5,7 +5,7 @@ NOTIFY_APPNAME="$(basename "$0")"
 NOTIFY_ICONPATH="/usr/share/icons/Xenlism-Wildfire/Apps/screenshot.svg"
 
 SCROT_CMD="maim -m 10 -us %"
-FILENAME=`date "+$NOTIFY_APPNAME-%Y-%m-%d-%H%M%S.png"`
+FILENAME="$(date '+%s%N' | sha256sum | head -c7).png"
 DIRECTORY="$HOME/pictures/screenshots"
 
 SCP_HOST=frebib@Poseidon.nerdhouse.io
