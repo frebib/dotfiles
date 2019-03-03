@@ -174,8 +174,9 @@ alias gstv="gsta show -p stash@{0}"
 
 # Docker aliases
 alias d=docker
-alias dps='docker ps'
-alias dpsa='docker ps -a'
+alias dps="docker ps --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
+alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
+alias din='docker inspect'
 alias drm='docker rm'
 alias drmi='docker rmi'
 alias dim='docker images'
@@ -259,7 +260,7 @@ do_dsh() {
 
 alias dc='docker-compose'
 alias dm='docker-machine'
-alias dmc='eval $(docker-machine env $1)'
+dmc() { eval $(docker-machine env $1); }
 
 # ZFS aliases
 alias zfs='sudo zfs'
