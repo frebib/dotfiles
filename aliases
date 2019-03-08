@@ -176,6 +176,7 @@ alias gstv="gsta show -p stash@{0}"
 alias d=docker
 alias dps="docker ps --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
 alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
+alias dnets="dnet ls -q | xargs docker inspect | jq '.[] | select(.Name != \"host\" and .Name != \"none\") | [.] | map(.Name + \": \" + (.IPAM.Config | map(.Subnet) | join(\", \")))[]' -r | sort -k2 -t:"
 alias din='docker inspect'
 alias drm='docker rm'
 alias drmi='docker rmi'
