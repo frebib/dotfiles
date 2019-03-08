@@ -16,4 +16,4 @@ xrandr --newmode $MODELINE 2>/dev/null || true
 xrandr --addmode $OUTPUT $MODENAME 2>/dev/null || true
 xrandr --output  $OUTPUT --mode $MODENAME
 
-feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
+feh --no-fehbg --no-xinerama --bg-fill $DOTFILES/lakesidesunrise.jpg

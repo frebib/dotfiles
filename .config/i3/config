@@ -108,6 +108,7 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 
 exec_always --no-startup-id killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar
+exec_always --no-startup-id feh --no-fehbg --no-xinerama --bg-fill $DOTFILES/lakesidesunrise.jpg
 
 # Window rules
 for_window [class="Pinentry"] floating enable
