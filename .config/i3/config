@@ -149,6 +149,7 @@ bindsym $mod+$alt+space         exec --no-startup-id ~/.config/i3/cycleaudio.py 
 bindsym $mod+numbersign         exec "i3-sensible-terminal -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
 bindsym $mod+r                  exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
 bindsym $mod+g                  exec "LINK=$(gist -PRpc); notify-send -c transfer \\"<a href=\\\\"$LINK\\\\">$LINK</a>\\""
+bindsym --release $mod+i        exec sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
 
 # Media player controls
 bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
