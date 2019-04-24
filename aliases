@@ -284,6 +284,7 @@ alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONF
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
+alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar"
 
 alias sf=screenfetch
 alias nf=neofetch
