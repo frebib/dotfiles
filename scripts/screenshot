@@ -40,7 +40,7 @@ fi
 notif_id=$(send_notification "Screenshot uploading" "$FILENAME<br><br>The image is available in the clipboard immediately" || true)
 
 # Add image to clipboard
-xclip -i "$out_path" -selection primary -t image/png
+xclip -i "$out_path" -selection clipboard -t image/png
 
 # 'Upload' the screenshot
 if ! error=$(scp -C $out_path $SCP_HOST:$SCP_PATH 2>&1); then
