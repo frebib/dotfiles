@@ -142,6 +142,13 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan,bold'
 
 source "$DOTFILES/aliases"
 
+# Source secret keys and values into environment
+if [ -f "$XDG_CONFIG_HOME/secrets" ]; then
+    set -o allexport
+    source $XDG_CONFIG_HOME/secrets
+    set +o allexport
+fi
+
 # Load some manual plugins
 source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
