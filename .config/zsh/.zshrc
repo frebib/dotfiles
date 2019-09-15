@@ -80,6 +80,7 @@ bindkey '^[^[[3~' x-bash-backward-kill-word
 bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
+bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
 bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
 bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
 
