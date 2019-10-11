@@ -27,7 +27,7 @@ bottom = true
 radius = 0
 
 font-0 = sans:pixelsize=9;2
-font-1 = FontAwesome5Pro:pixelsize=10;2
+font-1 = FontAwesome5ProLight:pixelsize=10;2
 
 foreground = ${colours.text}
 background = ${colours.background}
