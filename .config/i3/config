@@ -123,7 +123,7 @@ for_window [title="^rofi$"] floating enable
 new_window none
 new_float none
 
-gaps inner 12
+gaps inner 20
 gaps outer 4
 
 focus_follows_mouse yes
