@@ -177,7 +177,7 @@ exec --no-startup-id xbindkeys
 exec --no-startup-id solaar
 exec --no-startup-id pullover
 exec --no-startup-id mailnag
-exec --no-startup-id compton -b
+exec --no-startup-id compton -b --experimental-backends
 exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id thunderbird
 
