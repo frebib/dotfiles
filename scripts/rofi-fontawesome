@@ -28,9 +28,12 @@ function download() {
 
     echo -n > "$FONTAWESOME_FILE"
 
-    curl https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/advanced-options/metadata/icons.json | \
-        jq '.[] | "\\u" + .unicode + "\t" + .label' -r | \
-        xargs -0 printf \
+    cat /usr/share/fontawesome/icons.json | \
+        jq -r --argfile ctgs <(yq r -j /usr/share/fontawesome/categories.yml) \
+        '.[] | . as $icon | "\\\\u" + .unicode + "\t" + .label + "\t" + ( ([.search.terms,.styles,([select($ctgs[].icons[]|index($icon.label))|.label]|unique)]|add)|sort|join(", "))' | \
+        while IFS=$'\t' read icon name labels; do \
+            printf "%b\t%-120s\t%s\n" "$icon" "$name" "$labels";\
+        done \
         > "$FONTAWESOME_FILE"
 
     notify "$(basename "$0")" "We're all set!"
