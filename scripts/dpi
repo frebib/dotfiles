@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 # Based on https://github.com/vincentbernat/awesome-configuration/blob/master/bin/xsettingsd-setup
 
@@ -15,6 +15,8 @@ mkdir -p "$CONF_DIR"
 
 # Build xsettingsd.local
 {
+    # echo Gdk/WindowScalingFactor $(echo "$dpi/96" | bc -l | xargs printf '%.f')
+    # echo Gdk/UnscaledDPI $(echo "($dpi*1024)/($dpi/96)" | bc -l | xargs printf '%.f')
     cat $CONF_DIR/xsettingsd.conf 2>/dev/null || true
     echo Xft/DPI $(( $dpi*1024 ))
     echo Gdk/WindowScalingFactor $(( $dpi/96 ))

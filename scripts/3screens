@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+TOP_LEFT="DP-0.1"
+TOP_RIGHT="DP-0.2.1"
+BOTTOM_LEFT="HDMI-0"
+BOTTOM_RIGHT="DP-0.2.2.1"
+
+       #--output $BOTTOM_LEFT --primary --mode 1920x1080 --pos 0x1080 --rotate normal \
+xrandr \
+       --output $BOTTOM_LEFT --off \
+       --output $TOP_LEFT --mode 1920x1080 --pos 0x0 --rotate inverted \
+       --output $TOP_RIGHT --mode 1920x1080 --pos 1920x0 --rotate inverted \
+       --output $BOTTOM_RIGHT --mode 1920x1080 --pos 1920x1080 --rotate normal --primary
+
+[ -e ~/.fehbg ] && ~/.fehbg

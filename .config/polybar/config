@@ -67,13 +67,13 @@ exec = $XDG_CONFIG_HOME/polybar/update.sh
 tail = true
 format-prefix = "  "
 format-prefix-foreground = ${colours.icon}
-click-left = i3-msg exec -- i3-sensible-terminal -r i3blocks-update-term -e "yay && kill -USR1 %pid% || kill --USR1 %pid%"
+click-left = i3-msg exec "i3-sensible-terminal --class floating-term -e sh -c \"(yay || :) && kill -USR1 %pid%\""
 
 [module/weather]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/weather.sh
 interval = 120
-click-left = i3-msg exec "i3-sensible-terminal -r floating-term -e 'sh -c \"xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity\"'"
+click-left = i3-msg exec "i3-sensible-terminal --class floating-term -d 125 40 -e sh -c \"(curl wttr.in || :) && stty -echo && read\""
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -184,7 +184,7 @@ type = internal/network
 interface = eth0
 interval = 3.0
 
-label-connected = %local_ip%
+label-connected = %local_ip% & %local_ip6%
 format-connected-prefix = "  "
 format-connected-prefix-foreground = ${colours.icon}
 format-connected-underline = ${colours.background}
@@ -200,7 +200,7 @@ label-disconnected-foreground = ${colours.critical}
 type = internal/date
 interval = 1
 
-label = %{A3:i3-sensible-terminal -r i3blocks-clock-term -e "sh -c \"xdotool getactivewindow windowsize 500 600; cal -y $(date +%Y); stty -echo; exec sleep infinity\"" &:}%date% %time%%{A}
+label = %{A3:i3-msg exec "i3-sensible-terminal --class floating-term -d 66 35 -qq -e sh -c \"cal -y $(date +%Y) && read\"":}%date% %time%%{A}
 
 time = %H:%M
 time-alt = %a %e %b %Y %H:%M:%S
@@ -213,8 +213,8 @@ format-prefix-foreground = ${colours.icon}
 type = internal/pulseaudio
 
 label-volume = %percentage%
-format-volume = %{A3:pavucontrol:}<ramp-volume>  <label-volume>%{A}
-format-muted = %{A3:pavucontrol:}<label-muted>%{A}
+format-volume = %{A3:i3-msg exec pavucontrol:}<ramp-volume>  <label-volume>%{A
+format-muted = %{A3:i3-msg exec pavucontrol:}<label-muted>%{A}
 
 label-volume-foreground = ${root.foreground}
 format-muted-foreground = ${colours.icon}

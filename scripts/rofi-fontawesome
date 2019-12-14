@@ -57,9 +57,8 @@ function notify() {
 }
 
 function display() {
-    fontawesome=$(cat "$FONTAWESOME_FILE" | grep -v '#' | grep -v '^[[:space:]]*$')
-    update=""$'\t'"Update Font Awesome cache"
-    fontawesome=$(printf "$fontawesome\n$update")
+    update=$'\tUpdate Font Awesome cache'
+    fontawesome=$(grep -v '#\|^[[:space:]]*$' "$FONTAWESOME_FILE"; printf "$update\n")
     line=$(echo "$fontawesome" | rofi -dmenu -i -p fontawesome -normal-window -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
     exit_code=$?
 
@@ -69,7 +68,6 @@ function display() {
         return
     fi
 
-    #IFS=$'\t'
     line=($line)
     last=${line[${#line[@]}-1]}
 

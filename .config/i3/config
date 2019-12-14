@@ -6,6 +6,8 @@ set $mod Mod4
 set $alt Mod1
 floating_modifier $mod
 
+bindsym $mod+Shift+l debuglog toggle; shmlog on
+
 font pango:sans 9
 
 # kill focused window
@@ -114,10 +116,9 @@ exec_always --no-startup-id feh --no-fehbg --no-xinerama --bg-fill $DOTFILES/lak
 for_window [class="Pinentry"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="floating-term" instance="termite"] floating enable
+for_window [class="Alacritty" instance="floating-term"] floating enable
 for_window [window_role="floating-term"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="i3blocks-update-term"] floating enable
-for_window [window_role="i3blocks-clock-term"] floating enable
 for_window [title="^rofi$"] floating enable
 
 new_window none
@@ -126,18 +127,19 @@ new_float none
 gaps inner 20
 gaps outer 4
 
+mouse_warping none
 focus_follows_mouse yes
+popup_during_fullscreen smart
 
 # keybindings
 bindsym $mod+Shift+j            reload
 bindsym $mod+c                  exec chromium
-bindsym $mod+v                  exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
-bindsym $mod+Ctrl+v             exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
-bindsym Mod1+Tab                exec ~/.config/i3/alt-tab.sh
+bindsym $mod+v                  exec "i3-sensible-terminal -e sh -c \\"($SHELL -c $EDITOR || :) && $SHELL\\"
+bindsym $mod+Ctrl+v             exec "i3-sensible-terminal --class floating-term -e sh -c \\"($SHELL -c $EDITOR || : ) && $SHELL\\"
 bindsym $mod+Return             exec i3-sensible-terminal
-bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term
-bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
-bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term -d "`xcwd`"
+bindsym $mod+Ctrl+Return        exec i3-sensible-terminal --class floating-term
+bindsym $mod+Shift+Return       exec i3-sensible-terminal --working-directory "$(xcwd)"
+bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal --class floating-term --working-directory "$(xcwd)"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
@@ -179,9 +181,5 @@ exec --no-startup-id pullover
 exec --no-startup-id mailnag
 exec --no-startup-id picom -b --experimental-backends
 exec --no-startup-id chromium --no-startup-window
-exec --no-startup-id thunderbird
-
-exec i3-msg 'workspace 1; exec sleep 2 && chromium'
-exec i3-msg 'workspace 2; exec i3-sensible-terminal'
 
 # vim:ft=i3

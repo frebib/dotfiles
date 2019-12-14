@@ -60,6 +60,7 @@ alias open=xdg-open
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -ir'
+alias scp='scp -r'
 alias dd='dd status=progress'
 alias ssh="ssh -tt"
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
@@ -114,6 +115,7 @@ alias chx='chmod +x'
 
 # Git Aliases
 alias g=git
+alias ginit='git init'
 alias gignore='$EDITOR .gitignore'
 alias gitc='$EDITOR $XDG_CONFIG_HOME/git/config'
 alias ggignore='$EDITOR $XDG_CONFIG_HOME/git/gitignore'
@@ -288,7 +290,7 @@ alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONF
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
-alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar"
+alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; nohup polybar -r i3bar <&- 2>&1 1>/dev/null & disown"
 
 alias sf=screenfetch
 alias nf=neofetch

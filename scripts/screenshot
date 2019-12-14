@@ -9,7 +9,7 @@ FILENAME="$(date '+%s%N' | sha256sum | head -c7).png"
 DIRECTORY="$HOME/pictures/screenshots"
 
 SCP_HOST=frebib@Poseidon.nerdhouse.io
-SCP_PATH=/dave/www/frebib.net/s
+SCP_PATH=/services/www/files/frebib.net/s
 URL_PATH=https://frebib.net/s
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
