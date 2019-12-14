@@ -65,7 +65,8 @@ function display() {
 
     if [ "${line[@]}" == "$update" ]; then
         download
-        exit 0
+        display
+        return
     fi
 
     #IFS=$'\t'
