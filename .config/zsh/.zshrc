@@ -155,3 +155,4 @@ source "$ZSH_DIR/plugins/fish-theme.zsh"
 source "$ZSH_DIR/plugins/git-rprompt.zsh"
 [ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
 [ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+[ -r '/usr/share/z/z.sh' ] && source /usr/share/z/z.sh
