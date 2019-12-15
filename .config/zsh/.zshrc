@@ -57,7 +57,6 @@ source "$antigen_src"
 
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting@feature/redrawhook
 antigen bundle mafredri/zsh-async
 
@@ -81,8 +80,6 @@ bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
-bindkey '^[[1;3A' history-substring-search-up       # Alt+Up (hsh)
-bindkey '^[[1;3B' history-substring-search-down     # Alt+Down (hsh)
 
 bindkey "^V" edit-command-line
 bindkey -M vicmd "^V" edit-command-line
@@ -100,11 +97,6 @@ bindkey -M vicmd l vi-repeat-search
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=128
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-
-HISTORY_SUBSTRING_SEARCH_FUZZY=true
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 
 default='fg=12'
 prog='fg=blue'
