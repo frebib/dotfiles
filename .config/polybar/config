@@ -16,6 +16,7 @@ format-offset  = 0
 screenchange-reload = true
 
 [bar/i3bar]
+monitor = ${env:MONITOR:HDMI-0}
 dpi  = ${xrdb:Xft.dpi:96}
 fixed-center = false
 enable-ipc = true
