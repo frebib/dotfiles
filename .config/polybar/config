@@ -46,8 +46,8 @@ line-colour = #f00
 
 modules-left = i3
 modules-center =
-# modules-right = volume updates weather xkeyboard wlan eth memory cpu xbacklight battery temperature date
-modules-right = volume updates weather wlan eth memory cpu xbacklight battery temperature date
+# modules-right = volume updates weather xkeyboard wlan gateway eth memory cpu xbacklight battery temperature date
+modules-right = volume updates weather wlan gateway eth memory cpu xbacklight battery temperature date
 
 tray-position = right
 tray-detached = false
@@ -75,6 +75,13 @@ type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/weather.sh
 interval = 120
 click-left = i3-msg exec "i3-sensible-terminal -r floating-term -e 'sh -c \"xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity\"'"
+
+[module/gateway]
+type = custom/script
+exec = for v in 4 6; do ip -$v r show default | xargs -l1 sh -c 'fping --retry=1 --quiet --iface "$4" "$2"'; done && echo  || echo '%{F#f41f1c}%{F-}'
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
 
 [module/xkeyboard]
 type = internal/xkeyboard
