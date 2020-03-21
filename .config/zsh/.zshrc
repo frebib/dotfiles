@@ -17,7 +17,7 @@ if exists tty && tty -s; then
 fi
 
 # Configure less and add colours
-export LESS="-RI"
+export LESS="-RI --mouse"
 export PAGER="less"
 export MANPAGER="less -+N"
 # Disable histfile
