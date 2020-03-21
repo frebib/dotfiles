@@ -15,3 +15,4 @@ xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
 
 setxkbmap -option caps:none
 xset r rate 200 18
+xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap
