@@ -104,6 +104,7 @@ bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
 
+bindkey "^F" fzf-file-widget
 bindkey "^V" edit-command-line
 bindkey -M vicmd "^V" edit-command-line
 
