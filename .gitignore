@@ -1,6 +1,10 @@
 bookmarks
 .config/secrets
+
+.config/gtk-2.0/gtkfilechooser.ini
 .config/imgur-screenshot/credentials.conf
+.config/mailnag/mailnag.dat
+.config/zsh/.zshrc.zwc
 
 *.log
 .xournal/recent-files
