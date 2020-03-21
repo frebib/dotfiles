@@ -46,8 +46,8 @@ line-colour = #f00
 
 modules-left = i3
 modules-center =
-# modules-right = volume updates weather xkeyboard wlan gateway eth memory cpu xbacklight battery temperature date
-modules-right = volume updates weather wlan gateway eth memory cpu xbacklight battery temperature date
+# modules-right = volume updates weather xkeyboard wlan gateway eth memory cpu xbacklight battery cputemp gputemp date
+modules-right = volume updates weather wlan gateway eth memory cpu xbacklight battery cputemp gputemp date
 
 tray-position = right
 tray-detached = false
@@ -267,7 +267,7 @@ ramp-capacity-0-foreground = ${colours.critical}
 ramp-capacity-1-foreground = ${colours.warning}
 
 
-[module/temperature]
+[module/cputemp]
 type = internal/temperature
 thermal-zone = 2
 warn-temperature = 70
@@ -286,6 +286,15 @@ ramp-3 = 
 ramp-4 = 
 ramp-5 = 
 ramp-foreground = ${colours.icon}
+
+[module/gputemp]
+type = custom/script
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
+interval = 10
+
+label = %output%°C
+format-prefix = "  "
+format-prefix-foreground = ${colours.icon}
 
 
 [module/powermenu]
