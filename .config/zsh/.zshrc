@@ -1,5 +1,3 @@
-unsetopt MULTIBYTE
-
 # Config and cache directory paths
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 ZSH_DIR="$CONFIG_DIR/zsh"
