@@ -1,0 +1,12 @@
+[Unit]
+Description=NetworkManager Applet
+After=graphical-session.target NetworkManager.service
+Requires=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nm-applet
+Restart=on-failure
+
+[Install]
+WantedBy=desktop.target
