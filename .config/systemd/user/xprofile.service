@@ -1,0 +1,13 @@
+[Unit]
+Description=Load Xorg configuration
+PartOf=xorg.target
+Requires=profile.service
+After=xorg.target profile.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/bash -cx '. $XDG_CONFIG_HOME/X11/xprofile && systemctl --user import-environment'
+
+[Install]
+WantedBy=xorg.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Polybar
+Requires=graphical-session.target
+After=graphical-session.target pulseaudio.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/polybar --reload --log=warning %i
+Restart=always
+
+[Install]
+WantedBy=desktop.target

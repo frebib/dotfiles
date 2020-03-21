@@ -1,0 +1,13 @@
+[Unit]
+Description=Solaar Logitech status applet
+Requires=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/solaar --restart-on-wake-up -d
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=desktop.target

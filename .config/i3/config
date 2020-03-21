@@ -107,7 +107,6 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 
-exec_always --no-startup-id killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar
 exec_always --no-startup-id feh --no-fehbg --no-xinerama --bg-fill $DOTFILES/lakesidesunrise.jpg
 
 # Window rules
@@ -130,7 +129,8 @@ focus_follows_mouse yes
 
 # keybindings
 bindsym $mod+Shift+j            reload
-bindsym $mod+c                  exec chromium
+bindsym $mod+c                  exec systemd-run --user --scope --slice=chromium.slice --no-block -- chromium
+bindsym $mod+b                  exec systemd-run --user --scope --slice=firefox.slice --no-block -- firefox
 bindsym $mod+v                  exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
 bindsym $mod+Ctrl+v             exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
 bindsym $mod+Return             exec i3-sensible-terminal
@@ -161,26 +161,5 @@ bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-volume @DEFA
 bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 5 && pkill -RTMIN+12 i3blocks
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 5 && pkill -RTMIN+12 i3blocks
-
-# app launch shortcuts
-exec --no-startup-id ~/.config/i3/disable-standby-fs.py
-exec --no-startup-id feh --no-fehbg --no-xinerama --bg-fill ~/pictures/lakesidesunrise.jpg
-exec --no-startup-id xautolock -time 5 -locker 'dm-tool switch-to-greeter' -nocloseout -nocloseerr
-exec --no-startup-id xss-lock dm-tool switch-to-greeter
-
-# startup programs
-exec --no-startup-id nextcloud
-exec --no-startup-id blueman-applet
-exec --no-startup-id redshift
-exec --no-startup-id xbindkeys
-exec --no-startup-id solaar
-exec --no-startup-id pullover
-exec --no-startup-id mailnag
-exec --no-startup-id picom -b --experimental-backends
-exec --no-startup-id chromium --no-startup-window
-exec --no-startup-id thunderbird
-
-exec i3-msg 'workspace 1; exec sleep 2 && chromium'
-exec i3-msg 'workspace 2; exec i3-sensible-terminal'
 
 # vim:ft=i3

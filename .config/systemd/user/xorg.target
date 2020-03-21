@@ -1,0 +1,3 @@
+[Unit]
+Description=Graphical desktop environment
+Requires=basic.target

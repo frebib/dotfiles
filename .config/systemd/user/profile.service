@@ -1,0 +1,10 @@
+[Unit]
+Description=Load profile environment into session
+Before=graphical-session-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c '. $HOME/.config/dotfiles/.profile && systemctl --user import-environment'
+
+[Install]
+WantedBy=basic.target

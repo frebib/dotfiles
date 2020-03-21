@@ -105,7 +105,9 @@ mcd(){ mkdir -p -- $@ && cd -- $@; }
 randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
 
 # System aliases
-alias s="sudo systemctl"
+alias sc="systemctl"
+alias ssc="sudo systemctl"
+alias scu="systemctl --user"
 alias j=journalctl
 alias ps='ps aux'
 alias catn='tail -n +1 --'
@@ -290,8 +292,8 @@ alias xinitrc="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
 alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONFIG_HOME/X11/xresources"
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
-alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config ; i3-msg restart"
-alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; killall -q polybar; while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; exec polybar -r i3bar"
+alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config; systemctl --user reload i3"
+alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; systemctl --user restart polybar@i3bar"
 
 alias sf=screenfetch
 alias nf=neofetch

@@ -1,5 +1,6 @@
 [Unit]
 Description=Lock X LightDM session before sleeping
+Requires=graphical-session.target
 Before=sleep.target
 
 [Service]

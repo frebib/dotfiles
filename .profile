@@ -43,18 +43,14 @@ export PATH="${PATH}:/sbin:/usr/sbin:$DOTFILES/scripts:$GOPATH/bin"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
+    eval $(dbus-launch --sh-syntax --exit-with-session)
+fi
+
+# Execute this after updating dbus/systemd environment
 # Source secret keys and values into environment
 if [ -f "$XDG_CONFIG_HOME/secrets" ]; then
     set -o allexport
     source $XDG_CONFIG_HOME/secrets
     set +o allexport
 fi
-
-# Start a dbus session daemon for programs that require it
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exists dbus-launch; then
-    eval $(dbus-launch --sh-syntax --exit-with-session)
-    dbus-update-activation-environment --systemd \
-        DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY \
-        XDG_SEAT_PATH
-fi
-

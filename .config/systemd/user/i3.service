@@ -1,0 +1,14 @@
+[Unit]
+Description=i3 - an improved dynamic, tiling window manager
+Requires=xorg.target
+Before=graphical-session.target
+After=profile.service xprofile.service xorg.target
+
+[Service]
+ExecStart=/usr/bin/i3
+ExecReload=/bin/sh -c 'i3-msg restart; systemctl is-active --user -q picom && systemctl --user restart picom'
+ExecStop=/bin/systemctl --user stop desktop.target
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target

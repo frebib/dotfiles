@@ -15,10 +15,3 @@ xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
 
 setxkbmap -option caps:none
 xset r rate 200 18
-
-
-# Merge system clipboards
-if [ -n "$DISPLAY" ] && exists autocutsel && ! pidof autocutsel 1>/dev/null; then
-    autocutsel -fork
-    autocutsel -selection PRIMARY -fork
-fi

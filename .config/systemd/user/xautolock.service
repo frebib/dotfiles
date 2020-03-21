@@ -1,0 +1,10 @@
+[Unit]
+Description=XBindKeys
+
+[Service]
+ExecStart=/usr/bin/xautolock -time 1 -locker 'dm-tool switch-to-greeter' -detectsleep -resetsaver -secure
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

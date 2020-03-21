@@ -1,0 +1,10 @@
+[Unit]
+Description=autocutsel
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/autocutsel
+
+[Install]
+WantedBy=graphical-session.target
+
