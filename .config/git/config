@@ -10,10 +10,13 @@
 	diffFilter = diff-highlight
 [commit]
 	gpgsign = true
+[fetch]
+	prune = true
 [push]
 	default = upstream
 [pull]
 	rebase = true
+	prune = true
 [rebase]
 	autoStash = true
 [log]
