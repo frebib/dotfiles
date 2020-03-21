@@ -13,7 +13,7 @@ SAVEHIST=999999
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
 # Only set tty if running interactively
-if exists tty && tty -s 1>/dev/null 2>/dev/null; then
+if exists tty && tty -s; then
     # Resolve at shell runtime
     export GPG_TTY="$(tty)"
 fi
