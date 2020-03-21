@@ -1,7 +1,7 @@
 [Unit]
 Description=Polybar
 Requires=graphical-session.target
-After=graphical-session.target pulseaudio.socket
+After=graphical-session.target pulseaudio.socket i3.service
 
 [Service]
 Type=simple
