@@ -126,6 +126,7 @@ gaps inner 20
 gaps outer 4
 
 focus_follows_mouse yes
+popup_during_fullscreen smart
 
 # keybindings
 bindsym $mod+Shift+j            reload
