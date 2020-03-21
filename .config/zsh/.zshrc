@@ -118,6 +118,8 @@ bindkey -M vicmd K vi-kill-eol
 bindkey -M vicmd j vi-find-next-char-skip
 bindkey -M vicmd l vi-repeat-search
 
+# Backspace across newlines when in vi-mode
+bindkey -v '^?' backward-delete-char
 
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=128
