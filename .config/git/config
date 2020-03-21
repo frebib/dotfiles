@@ -26,6 +26,7 @@
 	pushall = !git remote | xargs -L1 git push
 	count = !echo $(pwd) && git rev-list HEAD --count
 	unpushed = !git log --oneline @{u}..HEAD
+	leaders = !git shortlog -s -n --all --no-merges
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
