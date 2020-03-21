@@ -269,8 +269,8 @@ ramp-capacity-1-foreground = ${colours.warning}
 
 [module/cputemp]
 type = internal/temperature
-thermal-zone = 2
-warn-temperature = 70
+hwmon-path = /sys/devices/platform/nct6775.656/hwmon/hwmon1/temp2_input
+base-temperature = 25
 
 format = <ramp>  <label>
 format-warn = <ramp>  <label-warn>
