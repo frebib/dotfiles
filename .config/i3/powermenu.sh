@@ -4,7 +4,7 @@ option=$(echo "lock|logout|sleep|hibernate|power off|reboot|windows" | rofi -sep
 
 case $option in
     lock) dm-tool switch-to-greeter;;
-    logout) i3-msg exit;;
+    logout) systemctl --user exit;;
     sleep) systemctl suspend;;
     hibernate) systemctl hibernate;;
     power\ off) systemctl poweroff;;
@@ -14,5 +14,3 @@ case $option in
         sudo efibootmgr -n $windows
         reboot;;
 esac
-
-exit 0
