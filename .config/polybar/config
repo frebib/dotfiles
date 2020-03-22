@@ -78,7 +78,7 @@ click-left = systemd-run --user --no-block "i3-sensible-terminal -r floating-ter
 
 [module/gateway]
 type = custom/script
-exec = for v in 4 6; do ip -$v r show default | xargs -l1 sh -c 'fping --retry=1 --quiet --iface "$4" "$2"'; done && echo  || echo '%{F#f41f1c}%{F-}'
+exec = for v in 4 6; do ip -$v r show default | xargs -rL1 sh -c 'fping --retry=1 --quiet --iface "$4" "$2"'; done && echo  || echo '%{F#f41f1c}%{F-}'
 interval = 2
 format-prefix = "  "
 format-prefix-foreground = ${colours.icon}
