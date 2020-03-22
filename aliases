@@ -60,6 +60,7 @@ alias open=xdg-open
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -ir'
+alias scp='scp -r'
 alias dd='dd status=progress'
 alias ssh="ssh -tt"
 alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
