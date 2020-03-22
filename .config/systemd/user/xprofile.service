@@ -7,7 +7,7 @@ After=xorg.target profile.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/bash -cx '. $XDG_CONFIG_HOME/X11/xprofile && systemctl --user import-environment'
+ExecStart=/usr/bin/bash -c '. $XDG_CONFIG_HOME/X11/xprofile; systemctl --user import-environment'
 
 [Install]
 WantedBy=xorg.target
