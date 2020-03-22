@@ -1,0 +1,20 @@
+#!/bin/bash -e
+
+args=()
+while getopts "u:s:e:d:cnw" opt
+do case "$opt" in
+    u) args+=("--unit=$OPTARG");;
+    s) args+=("--slice=$OPTARG");;
+    e) args+=("--setenv=$OPTARG");;
+    d) args+=("--working-directory=$OPTARG");;
+    c) args+=("--scope");;
+    n) args+=("--no-block");;
+    w) args+=("--wait");;
+    *) shift;;
+    esac
+done
+shift $((OPTIND-1))
+
+rand=$(tr -dc 'a-f0-9' < /dev/urandom | head -c 16)
+
+exec systemd-run --user --collect ${args[@]} --unit="$1-$rand" -- "$@"

@@ -129,26 +129,27 @@ popup_during_fullscreen smart
 
 # keybindings
 bindsym $mod+Shift+j            reload
-bindsym $mod+c                  exec systemd-run --user --scope --slice=chromium.slice --no-block -- chromium
-bindsym $mod+b                  exec systemd-run --user --scope --slice=firefox.slice --no-block -- firefox
-bindsym $mod+v                  exec "i3-sensible-terminal -e sh -c \\"($SHELL -c $EDITOR || :) && $SHELL\\"
-bindsym $mod+Ctrl+v             exec "i3-sensible-terminal --class floating-term -e sh -c \\"($SHELL -c $EDITOR || : ) && $SHELL\\"
-bindsym $mod+Return             exec i3-sensible-terminal
-bindsym $mod+Ctrl+Return        exec i3-sensible-terminal --class floating-term
-bindsym $mod+Shift+Return       exec i3-sensible-terminal --working-directory "$(xcwd)"
-bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal --class floating-term --working-directory "$(xcwd)"
+bindsym $mod+c                  exec notify-send "Try again" "You meant \\\$mod+b"
+bindsym $mod+b                  exec systemd-run-i3 -c -s firefox firefox
+bindsym $mod+v                  exec systemd-run-i3 i3-sensible-terminal -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
+bindsym $mod+Ctrl+v             exec systemd-run-i3 i3-sensible-terminal --class floating-term -e sh -c "($SHELL -c $EDITOR || : ) && $SHELL"
+bindsym $mod+Return             exec systemd-run-i3 i3-sensible-terminal
+bindsym $mod+Ctrl+Return        exec systemd-run-i3 i3-sensible-terminal --class floating-term
+bindsym $mod+Shift+Return       exec systemd-run-i3 i3-sensible-terminal --working-directory "$(xcwd)"
+bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 i3-sensible-terminal --class floating-term --working-directory "$(xcwd)"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
-bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
+bindsym $mod+space              exec rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -n {cmd}'
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
-bindsym $mod+Shift+e            exec rofi-emoji
-bindsym $mod+Shift+i            exec rofi-fontawesome
-bindsym --release Print         exec screenshot
-bindsym --release $mod+Print    exec imgur-screenshot
-bindsym $mod+$alt+space         exec --no-startup-id ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
-bindsym $mod+numbersign         exec "i3-sensible-terminal -e 'sh -c xclip\ -o\ |\ gpg\ --decrypt\ 2>&1\ \;\ $SHELL'"
-bindsym $mod+r                  exec "bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'"
-bindsym $mod+g                  exec "LINK=$(gist -PRpc); notify-send -c transfer \\"$LINK\\""
-bindsym --release $mod+i        exec sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
+bindsym $mod+Shift+e            exec systemd-run-i3 -n rofi-emoji
+bindsym $mod+Shift+i            exec systemd-run-i3 -n rofi-fontawesome
+bindsym --release Print         exec systemd-run-i3 -n screenshot
+bindsym --release $mod+Print    exec systemd-run-i3 -n imgur-screenshot
+bindsym $mod+x                  exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
+bindsym $mod+$alt+space         exec systemd-run-i3 -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
+bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
+bindsym $mod+r                  exec systemd-run-i3 -n bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'
+bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
+bindsym --release $mod+i        exec systemd-run-i3 -n sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
 
 # Media player controls
 bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
