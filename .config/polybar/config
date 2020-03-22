@@ -68,13 +68,13 @@ exec = $XDG_CONFIG_HOME/polybar/update.sh
 tail = true
 format-prefix = "  "
 format-prefix-foreground = ${colours.icon}
-click-left = systemd-run --user --no-block -- i3-sensible-terminal -r i3blocks-update-term -e "yay && kill -USR1 %pid% || kill --USR1 %pid%"
+click-left = systemd-run --user --no-block -- i3-sensible-terminal -r i3blocks-update-term -e "sh -c 'yay && kill -USR1 %pid% || kill --USR1 %pid%'"
 
 [module/weather]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/weather.sh
 interval = 120
-click-left = systemd-run --user --no-block "i3-sensible-terminal -r floating-term -e 'sh -c \"xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity\"'"
+click-left = systemd-run --user --no-block i3-sensible-terminal -r floating-term -e 'sh -c "xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity"'
 
 [module/gateway]
 type = custom/script
