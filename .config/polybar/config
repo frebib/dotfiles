@@ -68,7 +68,7 @@ exec = $XDG_CONFIG_HOME/polybar/update.sh
 tail = true
 format-prefix = "  "
 format-prefix-foreground = ${colours.icon}
-click-left = systemd-run --user --no-block -- i3-sensible-terminal --class floating-term -e sh -c "yay; kill -USR1 %pid%"
+click-left = systemd-run --user --no-block -- i3-sensible-terminal --class floating-term -e sh -c "yay; kill -USR1 %pid%; sleep 1"
 
 [module/weather]
 type = custom/script
