@@ -113,10 +113,9 @@ exec_always --no-startup-id feh --no-fehbg --no-xinerama --bg-fill $DOTFILES/lak
 for_window [class="Pinentry"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="floating-term" instance="termite"] floating enable
+for_window [class="Alacritty" instance="floating-term"] floating enable
 for_window [window_role="floating-term"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="i3blocks-update-term"] floating enable
-for_window [window_role="i3blocks-clock-term"] floating enable
 for_window [title="^rofi$"] floating enable
 
 new_window none
@@ -132,12 +131,12 @@ popup_during_fullscreen smart
 bindsym $mod+Shift+j            reload
 bindsym $mod+c                  exec systemd-run --user --scope --slice=chromium.slice --no-block -- chromium
 bindsym $mod+b                  exec systemd-run --user --scope --slice=firefox.slice --no-block -- firefox
-bindsym $mod+v                  exec "i3-sensible-terminal -e \\"$SHELL -c vim;$SHELL\\"
-bindsym $mod+Ctrl+v             exec "i3-sensible-terminal -r floating-term -e \\"$SHELL -c vim;$SHELL\\"
+bindsym $mod+v                  exec "i3-sensible-terminal -e sh -c \\"($SHELL -c $EDITOR || :) && $SHELL\\"
+bindsym $mod+Ctrl+v             exec "i3-sensible-terminal --class floating-term -e sh -c \\"($SHELL -c $EDITOR || : ) && $SHELL\\"
 bindsym $mod+Return             exec i3-sensible-terminal
-bindsym $mod+Ctrl+Return        exec i3-sensible-terminal -r floating-term
-bindsym $mod+Shift+Return       exec i3-sensible-terminal -d "`xcwd`"
-bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal -r floating-term -d "`xcwd`"
+bindsym $mod+Ctrl+Return        exec i3-sensible-terminal --class floating-term
+bindsym $mod+Shift+Return       exec i3-sensible-terminal --working-directory "$(xcwd)"
+bindsym $mod+Ctrl+Shift+Return  exec i3-sensible-terminal --class floating-term --working-directory "$(xcwd)"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'

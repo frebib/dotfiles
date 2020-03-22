@@ -1,7 +1,7 @@
 #!/bin/sh -u
 
 # Graphical-specific environment variables
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"

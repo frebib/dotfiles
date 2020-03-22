@@ -68,13 +68,13 @@ exec = $XDG_CONFIG_HOME/polybar/update.sh
 tail = true
 format-prefix = "  "
 format-prefix-foreground = ${colours.icon}
-click-left = systemd-run --user --no-block -- i3-sensible-terminal -r i3blocks-update-term -e "sh -c 'yay && kill -USR1 %pid% || kill --USR1 %pid%'"
+click-left = systemd-run --user --no-block -- i3-sensible-terminal --class floating-term -e sh -c "yay; kill -USR1 %pid%"
 
 [module/weather]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/weather.sh
 interval = 120
-click-left = systemd-run --user --no-block i3-sensible-terminal -r floating-term -e 'sh -c "xdotool getactivewindow windowsize 910 680 && curl wttr.in && sleep infinity"'
+click-left = systemd-run --user --no-block -- i3-sensible-terminal --class floating-term -d 125 40 --hold -e sh -c "curl wttr.in"
 
 [module/gateway]
 type = custom/script
@@ -208,7 +208,7 @@ label-disconnected-foreground = ${colours.critical}
 type = internal/date
 interval = 1
 
-label = %{A3:systemd-run --user --no-block -- i3-sensible-terminal -r i3blocks-clock-term -e "sh -c \"xdotool getactivewindow windowsize 500 600; cal -y $(date +%Y); stty -echo; exec sleep infinity\"" &:}%date% %time%%{A}
+label = %{A3:systemd-run --user --no-block -- i3-sensible-terminal --class floating-term -d 66 35 -qq --hold -e sh -c "cal -y $(date +%Y)":}%date% %time%%{A}
 
 time = %H:%M
 time-alt = %a %e %b %Y %H:%M:%S
