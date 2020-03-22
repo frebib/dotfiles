@@ -30,11 +30,11 @@ text/plain=vim.desktop
 text/x-makefile=vim.desktop
 
 # Chromium for web/html
-text/html=chromium.desktop
-x-scheme-handler/about=chromium.desktop
-x-scheme-handler/http=chromium.desktop
-x-scheme-handler/https=chromium.desktop
-x-scheme-handler/unknown=chromium.desktop
+text/html=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
 
 # Various desktop applications
 inode/directory=nautilus.desktop
