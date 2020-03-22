@@ -1,6 +1,7 @@
 bookmarks
 .config/secrets
 
+.config/gopass/gopass-logo-small.png
 .config/gtk-2.0/gtkfilechooser.ini
 .config/imgur-screenshot/credentials.conf
 .config/mailnag/mailnag.dat
