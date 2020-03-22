@@ -116,6 +116,7 @@ alias chx='chmod +x'
 
 # Git Aliases
 alias g=git
+alias ginit='git init'
 alias gignore='$EDITOR .gitignore'
 alias gitc='$EDITOR $XDG_CONFIG_HOME/git/config'
 alias ggignore='$EDITOR $XDG_CONFIG_HOME/git/gitignore'
