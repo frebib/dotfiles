@@ -12,7 +12,7 @@ case $option in
     windows)
         windows=`efibootmgr | grep -Po -m1 'Boot\K(\d{4}).*Windows.*' | head -c4`
         sudo efibootmgr -n $windows
-        sudo hibereboot;;
+        reboot;;
 esac
 
 exit 0
