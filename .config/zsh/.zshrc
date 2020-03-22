@@ -17,9 +17,10 @@ if exists tty && tty -s; then
 fi
 
 # Configure less and add colours
-export LESS="-RI --mouse"
+export LESS="-RI --mouse --wheel-lines=3"
 export PAGER="less"
 export MANPAGER="less -+N"
+export SYSTEMD_PAGER="less $LESS"
 # Disable histfile
 export LESSHISTFILE=-
 
