@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 NOTIFY_APPNAME="$(basename "$0")"
 NOTIFY_ICONPATH="/usr/share/icons/Xenlism-Wildfire/Apps/screenshot.svg"
 
-SCROT_CMD="maim -m 10 -us %"
 FILENAME="$(date '+%s%N' | sha256sum | head -c7).png"
 DIRECTORY="$HOME/pictures/screenshots"
 
@@ -30,11 +29,32 @@ send_notification() {
 # Make the screenshot directory
 mkdir -p "$DIRECTORY"
 
-# Take the screenshot and save it
+# Take screenshot geometry
+read -r winid geom < <(slop -f "%i %g") || :
+if [ -z "$geom" -o -z "$winid" ]; then
+    send_notification "Screenshot error" "Failed to capture screenshot area" > /dev/null
+    exit 1
+fi
+
 out_path="$DIRECTORY/$FILENAME"
-if ! error=$(eval ${SCROT_CMD//\%/$out_path} 2>&1); then
+args=(-g "$geom")
+
+# If selection is the root window
+if xwininfo -id "$winid" | grep -qw root; then
+    isroot=1
+    args+=(-i "$winid")
+fi
+
+# Take the screenshot and save it
+if ! error=$(maim -m 10 -u -f png ${args[@]} "$out_path" 2>&1); then
     send_notification "Screenshot error" "Failed to take a screenshot:<br><br>$error" >/dev/null
     exit 1
+fi
+
+# If the screenshot is a complete window, add a shadow
+if [ "$isroot" != "1" ]; then
+    # but don't worry if it fails
+    convert "$out_path" \( +clone -background black -alpha set -channel Alpha -evaluate set 80% -shadow 100x16+0+0 \) +swap -background none -layers merge +repage "$out_path" || :
 fi
 
 notif_id=$(send_notification "Screenshot uploading" "$FILENAME<br><br>The image is available in the clipboard immediately" || true)
