@@ -129,6 +129,7 @@ popup_during_fullscreen smart
 
 # keybindings
 bindsym $mod+Shift+j            reload
+bindsym $mod+x                  exec xkill
 bindsym $mod+c                  exec notify-send "Try again" "You meant \\\$mod+b"
 bindsym $mod+b                  exec systemd-run-i3 -c -s firefox firefox
 bindsym $mod+v                  exec systemd-run-i3 i3-sensible-terminal -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
@@ -144,7 +145,7 @@ bindsym $mod+Shift+e            exec systemd-run-i3 -n rofi-emoji
 bindsym $mod+Shift+i            exec systemd-run-i3 -n rofi-fontawesome
 bindsym --release Print         exec screenshot
 bindsym --release $mod+Print    exec imgur-screenshot
-bindsym $mod+x                  exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
+bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
 bindsym $mod+$alt+space         exec systemd-run-i3 -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
 bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
 bindsym $mod+r                  exec systemd-run-i3 -n bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'
