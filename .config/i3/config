@@ -142,8 +142,8 @@ bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
 bindsym $mod+Shift+e            exec systemd-run-i3 -n rofi-emoji
 bindsym $mod+Shift+i            exec systemd-run-i3 -n rofi-fontawesome
-bindsym --release Print         exec systemd-run-i3 -n screenshot
-bindsym --release $mod+Print    exec systemd-run-i3 -n imgur-screenshot
+bindsym --release Print         exec screenshot
+bindsym --release $mod+Print    exec imgur-screenshot
 bindsym $mod+x                  exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
 bindsym $mod+$alt+space         exec systemd-run-i3 -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
 bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
