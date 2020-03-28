@@ -141,8 +141,8 @@ bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 i3-sensible-terminal --class
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -n {cmd}'"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
-bindsym $mod+Shift+e            exec systemd-run-i3 -n rofi-emoji
-bindsym $mod+Shift+i            exec systemd-run-i3 -n rofi-fontawesome
+bindsym $mod+Shift+e            exec rofi-emoji
+bindsym $mod+Shift+i            exec rofi-fontawesome
 bindsym --release Print         exec screenshot
 bindsym --release $mod+Print    exec imgur-screenshot
 bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
