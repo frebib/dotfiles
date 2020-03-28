@@ -141,12 +141,15 @@ alias gst="git status"
 
 alias gm="git merge"
 alias gma="git merge --abort"
+
 alias grb="git rebase"
 alias grba="grb --abort"
 alias grbc="grb --continue"
 alias grbsk="grb --skip"
 alias grbsh="grb --show-current"
 alias grbom="git rebase origin/master"
+
+alias gcp="git cherry-pick"
 
 alias gf="git fetch"
 alias gp="git push"
