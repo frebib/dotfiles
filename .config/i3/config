@@ -129,7 +129,7 @@ popup_during_fullscreen smart
 
 # keybindings
 bindsym $mod+Shift+j            reload
-bindsym $mod+x                  exec xkill
+bindsym --release $mod+x        exec xkill
 bindsym $mod+c                  exec notify-send "Try again" "You meant \\\$mod+b"
 bindsym $mod+b                  exec systemd-run-i3 -c -s firefox firefox
 bindsym $mod+v                  exec systemd-run-i3 i3-sensible-terminal -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
