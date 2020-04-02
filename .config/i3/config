@@ -132,12 +132,12 @@ bindsym $mod+Shift+j            reload
 bindsym --release $mod+x        exec xkill
 bindsym $mod+c                  exec notify-send "Try again" "You meant \\\$mod+b"
 bindsym $mod+b                  exec systemd-run-i3 -c -s firefox firefox
-bindsym $mod+v                  exec systemd-run-i3 i3-sensible-terminal -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
-bindsym $mod+Ctrl+v             exec systemd-run-i3 i3-sensible-terminal --class floating-term -e sh -c "($SHELL -c $EDITOR || : ) && $SHELL"
-bindsym $mod+Return             exec systemd-run-i3 i3-sensible-terminal
-bindsym $mod+Ctrl+Return        exec systemd-run-i3 i3-sensible-terminal --class floating-term
-bindsym $mod+Shift+Return       exec systemd-run-i3 i3-sensible-terminal --working-directory "$(xcwd)"
-bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 i3-sensible-terminal --class floating-term --working-directory "$(xcwd)"
+bindsym $mod+Return             exec systemd-run-i3 -n alacritty
+bindsym $mod+Ctrl+Return        exec systemd-run-i3 -n alacritty --class floating
+bindsym $mod+Shift+Return       exec systemd-run-i3 -n alacritty --working-directory "$(xcwd)"
+bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 -n alacritty --class floating --working-directory "$(xcwd)"
+bindsym $mod+v                  exec systemd-run-i3 -n alacritty -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
+bindsym $mod+Ctrl+v             exec systemd-run-i3 -n alacritty --class floating -e sh -c "($SHELL -c $EDITOR || : ) && $SHELL"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -n {cmd}'"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
