@@ -309,3 +309,4 @@ map Q <nop>
 
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
+autocmd FileType gitcommit setlocal cc=72 et sw=4
