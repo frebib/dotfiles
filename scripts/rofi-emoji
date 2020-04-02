@@ -63,11 +63,6 @@ function download() {
     notify "$(basename "$0")" "We're all set!"
 }
 
-function toclip() {
-    xclip -i -selection primary
-    xclip -o -selection primary | xclip -i -selection clipboard
-}
-
 function repeat() {
     local rplc str="$1" count="$2"
     rplc="$(printf "%${count}s")"
@@ -85,7 +80,6 @@ function display() {
     update="⏫ Update emoji cache"
     emoji=$(printf "$emoji\n$update")
     line=$(echo "$emoji" | rofi -dmenu -i -p emoji -normal-window -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
-    exit_code=$?
 
     if [ "${line[@]}" == "$update" ]; then
         download
@@ -100,12 +94,10 @@ function display() {
     echo "$quantifier" | egrep -q '^[0-9]+$' || quantifier=1
     emojis="$(repeat "${line[0]}" "$quantifier")"
 
-    if [ $exit_code == 0 ]; then
-        xdotool type --clearmodifiers "$emojis"
-        echo -n "$emojis" | xclip -i
-    elif [ $exit_code == 10 ]; then
-        echo -n "$emojis" | xclip -i
-    fi
+    sleep 0.1
+    # Type the emojis, and put them in the clipboard
+    xdotool type --clearmodifiers "$emojis"
+    printf "%s" "$emojis" | xclip -i -selection CLIPBOARD
 }
 
 
