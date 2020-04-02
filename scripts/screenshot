@@ -54,7 +54,7 @@ fi
 # If the screenshot is a complete window, add a shadow
 if [ "$isroot" != "1" ]; then
     # but don't worry if it fails
-    convert "$out_path" \( +clone -background black -alpha set -channel Alpha -evaluate set 80% -shadow 100x16+0+0 \) +swap -background none -layers merge +repage "$out_path" || :
+    convert "$out_path" \( +clone -background black -alpha set -channel Alpha -evaluate set 60% -shadow 100x16+0+0 \) +swap -background none -layers merge +repage "$out_path" || :
 fi
 
 notif_id=$(send_notification "Screenshot uploading" "$FILENAME<br><br>The image is available in the clipboard immediately" || true)
