@@ -44,15 +44,6 @@ fi
 setopt sharehistory histignorealldups histignorespace histreduceblanks
 setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend interactivecomments dvorak
 
-# Completion initialisation
-autoload -U compinit ; compinit
-autoload -U bashcompinit ; bashcompinit
-
-# gopass completion
-if exists gopass; then
-    source <(gopass completion bash)
-fi
-
 zstyle ':completion:*:sudo|_::' environ PATH="/sbin:/usr/sbin:$PATH" HOME="/root"
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
 zstyle ':completion:*' rehash true
@@ -175,3 +166,13 @@ source "$ZSH_DIR/plugins/git-rprompt.zsh"
 [ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
 [ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ] && source /usr/share/doc/pkgfile/command-not-found.zsh
 [ -r '/usr/share/z/z.sh' ] && source /usr/share/z/z.sh
+
+# Completion initialisation
+autoload -U compinit bashcompinit
+compinit
+bashcompinit
+
+# gopass completion
+if exists gopass; then
+    source <(gopass completion bash)
+fi
