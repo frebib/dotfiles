@@ -43,6 +43,9 @@ args=(-g "$geom")
 if xwininfo -id "$winid" | grep -qw root; then
     isroot=1
     args+=(-i "$winid")
+elif [ "$1" == "--active" -o "$1" == "-a" ]; then
+    args+=(-i "$(xdotool getactivewindow)")
+    shift
 fi
 
 # Take the screenshot and save it
@@ -57,10 +60,15 @@ if [ "$isroot" != "1" ]; then
     convert "$out_path" \( +clone -background black -alpha set -channel Alpha -evaluate set 60% -shadow 100x16+0+0 \) +swap -background none -layers merge +repage "$out_path" || :
 fi
 
-notif_id=$(send_notification "Screenshot uploading" "$FILENAME<br><br>The image is available in the clipboard immediately" || true)
+if [ "$1" == "--clip" -o "$1" == "-c" ]; then
+    # Add image to clipboard
+    xclip -i "$out_path" -selection clipboard -t image/png
+    send_notification "Screenshot captured" "$FILENAME<br><br>The image is available in the clipboard"
 
-# Add image to clipboard
-xclip -i "$out_path" -selection clipboard -t image/png
+    exit 0
+fi
+
+notif_id=$(send_notification "Screenshot uploading" "$FILENAME" || true)
 
 # 'Upload' the screenshot
 if ! error=$(scp -C $out_path $SCP_HOST:$SCP_PATH 2>&1); then
