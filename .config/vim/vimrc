@@ -114,6 +114,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'chr4/nginx.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'saltstack/salt-vim'
 Plug 'arrufat/vala.vim'
 
 call plug#end()
