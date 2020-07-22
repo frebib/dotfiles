@@ -142,7 +142,7 @@ bindsym $mod+Ctrl+v             exec systemd-run-i3 -n alacritty --class floatin
 bindsym $mod+l                  exec dm-tool switch-to-greeter
 bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -n {cmd}'"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
-bindsym $mod+Shift+e            exec rofi-emoji
+bindsym $mod+Shift+e            exec "pkill rofi; rofi -show emoji -modi emoji -normal-window"
 bindsym $mod+Shift+i            exec rofi-fontawesome
 bindsym --release Print         exec screenshot
 bindsym --release $mod+Print    exec imgur-screenshot
