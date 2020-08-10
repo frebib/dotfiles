@@ -23,6 +23,8 @@ export MANPAGER="less -+N"
 export SYSTEMD_PAGER="less $LESS"
 # Disable histfile
 export LESSHISTFILE=-
+# Use .local/share for z instead of ~/.z
+export _Z_DATA="$XDG_DATA_HOME/z"
 
 if exists tput; then
     export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
@@ -72,6 +74,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting@feature/redrawhook
 antigen bundle mafredri/zsh-async
+antigen bundle agkozak/zsh-z
 
 antigen apply
 
@@ -163,7 +166,6 @@ source "$ZSH_DIR/plugins/fish-theme.zsh"
 source "$ZSH_DIR/plugins/git-rprompt.zsh"
 [ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
 [ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ] && source /usr/share/doc/pkgfile/command-not-found.zsh
-[ -r '/usr/share/z/z.sh' ] && source /usr/share/z/z.sh
 
 # Completion initialisation
 autoload -U compinit bashcompinit
