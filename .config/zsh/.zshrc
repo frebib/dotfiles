@@ -1,12 +1,11 @@
 # Config and cache directory paths
-CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-ZSH_DIR="$CONFIG_DIR/zsh"
-LOG_DIR="$ZSH_DIR/log"
-mkdir -p "$LOG_DIR"
-
-HISTFILE="$ZSH_DIR/histfile"
+ZSH_DIR="$XDG_CONFIG_HOME/zsh"
+LOG_DIR="$XDG_DATA_HOME/logs"
+HISTFILE="$XDG_DATA_HOME/zsh/history"
 HISTSIZE=999999
 SAVEHIST=999999
+
+mkdir -p "$LOG_DIR" "$(dirname "$HISTFILE")"
 
 exists() { which $@ 0<&- 1>/dev/null 2>/dev/null; }
 
@@ -62,8 +61,7 @@ x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
 zle -N x-bash-backward-kill-word
 
 # Load antigen & plugins
-ADOTDIR="$ZSH_DIR/antigen" # Antigen directory
-ANTIGEN_LOG="$LOG_DIR/antigen-$(date +"%Y_%m_%d_%I_%M_%p").log"
+ANTIGEN_LOG="$LOG_DIR/antigen-$(date -u --iso-8601=seconds | cut -d+ -f1).log"
 antigen_src="$ADOTDIR/antigen.zsh"
 if [ ! -f "$antigen_src" ]; then
     git clone https://github.com/zsh-users/antigen.git "$ADOTDIR"

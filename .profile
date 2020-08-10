@@ -21,6 +21,7 @@ export VISUAL="vim"
 # Override paths for non-compliant programs
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory_support
 
+export ADOTDIR="$XDG_DATA_HOME/zsh/antigen"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
