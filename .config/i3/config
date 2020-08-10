@@ -149,7 +149,7 @@ bindsym --release $mod+Print    exec imgur-screenshot
 bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
 bindsym $mod+$alt+space         exec systemd-run-i3 -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
 bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
-bindsym $mod+r                  exec bash -c 'pwgen -nc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i'
+bindsym $mod+r                  exec bash -c 'pwgen -snc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i -r'
 bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
 bindsym --release $mod+i        exec systemd-run-i3 -n sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
 
