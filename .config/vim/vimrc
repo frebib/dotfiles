@@ -61,10 +61,6 @@ autocmd VimResized * wincmd =
 set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
 
-" GVim settings
-set guifont=Sauce\ Code\ Pro\ 9
-set guioptions=
-
 " Whitespace highlight settings
 set list
 set listchars=eol:$,space:·,tab:>-,trail:◦,extends:▶,precedes:◀
