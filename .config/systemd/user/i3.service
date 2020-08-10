@@ -6,7 +6,7 @@ After=profile.service xprofile.service xorg.target
 
 [Service]
 ExecStart=/usr/bin/i3
-ExecReload=/bin/sh -c 'i3-msg restart; systemctl is-active --user -q picom && systemctl --user restart picom'
+ExecReload=/usr/bin/i3-msg reload
 Restart=always
 
 [Install]
