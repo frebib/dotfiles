@@ -25,5 +25,4 @@ echo Xft.dpi: $dpi | xrdb -merge
 xrandr --dpi $dpi
 
 systemctl --user reload-or-restart xsettingsd
-systemctl --user --no-block reload i3
-systemctl --user --no-block restart polybar@i3bar dunst
+systemctl --user --no-block reload i3 polybar@i3bar

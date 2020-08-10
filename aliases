@@ -297,7 +297,7 @@ alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONF
 alias sshc="$EDITOR ~/.ssh/config"
 alias dotfiles="cd $DOTFILES"
 alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config; systemctl --user reload i3"
-alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; systemctl --user restart polybar@i3bar"
+alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; systemctl --user reload polybar@i3bar"
 
 alias sf=screenfetch
 alias nf=neofetch
