@@ -49,15 +49,14 @@ endfunction
 set autowrite
 autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
 
-" Auto-resize split on window resize
-autocmd VimResized * wincmd =
-
 " Search options
 set hlsearch
 set ignorecase
 set smartcase
 set magic
 
+" Auto-resize split on window resize
+autocmd VimResized * wincmd =
 " More natural splits
 set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
