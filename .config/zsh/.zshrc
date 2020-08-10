@@ -95,8 +95,6 @@ bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
 
 bindkey "^F" fzf-file-widget
-bindkey "^V" edit-command-line
-bindkey -M vicmd "^V" edit-command-line
 bindkey -M vicmd "^W" backward-delete-word
 
 bindkey -M vicmd d vi-backward-char
