@@ -304,4 +304,10 @@ alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 alias ipa="ip a"
 alias addrs="ip a | grep inet | grep -ve fe80 -e '127\\.0\\.0\\.1/8' -e '::1/128' | sort -n | sed 's/^\\s*//'"
 
+# alertmanager
+alias alert='amtool alert'
+alias silence='amtool silence'
+alias expire='amtool silence expire'
+unsilence() { { for inst in "$@"; do amtool silence query instance=$inst | grep -Po '^([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})' | tee /dev/stderr | xargs -r amtool silence expire & done; wait; } | cat }
+
 # vim: ft=sh
