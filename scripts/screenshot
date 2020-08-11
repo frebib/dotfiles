@@ -13,6 +13,29 @@ URL_PATH=https://frebib.net/s
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+params=$(getopt -o ac -l active,clip -n screenshot -- "$@")
+eval set -- "$params"
+unset params
+
+while true; do
+    case "$1" in
+        '-a'|'--active')
+            active=1
+            shift
+            continue;;
+        '-c'|'--clip')
+            clip=1
+            shift
+            continue;;
+		'--')
+			shift
+			break;;
+		*)
+			echo 'getopt error' >&2
+			exit 1;;
+	esac
+done
+
 send_notification() {
     title="$1"
     body="$2"
@@ -28,24 +51,24 @@ send_notification() {
 
 # Make the screenshot directory
 mkdir -p "$DIRECTORY"
-
-# Take screenshot geometry
-read -r winid geom < <(slop -f "%i %g") || :
-if [ -z "$geom" -o -z "$winid" ]; then
-    send_notification "Screenshot error" "Failed to capture screenshot area" > /dev/null
-    exit 1
-fi
-
 out_path="$DIRECTORY/$FILENAME"
-args=(-g "$geom")
 
-# If selection is the root window
-if xwininfo -id "$winid" | grep -qw root; then
-    isroot=1
-    args+=(-i "$winid")
-elif [ "$1" == "--active" -o "$1" == "-a" ]; then
+if [ "$active" = '1' ]; then
     args+=(-i "$(xdotool getactivewindow)")
-    shift
+else
+    # Take screenshot geometry
+    read -r winid geom < <(slop -f "%i %g") || :
+    if [ -z "$geom" -o -z "$winid" ]; then
+        send_notification "Screenshot error" "Failed to capture screenshot area" > /dev/null
+        exit 1
+    fi
+    args=(-g "$geom")
+
+    # If selection is the root window
+    if xwininfo -id "$winid" | grep -qw root; then
+        isroot=1
+        args+=(-i "$winid")
+    fi
 fi
 
 # Take the screenshot and save it
@@ -60,10 +83,10 @@ if [ "$isroot" != "1" ]; then
     convert "$out_path" \( +clone -background black -alpha set -channel Alpha -evaluate set 60% -shadow 100x16+0+0 \) +swap -background none -layers merge +repage "$out_path" || :
 fi
 
-if [ "$1" == "--clip" -o "$1" == "-c" ]; then
+if [ "$clip" = '1' ]; then
     # Add image to clipboard
     xclip -i "$out_path" -selection clipboard -t image/png
-    send_notification "Screenshot captured" "$FILENAME<br><br>The image is available in the clipboard"
+    send_notification "Screenshot captured" "$FILENAME<br><br>The image is available in the clipboard" >/dev/null
 
     exit 0
 fi
