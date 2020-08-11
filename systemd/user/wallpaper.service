@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply wallpaper on screen-change event
+Requires=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "xev -root -event randr 2>&1 | while awk -v RS='\n\n' '{exit;}'; do echo 'Applying wallpaper'; feh --no-fehbg --no-xinerama --bg-fill ~/.config/lakesidesunrise.jpg; done"
+Restart=always
+
+[Install]
+WantedBy=desktop.target
