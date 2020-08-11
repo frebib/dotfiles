@@ -1,12 +1,11 @@
 [Unit]
-Description=autocutsel selection %i
+Description=Lightweight GTK+ clipboard manager
 PartOf=graphical-session.target
 Requires=xorg.target
 After=xorg.target
 
 [Service]
-ExecStart=/usr/bin/autocutsel -selection %i
+ExecStart=/usr/bin/parcellite -n
 
 [Install]
 WantedBy=graphical-session.target
-
