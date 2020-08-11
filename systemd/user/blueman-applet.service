@@ -1,7 +1,7 @@
 [Unit]
 Description=Bluetooth Applet
-After=graphical-session.target bluetooth.service
-Requires=graphical-session.target bluetooth.service
+After=graphical-session.target
+Requires=graphical-session.target
 
 [Service]
 Type=simple
