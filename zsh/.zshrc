@@ -149,7 +149,7 @@ ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=green'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan,bold'
 
-source "$DOTFILES/aliases"
+source "$XDG_CONFIG_HOME/aliases"
 
 # Source secret keys and values into environment
 if [ -f "$XDG_CONFIG_HOME/secrets" ]; then

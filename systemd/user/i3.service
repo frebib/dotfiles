@@ -2,7 +2,7 @@
 Description=i3 - an improved dynamic, tiling window manager
 Requires=xorg.target
 Before=graphical-session.target
-After=profile.service xprofile.service xorg.target
+After=xprofile.service xorg.target
 
 [Service]
 ExecStart=/usr/bin/i3

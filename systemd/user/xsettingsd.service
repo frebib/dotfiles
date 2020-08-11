@@ -1,7 +1,7 @@
 [Unit]
 Description=xsettingsd - provide settings to X11 applications
 Requires=xorg.target
-After=xorg.target profile.service
+After=xorg.target
 
 [Service]
 ExecStart=/bin/sh -c 'xsettingsd -c $XDG_CONFIG_HOME/xsettingsd/xsettingsd.local'

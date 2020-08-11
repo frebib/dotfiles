@@ -1,7 +1,5 @@
 [Unit]
 Description=XBindKeys
-Requires=profile.service
-After=profile.service
 
 [Service]
 ExecStart=/usr/bin/xbindkeys -n -f $XDG_CONFIG_HOME/X11/xbindkeysrc
