@@ -132,15 +132,15 @@ popup_during_fullscreen smart
 bindsym $mod+Shift+j            reload
 bindsym --release $mod+x        exec xkill
 bindsym $mod+c                  exec notify-send "Try again" "You meant \\\$mod+b"
-bindsym $mod+b                  exec systemd-run-i3 -c -s firefox firefox
-bindsym $mod+Return             exec systemd-run-i3 -n alacritty
-bindsym $mod+Ctrl+Return        exec systemd-run-i3 -n alacritty --class floating
-bindsym $mod+Shift+Return       exec systemd-run-i3 -n alacritty --working-directory "$(xcwd)"
-bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 -n alacritty --class floating --working-directory "$(xcwd)"
-bindsym $mod+v                  exec systemd-run-i3 -n alacritty -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
-bindsym $mod+Ctrl+v             exec systemd-run-i3 -n alacritty --class floating -e sh -c "($SHELL -c $EDITOR || : ) && $SHELL"
+bindsym $mod+b                  exec systemd-run-i3 -s app -c firefox
+bindsym $mod+Return             exec systemd-run-i3 -s app -n alacritty
+bindsym $mod+Ctrl+Return        exec systemd-run-i3 -s app -n alacritty --class floating
+bindsym $mod+Shift+Return       exec systemd-run-i3 -s app -n alacritty --working-directory "$(xcwd)"
+bindsym $mod+Ctrl+Shift+Return  exec systemd-run-i3 -s app -n alacritty --class floating --working-directory "$(xcwd)"
+bindsym $mod+v                  exec systemd-run-i3 -s app -n alacritty -e sh -c "($SHELL -c $EDITOR || :) && $SHELL"
+bindsym $mod+Ctrl+v             exec systemd-run-i3 -s app -n alacritty --class floating -e sh -c "($SHELL -c $EDITOR || : ) && $SHELL"
 bindsym $mod+l                  exec dm-tool switch-to-greeter
-bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -n {cmd}'"
+bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -terminal i3-sensible-terminal -normal-window -run-command 'systemd-run-i3 -s app -n  {cmd}'"
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
 bindsym $mod+Shift+e            exec "pkill rofi; rofi -show emoji -modi emoji -normal-window"
 bindsym $mod+Shift+i            exec rofi-fontawesome
@@ -148,12 +148,12 @@ bindsym --release Print         exec screenshot
 bindsym --release $mod+Print    exec screenshot --clip
 bindsym --release Shift+Print   exec screenshot --active
 bindsym --release $mod+Shift+Print exec screenshot --active --clip
-bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
-bindsym $mod+$alt+space         exec systemd-run-i3 -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
-bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
+bindsym $mod+Shift+x            exec systemd-run-i3 -s app -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
+bindsym $mod+$alt+space         exec systemd-run-i3 -s background -n ~/.config/i3/cycleaudio.py && pkill -RTMIN+10 i3blocks
+bindsym $mod+numbersign         exec systemd-run-i3 -s app -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
 bindsym $mod+r                  exec bash -c 'pwgen -snc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i -r'
-bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
-bindsym --release $mod+i        exec systemd-run-i3 -n sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
+bindsym $mod+g                  exec systemd-run-i3 -s app -n notify-send -c transfer "$(gist -PRpc)"
+bindsym --release $mod+i        exec systemd-run-i3 -s background -n sh -c 'sleep 0.5 && xdotool type --delay 400 "$(xclip -o -selection clipboard)"'
 
 # Media player controls
 bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
