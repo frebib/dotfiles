@@ -1,12 +1,11 @@
 #!/bin/bash -e
 
-rand=$(tr -dc 'a-f0-9' < /dev/urandom | head -c 16)
+rand=$(tr -dc 'a-f0-9' < /dev/urandom | head -c 8)
 
 args=()
-while getopts "u:s:e:d:cnw" opt
+while getopts "s:e:d:cnw" opt
 do case "$opt" in
-    u) args+=("--unit=$OPTARG-$rand");;
-    s) args+=("--slice=$OPTARG");;
+    s) slice="$OPTARG";;
     e) args+=("--setenv=$OPTARG");;
     d) args+=("--working-directory=$OPTARG");;
     c) args+=("--scope");;
@@ -17,4 +16,13 @@ do case "$opt" in
 done
 shift $((OPTIND-1))
 
-exec systemd-run --user --collect --unit="$1-$rand" ${args[@]} -- "$@"
+if [ -z "$slice" ]; then
+    slice=app
+fi
+
+exec systemd-run \
+    --user \
+    --collect \
+    --slice="$slice" \
+    --unit="$slice-$1-$rand" \
+    ${args[@]} -- "$@"
