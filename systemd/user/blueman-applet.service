@@ -2,6 +2,7 @@
 Description=Bluetooth Applet
 After=graphical-session.target
 Requires=graphical-session.target
+ConditionPathExists=/sys/class/bluetooth
 
 [Service]
 Type=simple
