@@ -25,4 +25,5 @@ exec systemd-run \
     --collect \
     --slice="$slice" \
     --unit="$slice-$1-$rand" \
+    --property=BindsTo=graphical-session.target \
     ${args[@]} -- "$@"
