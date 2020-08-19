@@ -27,8 +27,8 @@ height = 16pt
 bottom = true
 radius = 0
 
-font-0 = sans:pixelsize=9;2
-font-1 = FontAwesome5ProLight:pixelsize=10;2
+font-0 = sans:pixelsize=9;2pt
+font-1 = FontAwesome5ProLight:pixelsize=10;2pt
 
 foreground = ${colours.text}
 background = ${colours.background}
@@ -54,7 +54,7 @@ tray-detached = false
 tray-background = ${colours.background}
 #tray-offset-x = -20
 #tray-offset-y = 0
-tray-maxsize = 16
+tray-maxsize = 12pt
 tray-padding = 8pt
 tray-scale = 1.0
 
