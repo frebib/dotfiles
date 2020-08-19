@@ -5,7 +5,10 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/bin/sh -c "xev -root -event randr 2>&1 | while awk -v RS='\n\n' '{exit;}'; do echo 'Applying wallpaper'; feh --no-fehbg --no-xinerama --bg-fill ~/.config/lakesidesunrise.jpg; done"
+Environment=FEH_OPTIONS="--no-fehbg --no-xinerama"
+Environment=WALLPAPER=/home/frebib/pictures/lakesidesunrise.jpg
+ExecStartPre=feh $FEH_OPTIONS --bg-fill $WALLPAPER
+ExecStart=/bin/sh -c "xev -root -event randr 2>&1 | while awk -v RS=\\n\\n '{exit;}'; do echo 'Applying wallpaper'; feh $FEH_OPTIONS --bg-fill $WALLPAPER; done"
 Restart=always
 
 [Install]
