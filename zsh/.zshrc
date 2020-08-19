@@ -42,7 +42,7 @@ if exists tput; then
 fi
 
 # Set some useful ZSH/Bash options
-setopt sharehistory histignorealldups histignorespace histreduceblanks
+setopt sharehistory extendedhistory histignorealldups histignorespace histreduceblanks
 setopt pathdirs autocd autopushd extendedglob nullglob alwaystoend interactivecomments dvorak
 
 zstyle ':completion:*:sudo|_::' environ PATH="/sbin:/usr/sbin:$PATH" HOME="/root"
