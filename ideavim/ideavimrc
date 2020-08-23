@@ -1,0 +1,55 @@
+noremap d h
+noremap h j
+noremap t k
+noremap n l
+noremap D H
+noremap H J
+noremap T K
+noremap N L
+
+noremap gh gj
+noremap gt gk
+
+" I work with tabs every now and then. No, I don't have a mnemonic, so
+" stfu.
+noremap gj gt
+noremap gJ gT
+
+" Window movement, equally important
+noremap <C-w>d <C-w>h
+noremap <C-w>h <C-w>j
+noremap <C-w>t <C-w>k
+noremap <C-w>n <C-w>l
+
+nnoremap <C-w><C-d> <C-w><C-h>
+nnoremap <C-w><C-h> <C-w><C-j>
+nnoremap <C-w><C-t> <C-w><C-k>
+nnoremap <C-w><C-n> <C-w><C-l>
+
+nnoremap <C-d> <C-w>h
+nnoremap <C-h> <C-w>j
+nnoremap <C-t> <C-w>k
+nnoremap <C-n> <C-w>l
+
+" Account for tag jumping
+nnoremap <C-j> <C-t>
+
+" Remappings for the D key
+noremap k d
+noremap K D
+
+" Remappings for the T key
+noremap j t
+"noremap J T
+
+" Remapping for the L key
+noremap l n
+noremap L N
+
+" General purpose help; the originals remain for convenience
+noremap - 0
+noremap _ $
+
+" Fold-related keybindings
+noremap zh zj
+noremap zt zk
