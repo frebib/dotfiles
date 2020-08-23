@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import atexit
+import os
+import readline
+
+xdg_cache_home = os.environ['XDG_CACHE_HOME']
+
+if xdg_cache_home is None or xdg_cache_home == "":
+    xdg_cache_home = os.path.join(os.path.expanduser("~"), ".cache")
+
+python_cache_dir = os.path.join(xdg_cache_home, "python")
+if not os.path.isdir(python_cache_dir):
+    os.mkdir(python_cache_dir)
+
+histfile = os.path.join(python_cache_dir, "history")
+
+try:
+    readline.read_history_file(histfile)
+    readline.set_history_length(10000)
+except FileNotFoundError:
+    pass
+
+atexit.register(readline.write_history_file, histfile)
