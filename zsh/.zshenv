@@ -4,7 +4,7 @@
 # ZDOTDIR is overriden and .zshrc is not in ~
 if [ -z "$ZDOTDIR" ]; then
     set -o allexport
-    . ~/.config/environment.d/*.conf
+    for f in "$HOME"/.config/environment.d/*.conf; do . "$f"; done
     set +o allexport
 fi
 
