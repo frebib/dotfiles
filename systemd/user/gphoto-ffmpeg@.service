@@ -1,0 +1,15 @@
+[Unit]
+Description=GPhoto2 capture with ffmpeg encoding
+
+[Service]
+Type=simple
+ExecStartPre=gphoto2 --abilities
+ExecStart=/bin/sh -c 'exec gphoto2 --set-config /main/capturesettings/continuousaf=1 --set-config /main/capturesettings/focusmode="AI Servo" --set-config /main/imgsettings/whitesbalance=Tungsten --capture-movie --stdout --set-config viewfinder=0 | ffmpeg -i - -f rawvideo -vf "crop=iw:iw*9/16" -pix_fmt yuv420p -threads 0 -s:v 1280x720 -r 25 -f v4l2 /dev/video%i'
+ExecStop=/bin/kill $MAINPID
+ExecStop=-/usr/bin/gphoto2 --set-config viewfinder=0
+Restart=always
+RestartSec=5
+Slice=app.slice
+
+[Install]
+WantedBy=default.target
