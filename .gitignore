@@ -8,6 +8,5 @@ bookmarks
 .config/zsh/.zshrc.zwc
 
 *.log
-.xournal/recent-files
 .vim/bundle
 .vim/swapfiles
