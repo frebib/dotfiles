@@ -2,6 +2,7 @@
 Description=NetworkManager Applet
 After=graphical-session.target NetworkManager.service
 Requires=graphical-session.target
+ConditionPathExists=/run/NetworkManager
 
 [Service]
 Type=simple
