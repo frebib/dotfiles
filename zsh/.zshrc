@@ -1,5 +1,5 @@
 # Config and cache directory paths
-ZSH_DIR="$XDG_CONFIG_HOME/zsh"
+ZSH_DIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
 LOG_DIR="$XDG_DATA_HOME/logs"
 HISTFILE="$XDG_DATA_HOME/zsh/history"
 HISTSIZE=999999
