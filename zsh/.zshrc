@@ -60,21 +60,25 @@ export WORDCHARS='*?_[]~=&;!#$%^(){}'
 x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
 zle -N x-bash-backward-kill-word
 
-# Load antigen & plugins
-ANTIGEN_LOG="$LOG_DIR/antigen-$(date -u --iso-8601=seconds | cut -d+ -f1).log"
-antigen_src="$ADOTDIR/antigen.zsh"
-if [ ! -f "$antigen_src" ]; then
-    git clone https://github.com/zsh-users/antigen.git "$ADOTDIR"
+declare -A ZINIT
+ZINIT[HOME_DIR]="$XDG_CACHE_HOME/zsh/zinit"
+ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
+ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
+if [ ! -e "${ZINIT[HOME_DIR]}" ]; then
+    git clone https://github.com/zdharma/zinit.git "${ZINIT[HOME_DIR]}"
 fi
-source "$antigen_src"
+source "${ZINIT[HOME_DIR]}"/zinit.zsh
 
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle mafredri/zsh-async
-antigen bundle agkozak/zsh-z
+zinit wait lucid light-mode for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
-antigen apply
+zinit light Aloxaf/fzf-tab
+zinit light agkozak/zsh-z
 
 # Vim mode!
 bindkey -v
@@ -114,41 +118,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=128
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
 
-default='fg=12'
-prog='fg=blue'
-ZSH_HIGHLIGHT_STYLES=()
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets root line)
-ZSH_HIGHLIGHT_STYLES[root]='bg=red'
-ZSH_HIGHLIGHT_STYLES[default]=$default
-ZSH_HIGHLIGHT_STYLES[arg0]=$prog
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[alias]=$prog
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=green'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=4'
-ZSH_HIGHLIGHT_STYLES[function]=$prog
-ZSH_HIGHLIGHT_STYLES[command]=$prog
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=4'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green'
-ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[path_separator]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=208'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=7'
-ZSH_HIGHLIGHT_STYLES[history-expansion]=$default
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=$default
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=$default
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[assign]='fg=green'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan,bold'
-
 source "$XDG_CONFIG_HOME/aliases"
 
 # Load some manual plugins
@@ -156,18 +125,7 @@ source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
 source "$ZSH_DIR/plugins/git-rprompt.zsh"
 
-trysource() { [ -f "$1" ] && source "$1"; }
-trysource /usr/share/fzf/key-bindings.zsh 2>&1 # Arch/sensible distros
-trysource /usr/share/doc/fzf/examples/key-bindings.zsh 2>&1 # Debian, because Debian
-trysource /usr/share/doc/pkgfile/command-not-found.zsh 2>&1 # pkgfile on Arch
-trysource /usr/share/z/z.sh
-
-# Completion initialisation
-autoload -U compinit bashcompinit
-compinit
-bashcompinit
-
-# gopass completion
-if exists gopass; then
-    source <(gopass completion bash)
-fi
+trysource() { for f in "$@"; do source "$f" 2>/dev/null && return; done; }
+trysource /usr/share/fzf/key-bindings.zsh \
+          /usr/share/doc/fzf/examples/key-bindings.zsh
+trysource /usr/share/doc/pkgfile/command-not-found.zsh # pkgfile on Arch
