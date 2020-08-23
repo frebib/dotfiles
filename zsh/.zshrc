@@ -52,10 +52,6 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':compinstall'  filename "${ZDOTDIR:-~}/.zshrc"
 
-# Pre-load vi-mode edit-command-line before antigen plugins are loaded
-autoload -z edit-command-line
-zle -N edit-command-line
-
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
 x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
 zle -N x-bash-backward-kill-word
