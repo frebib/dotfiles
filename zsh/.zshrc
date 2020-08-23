@@ -155,8 +155,12 @@ source "$XDG_CONFIG_HOME/aliases"
 source "$ZSH_DIR/plugins/sudo.zsh"
 source "$ZSH_DIR/plugins/fish-theme.zsh"
 source "$ZSH_DIR/plugins/git-rprompt.zsh"
-[ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
-[ -f '/usr/share/doc/pkgfile/command-not-found.zsh' ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
+trysource() { [ -f "$1" ] && source "$1"; }
+trysource /usr/share/fzf/key-bindings.zsh 2>&1 # Arch/sensible distros
+trysource /usr/share/doc/fzf/examples/key-bindings.zsh 2>&1 # Debian, because Debian
+trysource /usr/share/doc/pkgfile/command-not-found.zsh 2>&1 # pkgfile on Arch
+trysource /usr/share/z/z.sh
 
 # Completion initialisation
 autoload -U compinit bashcompinit
