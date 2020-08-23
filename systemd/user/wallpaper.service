@@ -4,12 +4,12 @@ Requires=graphical-session.target
 After=graphical-session.target
 
 [Service]
-Type=simple
 Environment=FEH_OPTIONS="--no-fehbg --no-xinerama"
 Environment=WALLPAPER=/home/frebib/pictures/lakesidesunrise.jpg
 ExecStartPre=feh $FEH_OPTIONS --bg-fill $WALLPAPER
 ExecStart=/bin/sh -c "xev -root -event randr 2>&1 | while awk -v RS=\\n\\n '{exit;}'; do echo 'Applying wallpaper'; feh $FEH_OPTIONS --bg-fill $WALLPAPER; done"
 Restart=always
+Slice=session.slice
 
 [Install]
 WantedBy=desktop.target

@@ -7,6 +7,7 @@ Requires=graphical-session.target
 Type=simple
 ExecStart=/usr/bin/nm-applet
 Restart=on-failure
+Slice=background.slice
 
 [Install]
 WantedBy=desktop.target

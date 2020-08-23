@@ -8,6 +8,7 @@ Type=simple
 ExecStart=/usr/bin/solaar --debug --restart-on-wake-up --window=hide
 KillMode=process
 Restart=on-failure
+Slice=background.slice
 
 [Install]
 WantedBy=desktop.target

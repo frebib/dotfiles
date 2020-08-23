@@ -7,6 +7,7 @@ After=xorg.target
 ExecStart=/usr/bin/xautolock -time 5 -locker 'dm-tool switch-to-greeter' -detectsleep -resetsaver -secure
 KillMode=process
 Restart=on-failure
+Slice=session.slice
 
 [Install]
 WantedBy=graphical-session.target

@@ -4,10 +4,10 @@ Requires=graphical-session.target
 After=graphical-session.target pulseaudio.socket i3.service
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/polybar --reload --log=warning %i
 ExecReload=/usr/bin/polybar-msg cmd restart -p $MAINPID
 Restart=always
+Slice=session.slice
 
 [Install]
 WantedBy=desktop.target

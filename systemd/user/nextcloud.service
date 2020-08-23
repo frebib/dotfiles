@@ -4,11 +4,10 @@ Requires=graphical-session.target
 After=graphical-session.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/nextcloud --background
 ExecReload=/bin/kill -HUP $MAINPID
-KillMode=process
 Restart=on-failure
+Slice=app.slice
 
 [Install]
 WantedBy=desktop.target

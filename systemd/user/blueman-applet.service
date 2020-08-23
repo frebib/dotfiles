@@ -5,9 +5,9 @@ Requires=graphical-session.target
 ConditionPathExists=/sys/class/bluetooth
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/blueman-applet
 Restart=on-failure
+Slice=background.slice
 
 [Install]
 WantedBy=desktop.target

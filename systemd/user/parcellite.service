@@ -6,6 +6,7 @@ After=xorg.target
 
 [Service]
 ExecStart=/usr/bin/parcellite -n
+Slice=session.slice
 
 [Install]
 WantedBy=graphical-session.target

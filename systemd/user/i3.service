@@ -8,6 +8,7 @@ After=xprofile.service xorg.target
 ExecStart=/usr/bin/i3
 ExecReload=/usr/bin/i3-msg reload
 Restart=always
+Slice=session.slice
 
 [Install]
 WantedBy=graphical-session.target
