@@ -76,6 +76,9 @@ zinit wait lucid light-mode for \
 zinit light Aloxaf/fzf-tab
 zinit light agkozak/zsh-z
 
+zinit ice lucid ver'master' wait'0a' pick'src/bash.command-not-found'
+zinit light hkbakke/bash-insulter
+
 # Vim mode!
 bindkey -v
 export KEYTIMEOUT=25
