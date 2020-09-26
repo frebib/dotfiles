@@ -6,6 +6,7 @@ After=xorg.target
 [Service]
 ExecStart=/bin/sh -c 'xsettingsd -c $XDG_CONFIG_HOME/xsettingsd/xsettingsd.local'
 ExecReload=/bin/kill -s HUP $MAINPID
+SyslogIdentifier=xsettingsd
 Restart=always
 Slice=session.slice
 

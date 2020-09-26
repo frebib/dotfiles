@@ -6,9 +6,10 @@ After=graphical-session.target
 [Service]
 Environment=FEH_OPTIONS="--no-fehbg --no-xinerama"
 Environment=WALLPAPER=/home/frebib/pictures/lakesidesunrise.jpg
-ExecStartPre=feh $FEH_OPTIONS --bg-fill $WALLPAPER
+ExecStartPre=/bin/sh -c "exec feh $FEH_OPTIONS --bg-fill $WALLPAPER"
 ExecStart=/bin/sh -c "xev -root -event randr 2>&1 | while awk -v RS=\\n\\n '{exit;}'; do echo 'Applying wallpaper'; feh $FEH_OPTIONS --bg-fill $WALLPAPER; done"
 Restart=always
+SyslogIdentifier=wallpaper
 Slice=session.slice
 
 [Install]

@@ -9,6 +9,7 @@ ExecStop=/bin/kill $MAINPID
 ExecStop=-/usr/bin/gphoto2 --set-config viewfinder=0
 Restart=always
 RestartSec=5
+SyslogIdentifier=gphoto-ffmpeg
 Slice=app.slice
 
 [Install]
