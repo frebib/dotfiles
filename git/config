@@ -32,6 +32,7 @@
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
+	detachedHead = false
 [sendemail]
 	from = Joe Groocock <me@frebib.net>
 	smtpserver = smtp.zoho.com
