@@ -6,6 +6,8 @@
 	autocrlf = input
 	excludesfile = /home/frebib/.config/git/gitignore
 	pager = diff-highlight | $PAGER
+[init]
+	defaultBranch = master
 [interactive]
 	diffFilter = diff-highlight
 [commit]
