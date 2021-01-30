@@ -6,7 +6,7 @@ After=xprofile.service xorg.target
 
 [Service]
 ExecStart=/usr/bin/i3
-ExecReload=/usr/bin/i3-msg reload
+ExecReload=/usr/bin/i3-msg restart
 Restart=always
 Slice=session.slice
 
