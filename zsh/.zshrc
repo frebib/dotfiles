@@ -53,8 +53,6 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':compinstall'  filename "${ZDOTDIR:-~}/.zshrc"
 
 export WORDCHARS='*?_[]~=&;!#$%^(){}'
-x-bash-backward-kill-word(){ WORDCHARS='' zle kill-word; }
-zle -N x-bash-backward-kill-word
 
 declare -A ZINIT
 ZINIT[HOME_DIR]="$XDG_CACHE_HOME/zsh/zinit"
@@ -92,8 +90,6 @@ bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[3;3~" delete-word
-bindkey '^[^[[3~' x-bash-backward-kill-word
-bindkey '^[^[[3^' x-bash-backward-kill-word
 bindkey '^[[A' fzf-history-widget                   # Up (fzf)
 bindkey '^[[B' fzf-history-widget                   # Down (fzf)
 bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
