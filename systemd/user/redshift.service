@@ -1,0 +1,13 @@
+[Unit]
+Description=Redshift display colour temperature adjustment
+Documentation=http://jonls.dk/redshift/
+Requires=xorg.target
+ConditionPathExists=/usr/bin/redshift
+
+[Service]
+Slice=session.slice
+ExecStart=/usr/bin/redshift
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target
