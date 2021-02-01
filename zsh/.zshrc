@@ -71,7 +71,6 @@ zinit wait lucid light-mode for \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 
-zinit light Aloxaf/fzf-tab
 zinit light agkozak/zsh-z
 
 zinit ice lucid ver'master' wait'0a' pick'src/bash.command-not-found'
