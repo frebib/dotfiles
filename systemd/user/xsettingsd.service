@@ -4,9 +4,8 @@ Requires=xorg.target
 After=xorg.target
 
 [Service]
-ExecStart=/bin/sh -c 'xsettingsd -c $XDG_CONFIG_HOME/xsettingsd/xsettingsd.local'
+ExecStart=xsettingsd -c ${XDG_CONFIG_HOME}/xsettingsd/xsettingsd.conf
 ExecReload=/bin/kill -s HUP $MAINPID
-SyslogIdentifier=xsettingsd
 Restart=always
 Slice=session.slice
 
