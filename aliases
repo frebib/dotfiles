@@ -148,6 +148,7 @@ alias gm="git merge"
 alias gma="git merge --abort"
 
 alias grb="git rebase"
+alias grbi="grb -i"
 alias grba="grb --abort"
 alias grbc="grb --continue"
 alias grbsk="grb --skip"
