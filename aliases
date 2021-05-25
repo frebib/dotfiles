@@ -122,6 +122,7 @@ alias kl='killall -s 9'
 alias chx='chmod +x'
 
 # Git Aliases
+alias git='TZ=UTC git'
 alias g=git
 alias ginit='git init'
 alias gignore='$EDITOR .gitignore'

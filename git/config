@@ -21,6 +21,8 @@
 	prune = true
 [rebase]
 	autoStash = true
+[log]
+	date = iso8601-local
 [format]
 	pretty = format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
 [alias]
