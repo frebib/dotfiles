@@ -35,7 +35,7 @@ alias al=la # No, I don't need the Mono Assembly Linker
 alias md='mkdir -p'
 alias rd='rmdir -p'
 alias -- -='cd -'
-alias cdt='cd `mktemp -d`'
+cdt() { cd "$(mktemp -d -t "${1:-tmp}.XXXXXXXX")"; }
 
 alias svi=sudoedit
 alias svim=sudoedit
