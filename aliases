@@ -1,7 +1,7 @@
 case "$(basename "$(readlink -f /proc/$$/exe)")" in
     zsh)  thisfile="$(readlink -f "${(%):-%N}")";;
     bash) thisfile="$(readlink -f "${BASH_SOURCE[0]}")";;
-    *)   thisfile="$(find /proc/$$/fd/ | xargs -n1 -r readlink -f | grep aliases | head -n1)";;
+    *)   thisfile="$(find /proc/$$/fd/ -print0 | xargs -0 -n1 -r readlink -f | grep aliases | head -n1)";;
 esac
 
 # Global aliases for ZSH
@@ -51,21 +51,21 @@ alias mv='mv -i'
 alias cp='cp -ir'
 alias scp='scp -r'
 alias dd='dd status=progress'
-alias wget="wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file"
+alias wget='wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file'
 alias vi=vim
 alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
 alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
-alias alpine-sdk='docker run -ti --rm \
+alias alpine-sdk="docker run -ti --rm \
     -e USER \
-    -e UID="$(id -u)" \
+    -e UID=\"\$(id -u)\" \
     -e PWD \
     -e HOME \
-    -w $PWD \
-    -v $PWD:$PWD \
-    -v ~/.abuild:$HOME/.abuild \
+    -w \$PWD \
+    -v \$PWD:\$PWD \
+    -v ~/.abuild:\$HOME/.abuild \
     -v ~/.abuild/distfiles:/var/cache/distfiles \
-    frebib/alpine-sdk:edge'
+    frebib/alpine-sdk:edge"
 alias abuild='alpine-sdk abuild'
 alias abuild-sign='alpine-sdk abuild-sign'
 alias apk='alpine-sdk apk'
@@ -89,9 +89,9 @@ vim --version 2>/dev/null | command grep -q +clientserver && \
     alias vim="vim --servername vim -p"
 
 # Function aliases
-env() { command env $@ | stripansi | sort; }
-mcd(){ mkdir -p -- $@ && cd -- $@; }
-randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w $1 | head -n 1; }
+env() { command env "$@" | stripansi | sort; }
+mcd(){ mkdir -p -- "$@" && cd -- "$@"; }
+randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w "$1" | head -n 1; }
 
 # System aliases
 alias sc="systemctl"
@@ -121,7 +121,7 @@ alias gaa="ga -A"
 alias grm="git rm"
 alias gc="git commit -s"
 alias gcm="git commit -s -em"
-alias gca="git commit -s --amend --date=\"$(date -R)\""
+alias gca="git commit -s --amend --date=\"\$(date -R)\""
 alias gcn="git commit -s --no-edit"
 alias gcan="gca -s --no-edit"
 alias gcam="gca -s -m"
@@ -188,7 +188,7 @@ alias d=docker
 alias dps="docker ps --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
 alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
 alias dnets="docker network ls -q | xargs docker inspect | jq '.[] | select(.Name != \"host\" and .Name != \"none\") | [.] | map(.Name + \"\t\" + (.IPAM.Config | map(.Subnet) | join(\"\t\")))[]' -r | sort -V -k2,3 | column -t"
-daddrs() { docker inspect ${1:-bridge} | jq '.[0].Containers | map(.Name + "\t" + .IPv4Address + "\t" + .IPv6Address)[]' -r | sort -V -k2,3 | column -t; }
+daddrs() { docker inspect "${1:-bridge}" | jq '.[0].Containers | map(.Name + "\t" + .IPv4Address + "\t" + .IPv6Address)[]' -r | sort -V -k2,3 | column -t; }
 alias din='docker inspect'
 alias drm='docker rm'
 alias drmi='docker rmi'
@@ -207,20 +207,21 @@ alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
 alias drmi-untag='docker image prune'
 alias dprune='docker system prune -f'
-dsh() { do_dsh 2 exec $@; return $?; }
-_dsh() { __docker_complete_running_containers $@; }
-drsh() { do_dsh 4 run --rm --entrypoint= $@; return $?; }
-_drsh() { __docker_container_subcommand $@; }
+dsh() { do_dsh 2 exec "$@"; return $?; }
+_dsh() { __docker_complete_running_containers "$@"; }
+drsh() { do_dsh 4 run --rm --entrypoint= "$@"; return $?; }
+_drsh() { __docker_container_subcommand "$@"; }
 do_dsh() {
     local minargs=$1
     shift
-    if [ $# -lt $minargs ]; then
+    if [ $# -lt "$minargs" ]; then
+        # shellcheck disable=SC2154
         echo "Usage: ${funcstack[2]} [user@]container [program [args]]" >&2
         return 64
     fi
 
     local dowhat="$1"
-    local docker_args=()
+    local docker_args=("$dowhat" -ti)
     shift
 
     while [ "${1:0:1}" = '-' ]; do
@@ -232,68 +233,74 @@ do_dsh() {
         shift
     done
 
-    local user="$(echo "$1" | cut -d'@' -f1 -s)"
-    local prog="${@:2:$#}"
-    local usercmd=""
+    local user
+    user="$(echo "$1" | cut -d@ -f1 -s)"
+
+    declare -a prog
+    prog=("${@:2:$#}")
     if [ -z "$user" ]; then
         host="$1"
     else
-        host=`echo $1 | cut -d'@' -f2 -s`
-        usercmd="--user=$user"
+        host="$(cut -d@ -f2 -s <<< "$1")"
+        docker_args+=("--user=$user")
     fi
 
-    if [ "$dowhat" = 'exec' -a -z "$(docker ps -q -f name="$host")" <&- ]; then
+    if [ "$dowhat" = exec ] && [ -z "$(docker ps -q -f name="$host" <&-)" ]; then
         echo "No such container $host" >&2
         return 5
     fi
+    if [ "$dowhat" = run ]; then
+        docker image pull "$host"
+    fi
 
-    if [ -z "$prog" ]; then
-        shell_args=()
+    if [ ${#prog[@]} = 0 ]; then
+        shell_args=("$dowhat")
         if [ "$dowhat" = 'run' ]; then
-            shell_args=(--rm --entrypoint=)
+            shell_args+=(--rm --entrypoint=)
         fi
         for shell in bash sh; do
-            shell_path="$(set -o pipefail; docker $dowhat ${shell_args[@]} "$host" which "$shell" <&- | sed 's|[\r\n]||g')"
+            shell_path="$(set -o pipefail; docker "${shell_args[@]}" "$host" which "$shell" <&- | sed 's|[\r\n]||g')"
             retval=$?
             if [ $retval -eq 0 ]; then
-                prog="$shell_path"
+                prog=("$shell_path")
                 break
             elif [ $retval -ge 125 ]; then
                 return
             fi
         done
-        if [ -z "$prog" ]; then
+        if [ ${#prog[@]} = 0 ]; then
             echo "Warning: No shell found in path.. trying /bin/sh" >&2
-            prog=/bin/sh
+            prog=(/bin/sh)
         fi
     fi
 
-    docker $dowhat ${docker_args[@]} -ti $usercmd $host $(xargs <<< $prog)
+    docker "${docker_args[@]}" "$host" "${prog[@]}"
 }
 
 alias dc='docker-compose'
 alias dm='docker-machine'
-dmc() { eval $(docker-machine env $1); }
+dmc() { eval "$(docker-machine env "$1")"; }
 
 # ZFS aliases
 alias zfs='sudo zfs'
 alias zpool='sudo zpool'
 alias zp=zpool
-zl() { (set -o pipefail; command zfs list $@ | grep -Ev 'docker/[0-9a-f]{64}' | column -t -R 2,3,4); return $?; }
-_zl() { _zfs "list $@"; }
+zl() { (set -o pipefail; command zfs list "$@" | grep -Ev 'docker/[0-9a-f]{64}' | column -t -R 2,3,4); return $?; }
+_zl() { _zfs "list $*"; }
 
 # General Aliases
-alias ssha='eval `ssh-agent` ; ssh-add'
-alias aliases="$EDITOR $thisfile ; exec zsh"
-alias vimrc="$EDITOR $VIMRC"
-alias zshrc="$EDITOR ${ZDOTDIR:-$HOME}/.zshrc ; exec zsh"
-alias gitrc="$EDITOR $XDG_CONFIG_HOME/git/config"
-alias xinitrc="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
-alias xresources="$EDITOR $XDG_CONFIG_HOME/X11/xresources ; xrdb merge $XDG_CONFIG_HOME/X11/xresources"
-alias sshc="$EDITOR ~/.ssh/config"
-alias dotfiles="cd $XDG_CONFIG_HOME"
-alias i3c="$EDITOR $XDG_CONFIG_HOME/i3/config; systemctl --user reload i3"
-alias polybarc="$EDITOR $XDG_CONFIG_HOME/polybar/config; systemctl --user reload polybar@i3bar"
+alias ssha="eval \"\$(ssh-agent)\"; ssh-add"
+# shellcheck disable=SC2139
+alias aliases="\$EDITOR $thisfile ; exec zsh"
+alias vimrc="\$EDITOR \$VIMRC"
+alias zshrc="\$EDITOR \${ZDOTDIR:-\$HOME}/.zshrc ; exec zsh"
+alias gitrc="\$EDITOR \$XDG_CONFIG_HOME/git/config"
+alias xinitrc="\$EDITOR \$XDG_CONFIG_HOME/X11/xinitrc"
+alias xresources="\$EDITOR \$XDG_CONFIG_HOME/X11/xresources ; xrdb merge \$XDG_CONFIG_HOME/X11/xresources"
+alias sshc="\$EDITOR ~/.ssh/config"
+alias dotfiles="cd \$XDG_CONFIG_HOME"
+alias i3c="\$EDITOR \$XDG_CONFIG_HOME/i3/config; systemctl --user reload i3"
+alias polybarc="\$EDITOR \$XDG_CONFIG_HOME/polybar/config; systemctl --user reload polybar@i3bar"
 
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
