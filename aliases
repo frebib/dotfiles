@@ -25,14 +25,15 @@ fi
 
 alias l=ll
 alias ls='ls --color=auto'
-alias ll="ls -lFh  --group-directories-first"
-alias la="ls -lAFh --group-directories-first"
-alias lt='ls -lAFh --sort=time'
+alias ll='ls -lFh  --group-directories-first'
+alias la='ls -lAFh --group-directories-first'
+alias lt='ls -lFh  --sort=time'
+alias lat='ls -lAFh --sort=time'
 alias lsz='ls -lAFh --sort=size'
 alias al=la # No, I don't need the Mono Assembly Linker
 
-alias md="mkdir -p"
-alias rd="rmdir -p"
+alias md='mkdir -p'
+alias rd='rmdir -p'
 alias -- -='cd -'
 alias cdt='cd `mktemp -d`'
 
