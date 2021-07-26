@@ -11,8 +11,6 @@ export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
 # https://www.reddit.com/r/linux/comments/72mfv8/psa_for_firefox_users_set_moz_use_xinput21_to/
 export MOZ_USE_XINPUT2=1 # enable pixel-accurate scrolling in firefox
-# https://wiki.archlinux.org/index.php/firefox#Hardware_video_acceleration
-export MOZ_X11_EGL=1
 
 
 # Load Xorg resources and set the DPI
