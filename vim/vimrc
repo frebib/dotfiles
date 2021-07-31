@@ -39,10 +39,17 @@ set updatetime=500  " reduce delay from 4s default
 
 let mapleader="\<space>"
 
+" ALE config
+let g:ale_completion_enabled = 1
+let g:ale_open_list = 1
+augroup CloseLoclistWindowGroup
+    autocmd!
+    autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
 " Autosave settings
 function! SaveIfExist()
     if @% != "" && filereadable(@%) && !&readonly && &modified
-        SyntasticCheck
         write
     endif
 endfunction
@@ -85,8 +92,6 @@ endif
 
 call plug#begin('$XDG_CONFIG_HOME/vim/plug')
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree', { 'on':  'NERTreeToggle' }
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
@@ -103,6 +108,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'lervag/vimtex'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'junegunn/fzf.vim'
+
+" Completion and linting
+Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Syntax Highlighting
@@ -111,22 +123,39 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'puppetlabs/puppet-syntax-vim'
 Plug 'saltstack/salt-vim'
 Plug 'arrufat/vala.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'pearofducks/ansible-vim'
+Plug 'jvirtanen/vim-hcl'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
 " Change to dvorak-mapped keys
 let g:use_dvorak = 1
 
-" YouCompleteMe config
-let g:ycm_confirm_extra_conf = 0
-if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-"let g:vimtex_view_method='zathura'
+" Deoplete config
+call deoplete#custom#option({
+\ 'camel_case': v:true,
+\ })
+call deoplete#enable()
+
+" Vim-Airline config
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+" ALE integration
+let g:airline#extensions#ale#enabled = 1
+
+" vim-markdown plugin
+let vim_markdown_preview_toggle=0
+let vim_markdown_preview_browser='Chromium'
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_github=1
+
+" LaTeX config
 let g:tex_flavor='xelatex'
 let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
-let g:syntastic_tex_checkers = ['chktex']
 autocmd FileType tex silent VimtexCompile
 autocmd FileType tex setlocal spell
 augroup vimtex
@@ -135,35 +164,6 @@ augroup vimtex
     autocmd BufWritePost tex call vimtex#labels#refresh()
     autocmd BufWritePost tex silent VimtexCompile
 augroup END
-
-
-" Vim-Airline config
-let g:Powerline_symbols = 'fancy'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" vim-markdown plugin
-let vim_markdown_preview_toggle=0
-let vim_markdown_preview_browser='Chromium'
-let vim_markdown_preview_use_xdg_open=1
-let vim_markdown_preview_github=1
-
-" Syntastic configuration
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_enable_signs=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " Tagbar configuration
 let g:tagbar_width = 50
