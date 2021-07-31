@@ -73,11 +73,8 @@ set list
 set listchars=eol:$,space:·,tab:>-,trail:◦,extends:▶,precedes:◀
 highlight SpecialKey ctermfg=8
 
-if exists('+colorcolumn')
-    highlight ColorColumn ctermbg=8
-    autocmd filetype c,h,cpp,hpp set colorcolumn=81
-    autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
-endif
+set cc=+1
+highlight ColorColumn ctermbg=8
 
 " Highlight line and column of cursor
 set cul cuc
@@ -304,6 +301,11 @@ cmap w!! w !sudo tee > /dev/null %
 map Q <nop>
 
 
-autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et indentkeys-=<:>
-autocmd FileType gitcommit setlocal cc=72 et sw=4
+autocmd FileType c setlocal noet
+autocmd filetype c,h,cpp,hpp set colorcolumn=81
+autocmd filetype c,h,cpp,hpp match ErrorMsg '\%>80v.\+'
+
+autocmd FileType jinja setlocal sts=2 sw=2 et
+autocmd FileType markdown setlocal sts=2 sw=2 et
+autocmd FileType yaml setlocal sts=2 sw=2 et indentkeys-=<:>
+autocmd FileType gitcommit setlocal tw=72 et sw=4
