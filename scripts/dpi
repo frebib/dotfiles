@@ -1,8 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 set -eu
 
 # Based on https://github.com/vincentbernat/awesome-configuration/blob/master/bin/xsettingsd-setup
 CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+xrdbget() {
+    set -o pipefail
+    xrdb -query | grep -i -m1 "$1" | sed 's/^.*:\s//g' || echo "$2"
+}
 
 dpi=$1
 
@@ -24,6 +29,10 @@ mkdir -p "$CONF_DIR/xsettingsd"
     cat "$CONF_DIR/xsettingsd.local" 2>/dev/null || true
     echo "Xcursor/size $cursor"
     echo "Gtk/CursorThemeSize $cursor"
+    echo "Gtk/CursorThemeName \"$(xrdbget Xcursor.theme Adwaita)\""
+    echo "Xft/HintStyle \"$(xrdbget Xft.hintstyle hintfull)\""
+    echo "Xft/Hinting \"$(xrdbget Xft.hinting -1)\""
+    echo "Xft/RGBA \"$(xrdbget Xft.rgba rgb)\""
     echo "Xft/DPI $(( dpi*1024 ))"
     echo "Gdk/WindowScalingFactor $scale"
     echo "Gdk/UnscaledDPI $(( dpi*1024/scale ))"
