@@ -137,7 +137,8 @@ alias grbc="grb --continue"
 alias grbsk="grb --skip"
 alias grbsh="grb --show-current"
 alias grbom="git rebase origin/master"
-alias gfrb="git fetch && git rebase"
+gfrb() { remote="${1%/*}"; git fetch "$remote" && git rebase "$@"; }
+gfrbi() { remote="${1%/*}"; git fetch "$remote" && git rebase -i "$@"; }
 
 alias gam="git am"
 alias gama="git am --abort"
