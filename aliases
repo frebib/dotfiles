@@ -204,6 +204,7 @@ alias dst='docker stop'
 alias drst='docker restart'
 alias dnet='docker network'
 alias dvol='docker volume'
+alias dc='docker compose'
 alias dlg='docker logs --tail=1000 -f'
 alias dalpine='docker run -ti --rm spritsail/alpine /bin/sh'
 alias drm-stopped='docker container prune'
@@ -279,7 +280,6 @@ do_dsh() {
     docker "${docker_args[@]}" "$host" "${prog[@]}"
 }
 
-alias dc='docker-compose'
 alias dm='docker-machine'
 dmc() { eval "$(docker-machine env "$1")"; }
 
