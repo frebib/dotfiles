@@ -89,13 +89,16 @@ bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[3;3~" delete-word
-bindkey '^[[A' fzf-history-widget                   # Up (fzf)
-bindkey '^[[B' fzf-history-widget                   # Down (fzf)
-bindkey '^F'   fzf-file-widget                      # Ctrl+F file search (fzf)
 
-bindkey "^F" fzf-file-widget
+bindkey "^F" fzf-file-widget  # Ctrl+F file search (fzf)
+bindkey "^[[A" fzf-history-widget  # Up (fzf)
+bindkey "^[[B" fzf-history-widget  # Down (fzf)
+bindkey "${terminfo[kcuu1]}" fzf-history-widget  # Up (fzf)
+bindkey "${terminfo[kcud1]}" fzf-history-widget  # Down (fzf)
+
+# Backspace across newlines when in vi-mode
+bindkey -v '^?' backward-delete-char
 bindkey -M vicmd "^W" backward-delete-word
-
 bindkey -M vicmd d vi-backward-char
 bindkey -M vicmd h vi-down-line-or-history
 bindkey -M vicmd t vi-up-line-or-history
@@ -104,9 +107,6 @@ bindkey -M vicmd k vi-delete
 bindkey -M vicmd K vi-kill-eol
 bindkey -M vicmd j vi-find-next-char-skip
 bindkey -M vicmd l vi-repeat-search
-
-# Backspace across newlines when in vi-mode
-bindkey -v '^?' backward-delete-char
 
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=128
