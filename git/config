@@ -19,6 +19,8 @@
 [pull]
 	rebase = true
 	prune = true
+[merge]
+	ff = only
 [rebase]
 	autoStash = true
 [log]
