@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+while getopts "on:" o; do
+    case "${o}" in
+        o)
+            stdout=1;;
+        n)
+            caller="${OPTARG}"
+            ;;
+        *)
+            exec ykman oath accounts list
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ $# -lt 1 ]; then
+    exec ykman oath accounts list
+fi
+
+if [ -n "$caller" ]; then
+    notif="$(notify-send -p "Touch your Yubikey" "$caller is requesting otp for $1")"
+fi
+
+ykman oath accounts code -s "$1" 2>&1 |
+    while read -r x; do
+        if grep -Pqw '[0-9]{6}' <<< "$x"; then
+            if [ -z "$stdout" ]; then
+                echo "$x" | tee >(xclip -i)
+                xdotool type "$x"
+            else
+                echo "$x"
+            fi
+        fi
+        if [ -z "$stdout" ]; then
+            notify-send "$x";
+        fi
+    done
+
+if [ -n "$notif" ]; then
+    notify-send -r "$notif" -t 1000 "Touch your Yubikey" "otp generated for $caller"
+fi

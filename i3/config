@@ -152,6 +152,7 @@ bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --ho
 bindsym $mod+r                  exec bash -c 'pwgen -snc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i -r'
 bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
 bindsym --release $mod+i        exec systemd-run-i3 -s background -n sh -c 'sleep 0.5 && xdotool getactivewindow type --delay 10 -- "$(xclip -o -selection clipboard)"'
+bindsym $mod+z                  exec otp | rofi -dmenu -p otp | xargs otp
 
 # Media player controls
 bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
