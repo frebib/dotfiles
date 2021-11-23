@@ -151,7 +151,7 @@ bindsym $mod+$alt+space         exec systemd-run-i3 -s background -n ~/.config/i
 bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
 bindsym $mod+r                  exec bash -c 'pwgen -snc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i -r'
 bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
-bindsym --release $mod+i        exec systemd-run-i3 -s background -n sh -c 'sleep 0.5 && xdotool getactivewindow type --delay 250 "$(xclip -o -selection clipboard)"'
+bindsym --release $mod+i        exec systemd-run-i3 -s background -n sh -c 'sleep 0.5 && xdotool getactivewindow type --delay 10 -- "$(xclip -o -selection clipboard)"'
 
 # Media player controls
 bindsym XF86AudioPlay           exec --no-startup-id playerctl -a play-pause
