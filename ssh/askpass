@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+if [ -z "$SSH_HOST" ]; then
+    >&2 echo 'Missing SSH_HOST variable'
+    exit 1
+fi
+
+case "$SSH_HOST" in
+    *)
+        echo 'Unknown SSH host'
+        exit 1
+        ;;
+esac

@@ -1,0 +1,13 @@
+[Unit]
+Description=SSH persistent connection to %i
+
+[Service]
+Type=forking
+Slice=ssh.slice
+Environment=SSH_ASKPASS=%E/ssh/askpass
+Environment=SSH_HOST=%i
+ExecStart=/usr/bin/ssh -fNT %i
+Restart=on-failure
+
+[Install]
+WantedBy=ssh.target
