@@ -59,17 +59,18 @@ ZINIT[HOME_DIR]="$XDG_CACHE_HOME/zsh/zinit"
 ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
 if [ ! -e "${ZINIT[HOME_DIR]}" ]; then
-    git clone https://github.com/zdharma/zinit.git "${ZINIT[HOME_DIR]}"
+    git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT[HOME_DIR]}"
 fi
 source "${ZINIT[HOME_DIR]}"/zinit.zsh
 
-zinit wait lucid light-mode for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+zinit wait lucid for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C;zicompinit;zicdreplay" \
+    atload"FAST_HIGHLIGHT[chroma-zinit]=" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions
 
 zinit light agkozak/zsh-z
 
