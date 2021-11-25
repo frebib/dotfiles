@@ -108,6 +108,9 @@ bindkey -M vicmd K vi-kill-eol
 bindkey -M vicmd j vi-find-next-char-skip
 bindkey -M vicmd l vi-repeat-search
 
+# Disable all fsh chromas, fixes `zi` being slow
+FAST_HIGHLIGHT=()
+
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=128
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
