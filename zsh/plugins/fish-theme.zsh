@@ -1,7 +1,7 @@
 # ZSH Theme emulating the Fish shell's default prompt.
 
 _fishy_collapsed_wd() {
-    pwd | sed -E 's|^'$HOME'|~|;s|(.*)/|\1%|;s|((^\|/)\.?[^/%]{1})[^/%]*|\1|g;s|(.*)%|\1/|'
+    pwd | sed -E 's|^'$HOME'|~|;s|([\.~]?[^/]{1})[^/]*/|\1/|g'
 }
 
 function zle-line-init zle-keymap-select {
