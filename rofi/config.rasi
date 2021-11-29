@@ -1,9 +1,6 @@
 configuration {
-  theme: "arc-dark";
   font: "sans 14";
   dpi: 0;
-  width: 35;
-  lines: 10;
 
   /* show-icons: true; */
   separator-style: "solid";
@@ -140,6 +137,17 @@ configuration {
 /*  me-select-entry: "MousePrimary";*/
 /*  me-accept-entry: "MouseDPrimary";*/
 /*  me-accept-custom: "Control+MouseDPrimary";*/
+}
+
+@theme "arc-dark"
+
+window {
+	width: 700;
+}
+
+listview {
+	lines: 10;
+	columns: 1;
 }
 
 /* vim: ft=css sw=2 */
