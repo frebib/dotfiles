@@ -10,7 +10,7 @@ urgent = #e53935
 format-foreground = ${colours.text}
 format-background = ${colours.background}
 format-spacing = 0
-format-margin  = 2.5
+format-margin  = 3
 format-offset  = 0
 
 screenchange-reload = true
@@ -22,7 +22,6 @@ fixed-center = false
 enable-ipc = true
 
 width = 100%
-#offset-x = 18px
 height = 16pt
 bottom = true
 radius = 0
@@ -39,7 +38,7 @@ padding-right = 2pt
 border-size = 0
 border-left-size = 16pt
 border-right-size = 16pt
-border-bottom-size = 8pt
+border-bottom-size = 10pt
 
 line-size = 0
 line-colour = #f00
