@@ -70,7 +70,7 @@ set splitright          " Vertical split to right of current.
 
 " Whitespace highlight settings
 set list
-set listchars=eol:$,space:·,tab:>-,trail:◦,extends:▶,precedes:◀
+set listchars=space:·,tab:>-,trail:◦,extends:▶,precedes:◀
 highlight SpecialKey ctermfg=8
 
 set cc=+1
