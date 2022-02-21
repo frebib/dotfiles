@@ -24,7 +24,7 @@
     ],
     "bug_report_endpoint_url": "https://riot.im/bugreports/submit",
     "defaultCountryCode": "GB",
-    "showLabsSettings": false,
+    "showLabsSettings": true,
     "features": {
         "feature_font_scaling": "labs",
         "feature_pinning": "labs",
