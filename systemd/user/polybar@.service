@@ -1,11 +1,11 @@
 [Unit]
-Description=Polybar
+Description=Polybar bar %i
 Requires=graphical-session.target
 After=graphical-session.target pulseaudio.socket i3.service
 
 [Service]
 ExecStart=/usr/bin/polybar --reload --log=warning %i
-ExecReload=/usr/bin/polybar-msg cmd restart -p $MAINPID
+ExecReload=/usr/bin/polybar-msg -p $MAINPID cmd restart
 Restart=always
 Slice=session.slice
 

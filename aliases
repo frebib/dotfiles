@@ -302,7 +302,7 @@ alias xresources="\$EDITOR \$XDG_CONFIG_HOME/X11/xresources ; xrdb merge \$XDG_C
 alias sshc="\$EDITOR ~/.ssh/config"
 alias dotfiles="cd \$XDG_CONFIG_HOME"
 alias i3c="\$EDITOR \$XDG_CONFIG_HOME/i3/config; systemctl --user reload i3"
-alias polybarc="\$EDITOR \$XDG_CONFIG_HOME/polybar/config; systemctl --user reload polybar@i3bar"
+alias polybarc="\$EDITOR \$XDG_CONFIG_HOME/polybar/config.ini; systemctl --user reload polybar@i3bar"
 
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
