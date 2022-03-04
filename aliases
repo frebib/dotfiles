@@ -143,10 +143,17 @@ gfrbi() { remote="${1%/*}"; git fetch "$remote" && git rebase -i "$@"; }
 alias gam="git am"
 alias gama="git am --abort"
 alias gamc="git am --continue"
+alias gamsk="git am --skip"
 
 alias gcp="git cherry-pick"
 alias gcpa="git cherry-pick --abort"
 alias gcpc="git cherry-pick --continue"
+alias gcpsk="git cherry-pick --skip"
+
+alias grv="git revert"
+alias grva="git revert --abort"
+alias grvc="git revert --continue"
+alias grvsk="git revert --skip"
 
 alias gf="git fetch"
 alias gp="git push"
@@ -173,7 +180,6 @@ alias gbrl="git for-each-ref --sort=committerdate refs/heads/ --format=\"%(refna
 alias gtg="git tag"
 alias gbl="git blame"
 alias gr="git remote"
-alias grv="git revert"
 alias gra="gr add"
 alias grr="gr rm"
 alias grao="gra origin"
