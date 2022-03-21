@@ -9,43 +9,57 @@ xrdbget() {
     xrdb -query | grep -i -m1 "$1" | sed 's/^.*:\s//g' || echo "$2"
 }
 
-dpi=$1
+xsetting_bool() {
+    case "$1" in
+        true) echo 1;;
+        false) echo 0;;
+        default) echo -1;;
+        *) echo -1;;
+    esac
+}
 
-if [ -z "$1" ]; then
-    >&2 printf "Usage\n\t%s: <dpi>" "$(basename "$0")"
+
+if [ -z "$1" ] || [ "$1" -gt 200 ] || [ "$1" -lt 96 ]; then
+    >&2 printf "Usage\n\t%s: value\n\n  value\t Value must be within 96-200 inclusive\n" "$(basename "$0")"
     exit 1
 fi
 
-# Update picom and xorg
-sed -i "s/strength =.*$/strength = $(( dpi*8/96 ));/" "$CONF_DIR/picom/picom.conf" &
-xrandr --dpi "$dpi" &
-
+dpi=$1
 scale=$(( dpi/96 ))
 cursor=$(( dpi/6 ))
+
+# Update picom scale
+sed -i -e "s/strength =.*$/strength = $(( dpi*8/96 ));/" \
+    -e "s/corner-radius =.*$/corner-radius = $(( dpi/13 ));/" \
+    "$CONF_DIR/picom/picom.conf" &
 
 # Build xsettingsd.conf
 mkdir -p "$CONF_DIR/xsettingsd"
 {
-    cat "$CONF_DIR/xsettingsd.local" 2>/dev/null || true
+    cat "$CONF_DIR/xsettingsd.local" 2>/dev/null || :
     echo "Xcursor/size $cursor"
     echo "Gtk/CursorThemeSize $cursor"
     echo "Gtk/CursorThemeName \"$(xrdbget Xcursor.theme Adwaita)\""
     echo "Xft/HintStyle \"$(xrdbget Xft.hintstyle hintfull)\""
-    echo "Xft/Hinting \"$(xrdbget Xft.hinting -1)\""
+    echo "Xft/Hinting $(xsetting_bool "$(xrdbget Xft.hinting default)")"
     echo "Xft/RGBA \"$(xrdbget Xft.rgba rgb)\""
     echo "Xft/DPI $(( dpi*1024 ))"
     echo "Gdk/WindowScalingFactor $scale"
     echo "Gdk/UnscaledDPI $(( dpi*1024/scale ))"
 } > "$CONF_DIR/xsettingsd/xsettingsd.conf"
 
-{
-    echo "Xft.dpi: $dpi"
-    echo "Xcursor.size: $cursor"
-} | xrdb -merge &
-
+xrdb -merge <<EOF &
+Xft.dpi: $dpi
+Xcursor.size: $cursor
+EOF
+xrandr --dpi "$dpi" &
 systemctl --user reload-or-restart xsettingsd &
 wait
 
 systemctl --user reload \
     i3 \
-    polybar@i3bar
+    polybar@i3bar &
+systemctl --user restart \
+    dunst &
+
+wait
