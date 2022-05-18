@@ -37,6 +37,7 @@
 	count = !echo $(pwd) && git rev-list HEAD --count
 	unpushed = !git log --oneline @{u}..HEAD
 	leaders = !git shortlog -s -n --all --no-merges
+	defbranch = !git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
