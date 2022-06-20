@@ -4,10 +4,12 @@
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export GTK_THEME="$(grep gtk-theme-name "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini" | sed 's/.*\s*=\s*//')"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/settings.ini"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
+
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # https://www.reddit.com/r/linux/comments/72mfv8/psa_for_firefox_users_set_moz_use_xinput21_to/
 export MOZ_USE_XINPUT2=1 # enable pixel-accurate scrolling in firefox
