@@ -4,7 +4,9 @@ set -eu
 # Based on https://github.com/vincentbernat/awesome-configuration/blob/master/bin/xsettingsd-setup
 CONF_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 
+BLUR_STRENGTH=12
 CURSOR_SIZE=28
+CORNER_RADIUS=9
 
 xrdbget() {
     set -o pipefail
@@ -31,8 +33,8 @@ scale=$(( dpi/96 ))
 cursor=$(( (dpi*CURSOR_SIZE)/96 ))
 
 # Update picom scale
-sed -i -e "s/strength =.*$/strength = $(( dpi*8/96 ));/" \
-    -e "s/corner-radius =.*$/corner-radius = $(( dpi/13 ));/" \
+sed -i -e "s/strength =.*$/strength = $(( (dpi*BLUR_STRENGTH)/96 ));/" \
+    -e "s/corner-radius =.*$/corner-radius = $(( (dpi*CORNER_RADIUS)/96 ));/" \
     "$CONF_DIR/picom/picom.conf" &
 
 # Build xsettingsd.conf
