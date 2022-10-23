@@ -1,7 +1,7 @@
 [Unit]
 Description=Load Xorg configuration
+# this is a bit weird, but I guess it works
 PartOf=xorg.target
-After=xorg.target
 
 [Service]
 Type=oneshot

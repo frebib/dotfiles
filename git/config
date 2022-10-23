@@ -5,11 +5,11 @@
 [core]
 	autocrlf = input
 	excludesfile = /home/frebib/.config/git/gitignore
-	pager = diff-highlight | $PAGER
+	pager = delta --diff-so-fancy --color-only
 [init]
 	defaultBranch = master
 [interactive]
-	diffFilter = diff-highlight
+	diffFilter = delta --diff-so-fancy --color-only
 [commit]
 	gpgsign = true
 [fetch]
@@ -38,6 +38,7 @@
 	unpushed = !git log --oneline @{u}..HEAD
 	leaders = !git shortlog -s -n --all --no-merges
 	defbranch = !git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"
+	rbranch = for-each-ref --sort='committerdate' --format="%20%20%(refname:short)" refs/heads/
 [advice]
 	statusHints = false
 	pushUpdateRejected = false

@@ -53,8 +53,9 @@ function! SaveIfExist()
         write
     endif
 endfunction
+
 set autowrite
-autocmd CursorHold,CursorHoldI,InsertLeave,FocusGained,FocusLost * call SaveIfExist()
+autocmd InsertLeave <buffer> :write
 
 " Search options
 set hlsearch
@@ -89,7 +90,6 @@ endif
 
 call plug#begin('$XDG_CONFIG_HOME/vim/plug')
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERTreeToggle' }
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -134,6 +134,10 @@ let g:use_dvorak = 1
 call deoplete#custom#option({
 \ 'camel_case': v:true,
 \ })
+" Use ALE as completion sources for all code.
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
 call deoplete#enable()
 
 " Vim-Airline config
@@ -151,8 +155,10 @@ let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_github=1
 
 " LaTeX config
+"let g:vimtex_view_method='zathura'
 let g:tex_flavor='xelatex'
 let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
+let g:syntastic_tex_checkers = ['chktex']
 autocmd FileType tex silent VimtexCompile
 autocmd FileType tex setlocal spell
 augroup vimtex

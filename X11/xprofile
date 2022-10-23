@@ -16,8 +16,8 @@ export MOZ_USE_XINPUT2=1 # enable pixel-accurate scrolling in firefox
 
 
 # Load Xorg resources and set the DPI
-xrdb -merge $XDG_CONFIG_HOME/X11/xresources
-xrandr --dpi $(xrdb -query | grep -i xft.dpi | cut -d: -f2)
+xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
+#"$XDG_CONFIG_HOME/scripts/dpi" "$(xrdb -query | grep -i xft.dpi | cut -d: -f2 | xargs)"
 
 setxkbmap -option caps:none
 xset r rate 200 18

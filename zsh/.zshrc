@@ -128,3 +128,10 @@ trysource() { for f in "$@"; do source "$f" 2>/dev/null && return; done; }
 trysource /usr/share/fzf/key-bindings.zsh \
           /usr/share/doc/fzf/examples/key-bindings.zsh
 trysource /usr/share/doc/pkgfile/command-not-found.zsh # pkgfile on Arch
+
+if command -v kubectl >/dev/null 2>&1; then
+    autoload -Uz compinit
+    compinit
+    source <(kubectl completion zsh)
+fi
+

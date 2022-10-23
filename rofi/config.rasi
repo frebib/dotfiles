@@ -5,8 +5,8 @@ configuration {
   /* show-icons: true; */
   separator-style: "solid";
   modi: "window,run,ssh";
-  kb-row-tab: "Shift-Tab";
-  kb-row-select: "Tab";
+/*  kb-row-tab: "Shift-Tab"; */
+/*  kb-row-select: "Tab"; */
   terminal: "i3-sensible-terminal";
 
   matching: "glob";

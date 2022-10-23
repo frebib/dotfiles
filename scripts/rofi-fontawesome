@@ -59,7 +59,7 @@ function notify() {
 function display() {
     update=$'\tUpdate Font Awesome cache'
     fontawesome=$(grep -v '#\|^[[:space:]]*$' "$FONTAWESOME_FILE"; printf "$update\n")
-    line=$(echo "$fontawesome" | rofi -dmenu -i -p fontawesome -normal-window -kb-custom-1 Ctrl+c -kb-row-tab '' -kb-row-select Tab $@)
+    line=$(echo "$fontawesome" | rofi -dmenu -i -p fontawesome -normal-window -kb-custom-1 Ctrl+c -kb-row-tab '' $@)
     exit_code=$?
 
     if [ "${line[@]}" == "$update" ]; then
