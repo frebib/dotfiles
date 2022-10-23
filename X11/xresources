@@ -36,5 +36,5 @@ Xft.hinting:    true
 Xft.hintstyle:  hintfull
 Xft.lcdfilter:  lcddefault
 
-Xcursor.size: 16
-Xcursor.theme: Breeze_Obsidian
+Xcursor.size: 28
+Xcursor.theme: BreezeX-Black
