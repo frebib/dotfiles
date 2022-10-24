@@ -37,8 +37,23 @@
 	count = !echo $(pwd) && git rev-list HEAD --count
 	unpushed = !git log --oneline @{u}..HEAD
 	leaders = !git shortlog -s -n --all --no-merges
-	defbranch = !git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"
-	cleanmerged = !git branch --merged \"origin/$(git defbranch)\" | grep -ve \"^\\\\*\" -e \"^. $(git defbranch)$\" | xargs -r git branch -d
+	defbranch = "!defbranch() { \
+		r=\"${1:-origin}\"; \
+		{ \
+			git symbolic-ref \"refs/remotes/$r/HEAD\" || { \
+				git remote set-head \"$r\" -a >&2 && \
+				git symbolic-ref \"refs/remotes/$r/HEAD\"; \
+			}; \
+		} 2>/dev/null \
+			| sed \"s@^refs/remotes/$r/@@\"; \
+	}; defbranch"
+	cleanmerged = "!cleanmerged() { \
+		r=\"${1:-origin}\"; \
+		b=\"${2:-$(git defbranch \"$r\")}\"; \
+		git branch --merged \"$r/$b\" | \
+			grep -ve \"^\\\\*\" -e \"^. $b$\" | \
+			xargs -r git branch -d; \
+	}; cleanmerged"
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
