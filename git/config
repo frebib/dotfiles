@@ -38,6 +38,7 @@
 	unpushed = !git log --oneline @{u}..HEAD
 	leaders = !git shortlog -s -n --all --no-merges
 	defbranch = !git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"
+	cleanmerged = !git branch --merged \"origin/$(git defbranch)\" | grep -ve \"^\\\\*\" -e \"^. $(git defbranch)$\" | xargs -r git branch -d
 [advice]
 	statusHints = false
 	pushUpdateRejected = false
