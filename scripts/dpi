@@ -57,13 +57,13 @@ Xft.dpi: $dpi
 Xcursor.size: $cursor
 EOF
 xrandr --dpi "$dpi" &
-systemctl --user reload-or-restart xsettingsd &
+systemctl --user try-reload-or-restart xsettingsd &
 wait
 
-systemctl --user reload \
+systemctl --user try-reload-or-restart \
     i3 \
     polybar@i3bar &
-systemctl --user restart \
+systemctl --user try-restart \
     dunst &
 
 wait
