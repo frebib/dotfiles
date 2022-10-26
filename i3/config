@@ -142,8 +142,8 @@ bindsym $mod+space              exec "pkill rofi; rofi -show run -sidebar-mode -
 bindsym $mod+Shift+p            exec rofi-pass --root $(grep path ~/.config/gopass/config.yml | sed -E 's|^.*fs\+file://||g' | tr '\n' ':') | sed 's/:$//g'
 bindsym $mod+Shift+e            exec "pkill rofi; rofi -show emoji -modi emoji -normal-window"
 bindsym $mod+Shift+i            exec rofi-fontawesome
-bindsym --release Print         exec screenshot
-bindsym --release $mod+Print    exec screenshot --clip
+bindsym --release Print         exec screenshot --clip
+bindsym --release $mod+Print    exec screenshot
 bindsym --release Shift+Print   exec screenshot --active
 bindsym --release $mod+Shift+Print exec screenshot --active --clip
 bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
