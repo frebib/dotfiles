@@ -138,9 +138,9 @@ alias grba="grb --abort"
 alias grbc="grb --continue"
 alias grbsk="grb --skip"
 alias grbsh="grb --show-current"
-alias grbom="git rebase \"origin/\$(git defbranch)\""
-gfrb() { remote="${1%/*}"; git fetch "$remote" && git rebase "$@"; }
-gfrbi() { remote="${1%/*}"; git fetch "$remote" && git rebase -i "$@"; }
+alias grbom="git rebase \"origin/\$(git defbranch origin)\""
+gfrb() { ref="${1:-origin/$(git defbranch origin)}"; remote="${ref%%/*}"; git fetch "$remote" && git rebase "$ref" "${@:2}"; }
+gfrbi() { ref="${1:-origin/$(git defbranch origin)}"; remote="${ref%%/*}"; git fetch "$remote" && git rebase -i "$ref" "${@:2}"; }
 
 alias gam="git am"
 alias gama="git am --abort"
