@@ -197,7 +197,7 @@ alias gstv="gsta show -p stash@{0}"
 # Docker aliases
 alias d=docker
 alias dps="docker ps --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
-alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.label-schema.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
+alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Image}}\t{{.Label \"org.opencontainers.image.version\"}}\t{{.Networks}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' | sed '1s/version/VERSION/'"
 alias dnets="docker network ls -q | xargs docker inspect | jq '.[] | select(.Name != \"host\" and .Name != \"none\") | [.] | map(.Name + \"\t\" + (.IPAM.Config | map(.Subnet) | join(\"\t\")))[]' -r | sort -V -k2,3 | column -t"
 daddrs() { docker inspect "${1:-bridge}" | jq '.[0].Containers | map(.Name + "\t" + .IPv4Address + "\t" + .IPv6Address)[]' -r | sort -V -k2,3 | column -t; }
 alias din='docker inspect'
