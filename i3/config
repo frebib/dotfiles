@@ -150,7 +150,7 @@ bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --cl
 bindsym $mod+$alt+space         exec systemd-run-i3 -s background -n ~/.config/i3/cycleaudio.py
 bindsym $mod+numbersign         exec systemd-run-i3 -n i3-sensible-terminal --hold -e sh -c 'xclip -o | gpg --decrypt 2>&1'
 bindsym $mod+r                  exec bash -c 'pwgen -snc 32 1 | tee >(xargs notify-send Generated\ password\:) | xclip -i -r'
-bindsym $mod+g                  exec systemd-run-i3 -n notify-send -c transfer "$(gist -PRpc)"
+bindsym $mod+g                  exec systemd-run-i3 -n bash -xc 'xclip -o | gh gist create -d Paste - 2>&1 | grep -vE "^[-✓] Creat(ing|ed) gist" | tee >(xclip -i >&2 >/dev/null) | xargs -r notify-send -c transfer'
 bindsym --release $mod+i        exec systemd-run-i3 -s background -n sh -c 'sleep 0.5 && xdotool getactivewindow type --delay 10 -- "$(xclip -o -selection clipboard)"'
 bindsym $mod+z                  exec otp | rofi -dmenu -p otp | xargs otp
 
