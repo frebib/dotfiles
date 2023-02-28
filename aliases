@@ -168,10 +168,10 @@ alias gpsuom="git push --set-upstream origin \"\$(git defbranch)\""
 alias gpall="git remote | xargs -L1 git push"
 alias gl="git pull --rebase"
 alias glp="gl && gp"
-alias gd="git diff --patch-with-stat"
-alias gdni="gd --no-index"
-alias gds="gd --staged"
-alias gsh="git show --format=fuller --patch-with-stat"
+alias gd="git diff --patch-with-stat --no-prefix"
+alias gdni="gd --no-index --no-prefix"
+alias gds="gd --staged --no-prefix"
+alias gsh="git show --format=fuller --patch-with-stat --no-prefix"
 alias glg="git log --color --format=fuller --stat --no-merges --graph"
 alias glgp="git log --color --format=fuller --patch-with-stat --no-merges --graph"
 alias glog="git log --color --oneline --decorate --graph"
@@ -194,7 +194,7 @@ alias gsta='git stash'
 alias gstd='gsta drop'
 alias gstl='gsta list --stat --color'
 alias gstp='gsta pop'
-alias gstv="gsta show -p stash@{0}"
+alias gstv="gsta show --patch-with-stat stash@{0}"
 
 # Docker aliases
 alias d=docker
