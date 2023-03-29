@@ -1,42 +1,45 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+NOTIF_PERSIST=30000
+NOTIF_INFORM=5000
+
+stdout=
+caller=
+notif=
 
 while getopts "on:" o; do
-    case "${o}" in
-        o)
-            stdout=1;;
-        n)
-            caller="${OPTARG}"
-            ;;
-        *)
-            exec ykman oath accounts list
-            ;;
-    esac
+	case "${o}" in
+		o)
+			stdout=1;;
+		n)
+			caller="${OPTARG}"
+			;;
+		*)
+			exec ykman oath accounts list
+			;;
+	esac
 done
 shift $((OPTIND-1))
 
 if [ $# -lt 1 ]; then
-    exec ykman oath accounts list
+	exec ykman oath accounts list
 fi
 
 if [ -n "$caller" ]; then
-    notif="$(notify-send -p "Touch your Yubikey" "$caller is requesting otp for $1")"
+	notif="$(notify-send -p -t $NOTIF_PERSIST "Touch your Yubikey" "$caller is requesting otp for $1")"
+	trap 'notify-send -r $notif -t 1 "Touch your Yubikey" "$caller is requesting otp for $1"' EXIT
 fi
 
-ykman oath accounts code -s "$1" 2>&1 |
-    while read -r x; do
-        if grep -Pqw '[0-9]{6}' <<< "$x"; then
-            if [ -z "$stdout" ]; then
-                echo "$x" | tee >(xclip -i)
-                xdotool type "$x"
-            else
-                echo "$x"
-            fi
-        fi
-        if [ -z "$stdout" ]; then
-            notify-send "$x";
-        fi
-    done
+code=$(ykman oath accounts code -s "$1")
+if [ -z "$stdout" ]; then
+	echo "$code" | tee >(xclip -i)
+	xdotool type "$code"
+else
+	echo "$code"
+fi
 
-if [ -n "$notif" ]; then
-    notify-send -r "$notif" -t 1000 "Touch your Yubikey" "otp generated for $caller"
+if [ -n "$code" ] && [ -n "$notif" ]; then
+	trap : EXIT
+	notify-send -r "$notif" -t $NOTIF_INFORM "Yubikey Touched" "otp generated for $caller"
 fi
