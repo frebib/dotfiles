@@ -293,6 +293,7 @@ endif
 " Save aliases.
 com! W w
 com! Q q
+cmap Q! q!
 com! Wq wq
 com! WQ wq
 com! Wqa wqa
