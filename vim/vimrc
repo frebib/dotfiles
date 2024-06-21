@@ -37,6 +37,9 @@ set scrolloff=6
 set nojoinspaces
 set updatetime=500  " reduce delay from 4s default
 
+set spelllang=en_gb
+set spell
+
 let mapleader="\<space>"
 
 " ALE config
@@ -154,7 +157,6 @@ let vim_markdown_preview_github=1
 let g:tex_flavor='xelatex'
 let g:vimtex_indent_enabled = 0     " auto-indentation is wrong and annoying
 autocmd FileType tex silent VimtexCompile
-autocmd FileType tex setlocal spell
 augroup vimtex
     autocmd!
     autocmd BufWritePost tex call vimtex#toc#refresh()
