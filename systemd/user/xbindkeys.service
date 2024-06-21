@@ -2,7 +2,8 @@
 Description=XBindKeys
 
 [Service]
-ExecStart=/usr/bin/xbindkeys -n -f $XDG_CONFIG_HOME/X11/xbindkeysrc
+Type=forking
+ExecStart=/usr/bin/xbindkeys -f ${XDG_CONFIG_HOME}/X11/xbindkeysrc
 KillMode=process
 Slice=session.slice
 
