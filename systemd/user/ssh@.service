@@ -6,7 +6,7 @@ Type=forking
 Slice=ssh.slice
 Environment=SSH_ASKPASS=%E/ssh/askpass
 Environment=SSH_HOST=%i
-ExecStart=/usr/bin/ssh -fNT %i
+ExecStart=/usr/bin/ssh -F %E/ssh/config -fNT %i
 Restart=on-failure
 
 [Install]
