@@ -144,7 +144,7 @@ bindsym $mod+Shift+e            exec "pkill rofi; rofi -show emoji -modi emoji -
 bindsym $mod+Shift+i            exec rofi-fontawesome
 bindsym --release Print         exec screenshot --clip
 bindsym --release $mod+Print    exec screenshot
-bindsym --release Shift+Print   exec screenshot --active
+bindsym --release Shift+Print   exec screenshot --active --clip
 bindsym --release $mod+Shift+Print exec screenshot --active --clip
 bindsym $mod+Shift+x            exec systemd-run-i3 -n i3-sensible-terminal --class floating-term --hold -e /bin/echo "$(xprop -id $(xdotool getactivewindow))"
 bindsym $mod+$alt+space         exec systemd-run-i3 -s background -n ~/.config/i3/cycleaudio.py
