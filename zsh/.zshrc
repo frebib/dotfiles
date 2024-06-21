@@ -128,3 +128,4 @@ trysource() { for f in "$@"; do source "$f" 2>/dev/null && return; done; }
 trysource /usr/share/fzf/key-bindings.zsh \
           /usr/share/doc/fzf/examples/key-bindings.zsh
 trysource /usr/share/doc/pkgfile/command-not-found.zsh # pkgfile on Arch
+trysource /etc/zsh_command_not_found
