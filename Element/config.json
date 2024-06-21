@@ -1,11 +1,8 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://chat.nerdhouse.io/",
-            "server_name": "chat.nerdhouse.io"
-        },
-        "m.identity_server": {
-            "base_url": "https://chat.nerdhouse.io/"
+            "base_url": "https://matrix.nerdhouse.io/",
+            "server_name": "nerdhouse.io"
         }
     },
     "disable_custom_urls": false,
