@@ -72,6 +72,7 @@ alias apk='alpine-sdk apk'
 alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xargs hddtemp | sort -t: -k3'
 alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias calc="noglob bc -l <<<" # noglob allows * without quoting
+dbg() { >&2 printf '\033[0;31m+ %s\033[0m\n' "$*"; }
 
 exists pacman && \
     alias pacman='pacman --color=always'
