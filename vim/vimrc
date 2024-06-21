@@ -116,6 +116,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'fisadev/vim-isort'
 
 " Syntax Highlighting
 Plug 'chr4/nginx.vim'
