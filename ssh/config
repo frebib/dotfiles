@@ -1,0 +1,33 @@
+Host github.com
+	IdentityFile ${XDG_DATA_HOME}/ssh/id_ed25519
+
+Host *
+	IdentityFile ${XDG_DATA_HOME}/ssh/id_ed25519_sk
+
+Match exec "mkdir -p ${XDG_RUNTIME_DIR}/ssh"
+	ControlMaster auto
+	ControlPersist 3600
+	ControlPath ${XDG_RUNTIME_DIR}/ssh/%h
+
+Match exec "mkdir -p ${XDG_CACHE_HOME}/ssh"
+	UserKnownHostsFile ${XDG_CACHE_HOME}/ssh/known_hosts
+
+# Defaults applied to all hosts. Must be in it's own block so it doesn't fall
+# under the previous block
+Match !canonical all
+	CanonicalizeHostname always
+
+Match canonical all
+	IdentitiesOnly yes
+	PreferredAuthentications publickey
+	PasswordAuthentication no
+	PubkeyAuthentication yes
+	ForwardAgent no
+
+	LogLevel ERROR # Disable warning logging and reject changed keys
+	StrictHostKeyChecking accept-new
+	ServerAliveInterval 30
+	ConnectTimeout 30
+	Compression yes
+
+# vim: ft=sshconfig cc=80 noet nospell
