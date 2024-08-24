@@ -45,11 +45,11 @@ bindsym $mod+e sticky toggle
 bindsym $mod+a focus parent
 bindsym $mod+o focus child
 
-#  Screen configs  #
-set    $bl  "DP-5"
-set    $tl  "DP-1"
-set    $br  "HDMI-0"
-set    $tr  "DP-3"
+# Screen arrangement
+set    $bl  "DP-1"
+set    $tl  "DP-2"
+set    $br  "HDMI-1"
+set    $tr  "HDMI-2"
 
 # Workspace -> Screen
 workspace 1 output $bl
