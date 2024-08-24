@@ -94,37 +94,31 @@ get_icon() {
     esac
 }
 
-KEY="$OPENWEATHERMAP_API_KEY"
 CITY=""
-UNITS="metric"
 
 SYMBOL="°"
 ICON_COL="147a82"
 
-API="https://api.openweathermap.org/data/2.5"
-
-if [ ! -z $CITY ]; then
+if [ -n "$CITY" ]; then
     if [ "$CITY" -eq "$CITY" ] 2>/dev/null; then
         CITY_PARAM="id=$CITY"
     else
         CITY_PARAM="q=$CITY"
     fi
 
-    weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
+    weather=$(curl -sf "https://api.openweathermap.org/data/2.5/weather?appid=$OPENWEATHERMAP_API_KEY&$CITY_PARAM&units=$UNITS")
 else
-    location=$(curl -sf https://location.services.mozilla.com/v1/geolocate?key=geoclue)
+    location="$(curl -X POST -sf "https://www.googleapis.com/geolocation/v1/geolocate?key=$GOOGLE_GEOLOCATE_API_KEY")"
 
-    if [ ! -z "$location" ]; then
+    if [ -n "$location" ]; then
         location_lat="$(echo "$location" | jq '.location.lat')"
         location_lon="$(echo "$location" | jq '.location.lng')"
 
-        weather=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
-    else
-        echo "%{F#$ICON_COL}%{F-}"
+        weather=$(curl -sf "https://api.openweathermap.org/data/2.5/weather?appid=$OPENWEATHERMAP_API_KEY&lat=$location_lat&lon=$location_lon&units=metric")
     fi
 fi
 
-if [ ! -z "$weather" ]; then
+if [ -n "$weather" ]; then
     # weather_desc=$(echo "$weather" | jq -r ".weather[0].description")
     weather_temp=$(echo "$weather" | jq '.main.temp' | cut -d "." -f 1)
     weather_code=$(echo "$weather" | jq -r '.weather[0].id')
@@ -133,4 +127,6 @@ if [ ! -z "$weather" ]; then
     icon=$(get_icon "$time_of_day" "$weather_code")
 
     echo "%{F#$ICON_COL}$icon%{F-}  $weather_temp$SYMBOL"
+else
+    echo "%{F#$ICON_COL}%{F-}"
 fi
