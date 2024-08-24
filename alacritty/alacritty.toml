@@ -1,0 +1,148 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+transparent_background_colors = false
+
+[colors.bright]
+black = "#475760"
+blue = "#81b3f9"
+cyan = "#5ddae2"
+green = "#9ccc65"
+magenta = "#a56ecc"
+red = "#e53727"
+white = "#eceff1"
+yellow = "#ffa000"
+
+[colors.cursor]
+cursor = "#5294e2"
+text = "#eceff1"
+
+[colors.normal]
+black = "#333638"
+blue = "#0266f4"
+cyan = "#10aeba"
+green = "#8bc34a"
+magenta = "#cc17cc"
+red = "#f41f1c"
+white = "#8b9396"
+yellow = "#ffc107"
+
+[colors.primary]
+background = "#383c4a"
+foreground = "#eceff1"
+
+[colors.selection]
+background = "#5294e2"
+text = "CellForeground"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[debug]
+log_level = "Warn"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 9.0
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SearchForward"
+key = "F"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SearchBackward"
+key = "B"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ClearSelection"
+key = "C"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "NumpadAdd"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "NumpadSubtract"
+mods = "Control"
+
+[mouse]
+hide_when_typing = false
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+opacity = 0.8
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 120
+lines = 40
+
+[window.padding]
+x = 22
+y = 22
