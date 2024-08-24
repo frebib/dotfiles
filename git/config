@@ -1,7 +1,7 @@
 [user]
 	name = Joe Groocock
 	email = me@frebib.net
-	signingkey = CFBB6A86
+	signingkey = 2DB5CEECF769E51B300BE45DA5571FCDC53ADDE6
 [core]
 	autocrlf = input
 	excludesfile = /home/frebib/.config/git/gitignore
