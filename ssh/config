@@ -7,7 +7,7 @@ Host *
 Match exec "mkdir -p ${XDG_RUNTIME_DIR}/ssh"
 	ControlMaster auto
 	ControlPersist 3600
-	ControlPath ${XDG_RUNTIME_DIR}/ssh/%h
+	ControlPath ${XDG_RUNTIME_DIR}/ssh/%r@%h:%p
 
 Match exec "mkdir -p ${XDG_CACHE_HOME}/ssh"
 	UserKnownHostsFile ${XDG_CACHE_HOME}/ssh/known_hosts
