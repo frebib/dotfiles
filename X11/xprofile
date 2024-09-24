@@ -4,23 +4,15 @@
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 
-export GTK_THEME="$(grep gtk-theme-name "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini" | sed 's/.*\s*=\s*//')"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/settings.ini"
+export GTK_THEME="$(grep gtk-theme-name "${XDG_CONFIG_HOME}/gtk-3.0/settings.ini" | sed 's/.*\s*=\s*//')"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export XDG_CURRENT_DESKTOP="GNOME" # Fixes xdg-open
 
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
 # https://www.reddit.com/r/linux/comments/72mfv8/psa_for_firefox_users_set_moz_use_xinput21_to/
 export MOZ_USE_XINPUT2=1 # enable pixel-accurate scrolling in firefox
 
-
-# Load Xorg resources and set the DPI
-xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
-"$XDG_CONFIG_HOME/scripts/dpi" "$(xrdb -query | grep -i xft.dpi | cut -d: -f2 | xargs)"
-
 setxkbmap -option caps:none
 xset r rate 200 18
-
-test -f "$XDG_CONFIG_HOME"/X11/xmodmap && \
-    xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap

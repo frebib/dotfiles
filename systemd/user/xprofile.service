@@ -1,14 +1,13 @@
 [Unit]
 Description=Load Xorg configuration
-PartOf=xorg.target
+Requires=xorg.target
 After=xorg.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/sh -c '. ${XDG_CONFIG_HOME}/X11/xprofile; systemctl --user import-environment'
+ExecStart=/bin/sh -c '. %E/X11/xprofile; systemctl --user import-environment'
 SyslogIdentifier=xprofile
-Slice=session.slice
 
 [Install]
 WantedBy=xorg.target

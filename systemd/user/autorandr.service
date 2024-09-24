@@ -1,0 +1,10 @@
+[Unit]
+Description=Load xrandr display configuration
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/autorandr --match-edid --change
+
+[Install]
+WantedBy=graphical-session-pre.target

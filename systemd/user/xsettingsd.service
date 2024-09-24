@@ -2,9 +2,10 @@
 Description=xsettingsd - provide settings to X11 applications
 Requires=xorg.target
 After=xorg.target
+ConditionFileNotEmpty=%E/xsettingsd/xsettingsd.conf
 
 [Service]
-ExecStart=xsettingsd -c ${XDG_CONFIG_HOME}/xsettingsd/xsettingsd.conf
+ExecStart=xsettingsd -c %E/xsettingsd/xsettingsd.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=always
 Slice=session.slice

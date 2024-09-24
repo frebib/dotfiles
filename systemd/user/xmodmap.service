@@ -1,0 +1,13 @@
+[Unit]
+Description=Load Xorg keyboard and pointer mappings
+Requires=xorg.target
+After=xorg.target
+ConditionFileNotEmpty=%E/X11/xmodmap
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/xmodmap %E/X11/xmodmap
+
+[Install]
+WantedBy=graphical-session-pre.target

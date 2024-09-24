@@ -1,0 +1,12 @@
+[Unit]
+Description=Set X11 DPI and scaling
+Requires=xorg.target
+After=xorg.target xresources.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'dpi "$(xrdb -get Xft.dpi)"'
+
+[Install]
+WantedBy=graphical-session-pre.target

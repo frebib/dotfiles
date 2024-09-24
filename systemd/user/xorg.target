@@ -1,3 +1,8 @@
 [Unit]
 Description=Graphical desktop environment
+StopWhenUnneeded=yes
+AssertEnvironment=DISPLAY
+
 Requires=basic.target
+Before=graphical-session-pre.target
+After=basic.target

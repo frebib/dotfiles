@@ -10,6 +10,6 @@
 [Unit]
 Description=Current graphical user session
 Documentation=man:systemd.special(7)
-Requires=basic.target xorg.target
+Requires=basic.target graphical-session-pre.target xorg.target
 RefuseManualStart=yes
 StopWhenUnneeded=yes

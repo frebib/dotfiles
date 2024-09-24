@@ -1,0 +1,13 @@
+[Unit]
+Description=Load Xorg resources
+Requires=xorg.target
+After=xorg.target
+ConditionFileNotEmpty=%E/X11/xresources
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/xrdb -merge %E/X11/xresources
+
+[Install]
+WantedBy=graphical-session-pre.target

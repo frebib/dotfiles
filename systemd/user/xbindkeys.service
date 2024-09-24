@@ -1,9 +1,10 @@
 [Unit]
 Description=XBindKeys
+ConditionFileNotEmpty=%E/X11/xbindkeysrc
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/xbindkeys -f ${XDG_CONFIG_HOME}/X11/xbindkeysrc
+ExecStart=/usr/bin/xbindkeys -f %E/X11/xbindkeysrc
 KillMode=process
 Slice=session.slice
 
