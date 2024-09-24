@@ -1,0 +1,12 @@
+[Unit]
+Description=PolicyKit Authentication Agent
+BindsTo=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+Slice=background.slice
+
+[Install]
+WantedBy=graphical-session.target
