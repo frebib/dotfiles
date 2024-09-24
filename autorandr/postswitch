@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+case "$AUTORANDR_CURRENT_PROFILE" in
+    home)
+        dpi 96;;
+esac
