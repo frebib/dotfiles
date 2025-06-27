@@ -11,4 +11,4 @@ Restart=on-failure
 Slice=background.slice
 
 [Install]
-WantedBy=desktop.target
+WantedBy=graphical-session.target

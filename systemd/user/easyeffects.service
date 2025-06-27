@@ -1,0 +1,12 @@
+[Unit]
+Description=Limiter, compressor, convolver, equalizer and auto volume and many other plugins for PipeWire applications
+After=graphical-session.target
+After=pipewire.service pipewire-session-manager.service
+Requires=pipewire.service pipewire-session-manager.service
+
+[Service]
+ExecStart=/usr/bin/easyeffects --gapplication-service
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
