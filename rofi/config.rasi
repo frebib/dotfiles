@@ -7,7 +7,7 @@ configuration {
   modi: "window,run,ssh";
   kb-row-tab: "Shift-Tab";
   kb-row-select: "Tab";
-  terminal: "i3-sensible-terminal";
+  terminal: "ghostty";
 
   matching: "glob";
   tokenize: true;

@@ -1,2 +1,0 @@
-#!/bin/bash
-xrandr -q | grep " connected" | sed -n '1,/primary/p' | wc -l
