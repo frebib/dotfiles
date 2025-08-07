@@ -1,0 +1,8 @@
+window#waybar {
+    background: none;
+}
+
+.module {
+    /* padding: top right bottom left */
+    padding: 0 0.4em 0.7em 0.4em;
+}

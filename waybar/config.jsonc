@@ -1,0 +1,154 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    //"height": 40, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 6, // Gaps between modules (4px)
+    "output": "DP-1",
+    "reload_on_style_change": true,
+    "margin-top": -8,
+    "margin-left": 16,
+    "margin-right": 22,
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        //"mpd",
+        //"idle_inhibitor",
+        "pulseaudio",
+        //"network",
+        "power-profiles-daemon",
+        "temperature#cpu",
+        "temperature#gpu",
+        "backlight",
+        //"keyboard-state",
+        //"sway/language",
+        "cpu",
+        "memory",
+        "battery",
+        "clock",
+        "tray"
+        //"custom/power"
+    ],
+    // Modules configuration
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            //"1": "",
+            //"2": "",
+            //"3": "",
+            //"4": "",
+            //"5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "cpu": {
+        "format": "<span color=\"#147a82\"></span>  {usage}%",
+        "tooltip": false,
+        "interval": 1
+    },
+    "memory": {
+        "format": "<span color=\"#147a82\"> </span> {}%",
+        "interval": 1
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        // "timezone": "Europe/London",
+        "format": "<span color=\"#147a82\"></span>  {:%H:%M:%S}",
+        "format-alt": "<span color=\"#147a82\"></span>  {:%Y-%m-%d %H:%M:%S}",
+        "interval": 1,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "temperature#cpu": {
+        // k10temp-pci-00c3 Tctl
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 85,
+        "format-critical": "<span color=\"#147a82\">{icon}</span>  <span color=\"#ee6969\">{temperatureC}°</span>",
+        "format": "<span color=\"#147a82\">{icon}</span>  {temperatureC}°",
+        "format-icons": ["", "", "", "", "", "!"],
+        "interval": 1
+    },
+    "temperature#gpu": {
+        // amdgpu edge
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 100,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "<span color=\"#147a82\">{icon}</span>  {temperatureC}°",
+        "format-icons": ["", "", "", "", "", "!"],
+        "interval": 1
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "family": "ipv6",
+        "format-wifi": "<span color=\"#147a82\"></span>  {essid} ({signalStrength}%)",
+        "format-ethernet": "<span color=\"#147a82\"></span>  {ipaddr}/{cidr}",
+        "tooltip-format": "<span color=\"#147a82\"></span>  {ifname} via {gwaddr}",
+        "format-linked": "<span color=\"#147a82\"></span>   {ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "<span color=\"#147a82\">{icon}</span>  {volume}%  {format_source}",
+        "format-bluetooth": "<span color=\"#147a82\">{icon}</span>  {volume}% {format_source}",
+        "format-bluetooth-muted": "<span color=\"#147a82\">{icon}</span>  {format_source}",
+        "format-muted": "<span color=\"#147a82\"></span>  {format_source}",
+        "format-source": "<span color=\"#147a82\"></span>{volume}%",
+        "format-source-muted": "<span color=\"#147a82\"></span>",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", "", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    }
+}
