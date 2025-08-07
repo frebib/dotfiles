@@ -1,0 +1,17 @@
+[Unit]
+Description=GUI wallpaper manager for Wayland
+Documentation=man:waypaper(1) https://anufrievroman.gitbook.io/waypaper
+#PartOf=graphical-session.target
+Requires=graphical-session.target hyprpaper.service
+After=graphical-session.target hyprpaper.service
+ConditionEnvironment=WAYLAND_DISPLAY
+PartOf=hyprpaper.service
+BindsTo=hyprpaper.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/waypaper --random
+Slice=background.slice
+
+[Install]
+WantedBy=graphical-session.target

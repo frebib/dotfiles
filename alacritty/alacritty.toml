@@ -1,39 +1,8 @@
-
-[colors]
-draw_bold_text_with_bright_colors = true
-transparent_background_colors = false
-
-[colors.bright]
-black = "#475760"
-blue = "#81b3f9"
-cyan = "#5ddae2"
-green = "#9ccc65"
-magenta = "#a56ecc"
-red = "#e53727"
-white = "#eceff1"
-yellow = "#ffa000"
-
-[colors.cursor]
-cursor = "#5294e2"
-text = "#eceff1"
-
-[colors.normal]
-black = "#333638"
-blue = "#0266f4"
-cyan = "#10aeba"
-green = "#8bc34a"
-magenta = "#cc17cc"
-red = "#f41f1c"
-white = "#8b9396"
-yellow = "#ffc107"
-
-[colors.primary]
-background = "#383c4a"
-foreground = "#eceff1"
-
-[colors.selection]
-background = "#5294e2"
-text = "CellForeground"
+[general]
+live_config_reload = true
+import = [
+  "colours.toml",
+]
 
 [cursor]
 style = "Block"
@@ -145,6 +114,3 @@ lines = 40
 [window.padding]
 x = 22
 y = 22
-
-[general]
-live_config_reload = true

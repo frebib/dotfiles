@@ -7,6 +7,10 @@ bookmarks
 .config/mailnag/mailnag.dat
 .config/zsh/.zshrc.zwc
 
+alacritty/colours.toml
+ghostty/themes/wallust
+waybar/colours.css
+
 *.log
 .vim/bundle
 .vim/swapfiles
