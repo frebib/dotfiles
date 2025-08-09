@@ -74,15 +74,15 @@ set splitright          " Vertical split to right of current.
 " Whitespace highlight settings
 set list
 set listchars=space:·,tab:>-,trail:◦,extends:▶,precedes:◀
-highlight SpecialKey ctermfg=8
+highlight SpecialKey ctermfg=1
 
 set cc=+1
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=1
 
 " Highlight line and column of cursor
 set cul cuc
-highlight CursorLine   cterm=NONE ctermbg=8
-highlight CursorColumn cterm=NONE ctermbg=8
+highlight CursorLine   cterm=NONE ctermbg=1
+highlight CursorColumn cterm=NONE ctermbg=1
 
 if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
   silent !curl -fsSLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs
