@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-ALL=`pacman -Qqe`
-BASE=`pacman -Qqeg base`
-BASE_DEVEL=`pacman -Qqeg base-devel`
-
-printf "$ALL\n$BASE\n$BASE\n$BASE_DEVEL\n$BASE_DEVEL" | sort | uniq -u

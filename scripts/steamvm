@@ -1,5 +1,0 @@
-#!/bin/sh
-
-sudo virsh start Windows-10
-
-pidof synergyc &>/dev/null ; (synergyc --no-tray --debug INFO --name frebib-PC 10.0.4.2:24800 &>/dev/null && echo 'Synergy client started')

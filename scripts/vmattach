@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for dev in "$@"; do
-    sudo virsh attach-device Windows-10 /var/lib/libvirt/configs/hostdev-$dev.xml
-done

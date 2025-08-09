@@ -1,2 +1,0 @@
-#!/bin/sh
-exec xdg-open steam://rungameid/271590
