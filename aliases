@@ -49,7 +49,7 @@ alias open=xdg-open
 alias rm='rm -iv'
 alias mv='mv -i'
 alias cp='cp -ir'
-alias scp='scp -r'
+alias scp='scp -F "${XDG_CONFIG_HOME:-$HOME/.config}/ssh/config" -r'
 alias dd='dd status=progress'
 alias wget='wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file'
 alias vi=vim
