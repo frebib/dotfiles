@@ -22,7 +22,10 @@ Match canonical all
 	PreferredAuthentications publickey
 	PasswordAuthentication no
 	PubkeyAuthentication yes
+
 	ForwardAgent no
+	ForwardX11 no
+	SetEnv TERM=xterm-256color
 
 	LogLevel ERROR # Disable warning logging and reject changed keys
 	StrictHostKeyChecking accept-new
