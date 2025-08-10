@@ -36,6 +36,9 @@ alias md='mkdir -p'
 alias rd='rmdir -p'
 alias -- -='cd -'
 cdt() { cd "$(mktemp -d -t "${1:-tmp}.XXXXXXXX")"; }
+mcd(){ mkdir -p -- "$@" && cd -- "$@"; }
+
+env() { command env "$@" | stripansi | sort; }
 
 alias svi=sudoedit
 alias svim=sudoedit
@@ -53,9 +56,6 @@ alias scp='scp -F "${XDG_CONFIG_HOME:-$HOME/.config}/ssh/config" -r'
 alias dd='dd status=progress'
 alias wget='wget --hsts-file=$XDG_DATA_HOME/wget/hsts-file'
 alias vi=vim
-alias grip='grip --user=frebib --pass=$GRIP_API_KEY'
-alias acme.sh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
-alias acmesh='$XDG_CONFIG_HOME/acme.sh/acme.sh --home $XDG_CONFIG_HOME/acme.sh --config-home $XDG_CONFIG_HOME/acme.sh --log $XDG_CONFIG_HOME/acme.sh/acme.sh.log'
 alias alpine-sdk="docker run -ti --rm \
     -e USER \
     -e UID=\"\$(id -u)\" \
@@ -69,7 +69,6 @@ alias alpine-sdk="docker run -ti --rm \
 alias abuild='alpine-sdk abuild'
 alias abuild-sign='alpine-sdk abuild-sign'
 alias apk='alpine-sdk apk'
-alias hddtemps='find /sys/block/ -name sd\* | sed "s|sys/block|dev|g" | sudo xargs hddtemp | sort -t: -k3'
 alias stripansi='sed -r "s/\x1B\[(([0-9]+)(;[0-9]+)*)?[m,K,H,f,J]//g"'
 alias calc="noglob bc -l <<<" # noglob allows * without quoting
 dbg() { >&2 printf '\033[0;31m+ %s\033[0m\n' "$*"; }
@@ -82,26 +81,17 @@ exists tree && \
     alias tree='tree --dirsfirst -C -F'
 exists make && \
     alias make="make -j$(nproc)"
-exists gopass && \
-    alias pass='gopass'
 echo | busybox grep --color '' >/dev/null 2>&1 && \
     alias grep='grep --color'
 vim --version 2>/dev/null | command grep -q +clientserver && \
     alias vim="vim --servername vim -p"
-
-# Function aliases
-env() { command env "$@" | stripansi | sort; }
-mcd(){ mkdir -p -- "$@" && cd -- "$@"; }
-randstr() { tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w "$1" | head -n 1; }
 
 # System aliases
 alias sc="systemctl"
 alias ssc="sudo systemctl"
 alias scu="systemctl --user"
 alias j=journalctl
-alias ps='ps aux'
 alias catn='tail -n +1 --'
-alias kl='killall -s 9'
 alias chx='chmod +x'
 
 # Git Aliases
@@ -299,9 +289,6 @@ do_dsh() {
     docker "${docker_args[@]}" "$host" "${prog[@]}"
 }
 
-alias dm='docker-machine'
-dmc() { eval "$(docker-machine env "$1")"; }
-
 # ZFS aliases
 alias zfs='sudo zfs'
 alias zpool='sudo zpool'
@@ -310,7 +297,6 @@ zl() { (set -o pipefail; command zfs list "$@" | grep -Ev 'docker/[0-9a-f]{64}' 
 _zl() { _zfs "list $*"; }
 
 # General Aliases
-alias ssha="eval \"\$(ssh-agent)\"; ssh-add"
 # shellcheck disable=SC2139
 alias aliases="\$EDITOR $thisfile ; exec zsh"
 alias vimrc="\$EDITOR \$VIMRC"
@@ -318,12 +304,6 @@ alias zshrc="\$EDITOR \${ZDOTDIR:-\$HOME}/.zshrc ; exec zsh"
 alias gitrc="\$EDITOR \$XDG_CONFIG_HOME/git/config"
 alias sshc="\$EDITOR \$XDG_CONFIG_HOME/ssh/config"
 alias dotfiles="cd \$XDG_CONFIG_HOME"
-
-alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
-
-# Networking aliases
-alias ipa="ip a"
-alias addrs="ip a | grep inet | grep -ve fe80 -e '127\\.0\\.0\\.1/8' -e '::1/128' | sort -n | sed 's/^\\s*//'"
 
 # alertmanager
 alias alert='amtool alert'
