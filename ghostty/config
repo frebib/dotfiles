@@ -30,4 +30,4 @@ resize-overlay = never
 confirm-close-surface = false
 gtk-single-instance = true
 
-scrollback-limit = 4294967296
+scrollback-limit = 1000000
