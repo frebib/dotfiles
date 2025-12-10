@@ -16,7 +16,7 @@
 # on Ghostty's website, at https://ghostty.org/docs/config.
 
 font-size = 9.5
-background-opacity = 0.7
+background-opacity = 0.6
 
 theme = wallust
 window-theme = ghostty
