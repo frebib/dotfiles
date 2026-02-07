@@ -11,7 +11,7 @@ BindsTo=hyprpaper.service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/waypaper --random
-Slice=background.slice
+Slice=session-graphical.slice
 
 [Install]
 WantedBy=graphical-session.target
