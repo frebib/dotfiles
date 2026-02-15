@@ -90,7 +90,7 @@ if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $VIMRC
 endif
 
-call plug#begin('$XDG_CONFIG_HOME/vim/plug')
+call plug#begin('$XDG_CACHE_HOME/vim/plug')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERTreeToggle' }
 Plug 'tpope/vim-sensible'
