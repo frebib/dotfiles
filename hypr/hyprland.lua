@@ -225,9 +225,10 @@ local function zoom(offset)
     hl.config({ cursor = { zoom_factor = current } })
 end
 
-hl.bind("SUPER + SHIFT + mouse_up", function() zoom(0.2) end)
-hl.bind("SUPER + SHIFT + mouse_down", function() zoom(-0.2) end)
+hl.bind("SUPER + SHIFT + mouse_up", function() zoom(0.333333) end)
+hl.bind("SUPER + SHIFT + mouse_down", function() zoom(-0.333333) end)
 hl.bind("SUPER + SHIFT + equal", function() hl.config({ cursor = { zoom_factor = 1 }}) end)
+hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "easeOutCustom" })
 
 hl.window_rule({
     name  = "float windows with class=float",
