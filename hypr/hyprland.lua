@@ -250,6 +250,7 @@ hl.layer_rule({
 hl.layer_rule({
     match = { namespace = "rofi" },
     blur = true,
+    animation = "popin 90%",
 })
 
 -- Autostart
