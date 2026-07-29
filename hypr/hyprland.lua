@@ -189,10 +189,6 @@ hl.bind("SUPER + ALT + 8", hl.dsp.window.move({ workspace = 8 }, { follow = fals
 hl.bind("SUPER + ALT + 9", hl.dsp.window.move({ workspace = 9 }, { follow = false }))
 hl.bind("SUPER + ALT + 0", hl.dsp.window.move({ workspace = 10 }, { follow = false }))
 
--- Example special workspace (scratchpad)
-hl.bind("SUPER + Grave", hl.dsp.workspace.toggle_special("magic"))
-hl.bind("SUPER + SHIFT + Grave", hl.dsp.window.move({ workspace = "special:magic" }))
-
 -- Move/resize windows with super + LMB/RMB and dragging
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -262,3 +258,9 @@ hl.layer_rule({
 hl.on("hyprland.start", function()
     hl.exec_cmd("setxkbmap -layout gb -variant dvorak")
 end)
+
+-- Overlay workspace for chat, etc
+hl.workspace_rule({ workspace = "special:overlay", gaps_in = 18, gaps_out = 60 })
+hl.bind("SUPER + Grave", hl.dsp.workspace.toggle_special("overlay"))
+hl.bind("SUPER + SHIFT + Grave", hl.dsp.window.move({ workspace = "special:overlay" }))
+hl.animation({ leaf = "specialWorkspaceIn",  enabled = true, speed = 4, bezier = "easeOutBackCustom", style = "slidefade 30%" })
