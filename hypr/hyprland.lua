@@ -42,6 +42,7 @@ hl.config({
         inactive_opacity = 0.55,
         -- How much to dim the rest of the screen when the special workspace is open
         dim_special = 0.5,
+
         shadow = {
             enabled = true,
             range = 50,
@@ -49,6 +50,7 @@ hl.config({
             render_power = 3,
             color = "rgba(00000060)",
         },
+
         blur = {
             enabled = true,
             size = 16,
@@ -56,6 +58,10 @@ hl.config({
             ignore_opacity = true,
             noise = 0.006,
             vibrancy = 0.1696,
+        },
+
+        wobble = {
+            enabled = true,
         },
     },
 
