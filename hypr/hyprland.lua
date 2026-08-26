@@ -136,7 +136,7 @@ hl.bind("SUPER + CONTROL + Return", hl.dsp.exec_cmd("uwsm app -- ghostty --class
 hl.bind("SUPER + SHIFT + CONTROL + Return", hl.dsp.exec_cmd("uwsm app -- ghostty --working-directory=$(hyprcwd) --class=com.mitchellh.ghostty.floating"))
 hl.bind("SUPER + Space", hl.dsp.exec_raw("uwsm app -- rofi -modi drun -show drun -show-icons -normal-window -run-command 'uwsm app -- {cmd}'"))
 hl.bind("SUPER + SHIFT + E", hl.dsp.exec_raw("uwsm app -- rofi -modi emoji -show emoji"))
-hl.bind("SUPER + SHIFT + Escape", hl.dsp.exec_cmd("uwsm app --  config/hypr/powermenu.sh"), { repeating = true })
+hl.bind("SUPER + SHIFT + Escape", hl.dsp.exec_cmd("uwsm app -- .config/hypr/powermenu.sh"), { repeating = true })
 hl.bind("SUPER + K", hl.dsp.exec_cmd("hyprctl kill"))
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"), { repeating = true })
 hl.bind("Pause", hl.dsp.pass({ window = "class:^(TeamSpeak 3)$" }), { non_consuming = true, ignore_mods = true, pass = true })
