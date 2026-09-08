@@ -268,7 +268,7 @@ hl.on("hyprland.start", function()
 end)
 
 -- Overlay workspace for chat, etc
-hl.workspace_rule({ workspace = "special:overlay", gaps_in = 18, gaps_out = 60 })
+hl.workspace_rule({ workspace = "special:overlay", gaps_in = 14, gaps_out = 52 })
 hl.bind("SUPER + Grave", hl.dsp.workspace.toggle_special("overlay"))
 hl.bind("SUPER + SHIFT + Grave", hl.dsp.window.move({ workspace = "special:overlay" }))
 hl.animation({ leaf = "specialWorkspaceIn",  enabled = true, speed = 4, bezier = "easeOutBackCustom", style = "slidefade 30%" })
