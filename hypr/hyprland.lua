@@ -183,7 +183,6 @@ hl.bind("SUPER + SHIFT + 8", hl.dsp.window.move({ workspace = 8 }))
 hl.bind("SUPER + SHIFT + 9", hl.dsp.window.move({ workspace = 9 }))
 hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
 
-hl.bind("SUPER + ALT + 0", hl.dsp.window.move({ workspace = 10 }, { follow = false }))
 hl.bind("SUPER + ALT + 1", hl.dsp.window.move({ workspace = 1 }, { follow = false }))
 hl.bind("SUPER + ALT + 2", hl.dsp.window.move({ workspace = 2 }, { follow = false }))
 hl.bind("SUPER + ALT + 3", hl.dsp.window.move({ workspace = 3 }, { follow = false }))
