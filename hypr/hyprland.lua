@@ -68,7 +68,8 @@ hl.config({
     dwindle = {
         preserve_split = true,
         -- You probably want this
-        smart_resizing = false,
+        smart_resizing = true,
+        precise_mouse_move = true,
         --pseudotile = true # Master switch for pseudotiling. Enabling is bound to super + P in the keybinds section below
         default_split_ratio = 1.1,
     },
